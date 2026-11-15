@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kaushal Deekshant Samaroh 2026 — NSTI Calicut Coordination Portal</title>
+<style>
+:root{--fs:16px}
+[data-theme=light]{--bg1:#eaf4ff;--bg2:#fff6e6;--bg3:#e9fbf3;--card:#ffffffd9;--ink:#1f2a44;--mute:#5b6784;--pri:#3b82c4;--pri2:#7cc4f0;--acc:#f0a54a;--line:#d7e3f2;--wave:#cfe6fb;--inp:#fff}
+[data-theme=dark]{--bg1:#14173a;--bg2:#1c2147;--bg3:#101a33;--card:#232a55d9;--ink:#e9ecff;--mute:#aab3dd;--pri:#8b9bff;--pri2:#5b6ad6;--acc:#ffc46b;--line:#394080;--wave:#262d63;--inp:#171c42}
+[data-theme=royal]{--bg1:#0b1d46;--bg2:#12295e;--bg3:#0a1634;--card:#13265ad9;--ink:#fdf3d2;--mute:#d9c58a;--pri:#e5b94a;--pri2:#b98a1e;--acc:#ffd86b;--line:#4b5a8c;--wave:#17326f;--inp:#0d1c46}
+[data-theme=mint]{--bg1:#e4fbf1;--bg2:#f3fff9;--bg3:#e2f6f8;--card:#ffffffdd;--ink:#16372f;--mute:#4f7a6c;--pri:#1fa37a;--pri2:#7fe0b9;--acc:#f2b84b;--line:#c5ebdb;--wave:#bdf0d9;--inp:#fff}
+*{box-sizing:border-box}
+html{font-size:var(--fs)}
+body{margin:0;font-family:"Segoe UI","Noto Sans","Noto Sans Devanagari","Noto Sans Malayalam","Nirmala UI",system-ui,sans-serif;color:var(--ink);background:linear-gradient(160deg,var(--bg1),var(--bg2) 55%,var(--bg3));min-height:100vh;line-height:1.5;position:relative;overflow-x:hidden;background-size:220% 220%;animation:bgshift 60s ease-in-out infinite alternate}
+.bgwaves{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.bgwaves svg{position:absolute;left:0;width:200%;height:46vh;min-height:220px}
+.bgwaves path{fill:var(--pri2)}
+.w1{bottom:-2vh;opacity:.30;animation:flow 70s linear infinite}
+.w2{bottom:7vh;opacity:.20;animation:flow 110s linear infinite reverse}
+.w3{bottom:17vh;opacity:.13;animation:flow 150s linear infinite}
+.w4{top:-8vh;transform:scaleY(-1);opacity:.16;animation:flow 130s linear infinite reverse}
+@keyframes flow{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.w4{animation-name:flow4}@keyframes flow4{from{transform:scaleY(-1) translateX(0)}to{transform:scaleY(-1) translateX(-50%)}}
+.tgrid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}
+.tcard{position:relative;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:1rem .8rem;text-align:center;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.tcard:hover{transform:translateY(-4px);box-shadow:0 12px 30px #0002}
+.tmedal{display:block}.tcard .tmedal{display:block;margin:0 auto .35rem;width:68px;height:auto}
+.tph{width:92px;height:92px;border-radius:50%;margin:0 auto .5rem;background:linear-gradient(135deg,var(--pri),var(--acc));display:flex;align-items:center;justify-content:center;font-size:2.2rem;font-weight:700;color:#fff;overflow:hidden;border:3px solid var(--acc)}
+.tph img{width:100%;height:100%;object-fit:cover}.tph.big{width:150px;height:150px;font-size:3.4rem;margin:1rem auto}.tph.huge{width:min(16vw,150px);height:min(16vw,150px);font-size:3rem;margin:0 auto .4rem}
+.lvl{display:inline-block;border-radius:99px;padding:.1rem .7rem;font-size:.74rem;font-weight:700;color:#fff}
+.lv-national{background:linear-gradient(135deg,#ff9933,#d9731a)}.lv-state{background:linear-gradient(135deg,#3b82c4,#1d4f91)}.lv-institute{background:linear-gradient(135deg,#1fa37a,#0f7a5a)}
+.tier{font-weight:800;letter-spacing:.04em}.tier1{color:#7c93ad}.tier2{color:#c58f17}.tier3{color:#8a8a8a}
+#proj{position:fixed;inset:0;z-index:100;background:radial-gradient(ellipse at 50% 115%,#4a2f8f 0%,#171d57 45%,#070a22 100%);color:#fff;overflow:hidden;display:flex;flex-direction:column;font-family:inherit}
+#proj .rays{position:absolute;inset:-60%;background:repeating-conic-gradient(from 0deg at 50% 62%,#ffffff12 0 7deg,transparent 7deg 18deg);animation:spin 90s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spark{position:absolute;border-radius:50%;background:#ffe08a;opacity:0;animation:twinkle 4s ease-in-out infinite;box-shadow:0 0 10px #ffe08a}
+@keyframes twinkle{0%,100%{opacity:0;transform:scale(.3)}50%{opacity:.95;transform:scale(1.3)}}
+#proj>*{position:relative}#proj .rays,#proj .spark{position:absolute}
+.ptop{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;gap:1rem}
+.ptitle{font-size:clamp(1.3rem,3.2vw,2.6rem);font-weight:800;text-shadow:0 2px 18px #ffd86b88}.ptitle small{font-size:.5em;opacity:.8}
+.pctl{display:flex;gap:.5rem}#proj button.ghost{color:#fff;border-color:#ffffff55}
+.pmain{flex:1;display:flex;align-items:flex-end;justify-content:center;padding:0 1rem;cursor:pointer}
+.podium{display:flex;align-items:flex-end;justify-content:center;gap:1.2rem;width:100%;max-width:1100px}
+.pcol{flex:1 1 0;max-width:320px;text-align:center}
+.pcard{min-height:30vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:.5rem}
+.pcard.ghostc{font-size:4rem;opacity:.25;justify-content:center}
+.pname{font-size:clamp(1.2rem,2.6vw,2.3rem);font-weight:800;line-height:1.15;text-shadow:0 2px 12px #000a}
+.psub{display:flex;align-items:center;justify-content:center;gap:.5rem;font-size:clamp(1rem,1.8vw,1.5rem);font-weight:700;color:#ffe08a}.psub2{opacity:.85}
+.pbase{border-radius:14px 14px 0 0;display:flex;justify-content:center;padding-top:.4rem;font-size:clamp(2rem,5vw,4rem);font-weight:900;color:#0000006b;box-shadow:0 -4px 30px #ffffff30 inset}
+.pb1{height:32vh;background:linear-gradient(#ffe48f,#c38b12)}.pb2{height:24vh;background:linear-gradient(#f4f5f7,#8b9097)}.pb3{height:17vh;background:linear-gradient(#e2a46a,#8a4d17)}
+.pop{animation:pop .9s cubic-bezier(.2,1.4,.4,1) both}@keyframes pop{from{transform:translateY(60px) scale(.5);opacity:0}to{transform:none;opacity:1}}
+.pfoot{padding:.6rem 1.5rem 1rem;text-align:center}.pmsg{font-size:clamp(1rem,2.2vw,1.8rem);font-weight:600;margin-bottom:.6rem;text-shadow:0 2px 10px #000a}
+.phint{font-size:.8rem;opacity:.7}.phint button{padding:.1rem .6rem;font-size:.8rem}
+.pfinal{margin:auto;text-align:center;font-size:clamp(2rem,6vw,5rem);font-weight:900;line-height:1.2;text-shadow:0 4px 30px #ffd86b}
+@media print{#proj{display:none!important}}
+@media(prefers-reduced-motion:reduce){#proj .rays,.spark{animation:none!important}}
+@keyframes bgshift{from{background-position:0% 0%}to{background-position:100% 100%}}
+@media(prefers-reduced-motion:reduce){.bgwaves svg,body{animation:none!important}}
+header{position:relative;z-index:20;background:var(--card);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:.5rem 1rem;display:flex;flex-wrap:wrap;gap:.5rem;align-items:center}
+header h1{font-size:1.05rem;margin:0;flex:1 1 260px;line-height:1.25}
+header h1 small{display:block;font-weight:500;color:var(--mute);font-size:.75rem}
+.tools{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center}
+select,input,textarea,button{font:inherit;color:var(--ink)}
+select,input,textarea{background:var(--inp);border:1px solid var(--line);border-radius:12px;padding:.45rem .7rem;width:100%}
+.tools select,.tools input{width:auto}
+button{cursor:pointer;border:0;border-radius:999px;padding:.45rem 1rem;background:linear-gradient(135deg,var(--pri),var(--pri2));color:#fff;font-weight:600}
+[data-theme=royal] button{color:#0b1d46}
+button.ghost{background:transparent;border:1px solid var(--line);color:var(--ink)}
+button.sm{padding:.2rem .6rem;font-size:.8rem}
+button.danger{background:#d9534f;color:#fff}
+.seg{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.seg button{border-radius:0;background:transparent;color:var(--ink);padding:.3rem .7rem}
+.seg button.on{background:var(--pri);color:#fff}
+[data-theme=royal] .seg button.on{color:#0b1d46}
+nav{position:relative;z-index:2;display:flex;gap:.4rem;flex-wrap:wrap;padding:.6rem 1rem}
+nav button{background:var(--card);color:var(--ink);border:1px solid var(--line)}
+nav button.on{background:linear-gradient(135deg,var(--pri),var(--pri2));color:#fff}
+[data-theme=royal] nav button.on{color:#0b1d46}
+main{position:relative;z-index:1;max-width:1150px;margin:0 auto;padding:0 1rem 3rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:1.1rem 1.2rem;margin:1rem 0;box-shadow:0 8px 28px #0000000f;backdrop-filter:blur(6px)}
+.card h2{margin:.1rem 0 .6rem;font-size:1.25rem}.card h3{margin:.8rem 0 .3rem;font-size:1.05rem}
+.hero{background:linear-gradient(135deg,var(--pri),var(--pri2));color:#fff;border:0;position:relative;overflow:hidden;padding-bottom:2.8rem}
+[data-theme=royal] .hero{color:#0b1d46}
+.hero h2{font-size:1.6rem}.hero svg{position:absolute;left:0;bottom:-1px;width:100%;height:46px}
+.chip{display:inline-block;background:#ffffff33;border-radius:999px;padding:.15rem .8rem;margin:.15rem .25rem .15rem 0;font-weight:600;font-size:.85rem}
+.grid{display:grid;gap:1rem}.g2{grid-template-columns:repeat(auto-fit,minmax(270px,1fr))}.g3{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.wave{display:block;width:100%;height:50px;margin:.5rem 0;color:var(--wave)}
+.tl{list-style:none;margin:0;padding:0 0 0 1.2rem;border-left:3px solid var(--pri)}
+.tl li{position:relative;margin:0 0 1rem;padding:.6rem .9rem;background:var(--inp);border-radius:16px;border:1px solid var(--line)}
+.tl li:before{content:"";position:absolute;left:-1.78rem;top:.9rem;width:.9rem;height:.9rem;border-radius:50%;background:var(--acc);border:3px solid var(--bg1)}
+.tl b.t{color:var(--pri)}
+label{display:block;font-weight:600;font-size:.88rem;margin:.6rem 0 .2rem}
+.row{display:flex;gap:.6rem;flex-wrap:wrap}.row>*{flex:1 1 200px}
+.bar{height:12px;border-radius:99px;background:var(--line);overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--pri),var(--acc));border-radius:99px}
+table{width:100%;border-collapse:collapse;font-size:.92rem}
+th,td{padding:.45rem .5rem;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{color:var(--mute);font-size:.8rem;text-transform:uppercase;letter-spacing:.03em}
+.scroll{overflow-x:auto}
+.msg{padding:.6rem .9rem;border-radius:14px;margin:.6rem 0}.ok{background:#2fb56a26;border:1px solid #2fb56a}.err{background:#e5484d22;border:1px solid #e5484d}.info{background:var(--inp);border:1px dashed var(--pri)}
+.pill{display:inline-block;border-radius:99px;padding:.05rem .6rem;font-size:.75rem;font-weight:700;background:var(--pri);color:#fff}
+[data-theme=royal] .pill{color:#0b1d46}
+.pass{border:2px dashed var(--acc);border-radius:24px;padding:1.2rem;text-align:center}
+.pass .id{font-family:monospace;font-size:1.3rem;letter-spacing:.08em;color:var(--pri)}
+.modal{position:fixed;inset:0;background:#0008;z-index:50;display:flex;align-items:center;justify-content:center;padding:1rem}
+.modal>div{background:var(--bg1);color:var(--ink);border-radius:20px;max-width:720px;width:100%;padding:1.2rem;max-height:90vh;overflow:auto;border:1px solid var(--line)}
+[data-theme=royal] .modal>div{background:#0f2250}[data-theme=dark] .modal>div{background:#1a1f48}
+.modal textarea{height:260px;font-family:monospace;font-size:.8rem}
+.subnav{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.6rem}
+footer{position:relative;z-index:1;text-align:center;color:var(--mute);font-size:.8rem;padding:1.5rem 1rem}
+.hide-print{}
+@media print{.blob,header,nav,footer,.hide-print{display:none!important}body{background:#fff;color:#000}.card{box-shadow:none;border:1px solid #999;background:#fff}}
+@media(max-width:600px){.hero h2{font-size:1.3rem}}
+</style>
+</head>
+<body data-theme="light">
+<div class="bgwaves" aria-hidden="true"><svg class="w4" viewBox="0 0 2400 200" preserveAspectRatio="none"><path d="M0 100C200 40 400 40 600 100S1000 160 1200 100S1600 40 1800 100S2200 160 2400 100V200H0Z"/></svg><svg class="w3" viewBox="0 0 2400 200" preserveAspectRatio="none"><path d="M0 100C200 40 400 40 600 100S1000 160 1200 100S1600 40 1800 100S2200 160 2400 100V200H0Z"/></svg><svg class="w2" viewBox="0 0 2400 200" preserveAspectRatio="none"><path d="M0 100C200 40 400 40 600 100S1000 160 1200 100S1600 40 1800 100S2200 160 2400 100V200H0Z"/></svg><svg class="w1" viewBox="0 0 2400 200" preserveAspectRatio="none"><path d="M0 100C200 40 400 40 600 100S1000 160 1200 100S1600 40 1800 100S2200 160 2400 100V200H0Z"/></svg></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<linearGradient id="mg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff3b0"/><stop offset=".5" stop-color="#f0b72f"/><stop offset="1" stop-color="#b47a0a"/></linearGradient>
+<linearGradient id="mg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbfbfb"/><stop offset=".5" stop-color="#c3c7cc"/><stop offset="1" stop-color="#868b92"/></linearGradient>
+<linearGradient id="mg3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f3c79a"/><stop offset=".5" stop-color="#cd7f32"/><stop offset="1" stop-color="#8a4d17"/></linearGradient></defs></svg>
+<header>
+  <h1><span id="hTitle"></span><small id="hSub"></small></h1>
+  <div class="tools">
+    <select id="themeSel" aria-label="Theme"></select>
+    <div class="seg" role="group" aria-label="Font size"><button data-fs="-1">A-</button><button data-fs="0" class="on">A</button><button data-fs="1">A+</button></div>
+    <div class="seg" role="group" aria-label="Language"><button data-lang="en" class="on">EN</button><button data-lang="hi">हिन्दी</button><button data-lang="ml">മലയാളം</button></div>
+    <span id="userBox"></span>
+  </div>
+</header>
+<nav id="nav"></nav>
+<main id="app"></main>
+<footer id="foot"></footer>
+<div id="modalHost"></div>
+
+<script>
+/* qrcode-generator (c) Kazuhiko Arase, MIT licence */
+var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],f={},c=function(t,r){o=function(t){for(var r=new Array(t),e=0;e<t;e+=1){r[e]=new Array(t);for(var n=0;n<t;n+=1)r[e][n]=null}return r}(i=4*e+17),l(0,0),l(i-7,0),l(0,i-7),s(),h(),d(t,r),e>=7&&v(t),null==a&&(a=p(e,n,u)),w(a,r)},l=function(t,r){for(var e=-1;e<=7;e+=1)if(!(t+e<=-1||i<=t+e))for(var n=-1;n<=7;n+=1)r+n<=-1||i<=r+n||(o[t+e][r+n]=0<=e&&e<=6&&(0==n||6==n)||0<=n&&n<=6&&(0==e||6==e)||2<=e&&e<=4&&2<=n&&n<=4)},h=function(){for(var t=8;t<i-8;t+=1)null==o[t][6]&&(o[t][6]=t%2==0);for(var r=8;r<i-8;r+=1)null==o[6][r]&&(o[6][r]=r%2==0)},s=function(){for(var t=B.getPatternPosition(e),r=0;r<t.length;r+=1)for(var n=0;n<t.length;n+=1){var i=t[r],a=t[n];if(null==o[i][a])for(var u=-2;u<=2;u+=1)for(var f=-2;f<=2;f+=1)o[i+u][a+f]=-2==u||2==u||-2==f||2==f||0==u&&0==f}},v=function(t){for(var r=B.getBCHTypeNumber(e),n=0;n<18;n+=1){var a=!t&&1==(r>>n&1);o[Math.floor(n/3)][n%3+i-8-3]=a}for(n=0;n<18;n+=1){a=!t&&1==(r>>n&1);o[n%3+i-8-3][Math.floor(n/3)]=a}},d=function(t,r){for(var e=n<<3|r,a=B.getBCHTypeInfo(e),u=0;u<15;u+=1){var f=!t&&1==(a>>u&1);u<6?o[u][8]=f:u<8?o[u+1][8]=f:o[i-15+u][8]=f}for(u=0;u<15;u+=1){f=!t&&1==(a>>u&1);u<8?o[8][i-u-1]=f:u<9?o[8][15-u-1+1]=f:o[8][15-u-1]=f}o[i-8][8]=!t},w=function(t,r){for(var e=-1,n=i-1,a=7,u=0,f=B.getMaskFunction(r),c=i-1;c>0;c-=2)for(6==c&&(c-=1);;){for(var g=0;g<2;g+=1)if(null==o[n][c-g]){var l=!1;u<t.length&&(l=1==(t[u]>>>a&1)),f(n,c-g)&&(l=!l),o[n][c-g]=l,-1==(a-=1)&&(u+=1,a=7)}if((n+=e)<0||i<=n){n-=e,e=-e;break}}},p=function(t,r,e){for(var n=A.getRSBlocks(t,r),o=b(),i=0;i<e.length;i+=1){var a=e[i];o.put(a.getMode(),4),o.put(a.getLength(),B.getLengthInBits(a.getMode(),t)),a.write(o)}var u=0;for(i=0;i<n.length;i+=1)u+=n[i].dataCount;if(o.getLengthInBits()>8*u)throw"code length overflow. ("+o.getLengthInBits()+">"+8*u+")";for(o.getLengthInBits()+4<=8*u&&o.put(0,4);o.getLengthInBits()%8!=0;)o.putBit(!1);for(;!(o.getLengthInBits()>=8*u||(o.put(236,8),o.getLengthInBits()>=8*u));)o.put(17,8);return function(t,r){for(var e=0,n=0,o=0,i=new Array(r.length),a=new Array(r.length),u=0;u<r.length;u+=1){var f=r[u].dataCount,c=r[u].totalCount-f;n=Math.max(n,f),o=Math.max(o,c),i[u]=new Array(f);for(var g=0;g<i[u].length;g+=1)i[u][g]=255&t.getBuffer()[g+e];e+=f;var l=B.getErrorCorrectPolynomial(c),h=k(i[u],l.getLength()-1).mod(l);for(a[u]=new Array(l.getLength()-1),g=0;g<a[u].length;g+=1){var s=g+h.getLength()-a[u].length;a[u][g]=s>=0?h.getAt(s):0}}var v=0;for(g=0;g<r.length;g+=1)v+=r[g].totalCount;var d=new Array(v),w=0;for(g=0;g<n;g+=1)for(u=0;u<r.length;u+=1)g<i[u].length&&(d[w]=i[u][g],w+=1);for(g=0;g<o;g+=1)for(u=0;u<r.length;u+=1)g<a[u].length&&(d[w]=a[u][g],w+=1);return d}(o,n)};f.addData=function(t,r){var e=null;switch(r=r||"Byte"){case"Numeric":e=M(t);break;case"Alphanumeric":e=x(t);break;case"Byte":e=m(t);break;case"Kanji":e=L(t);break;default:throw"mode:"+r}u.push(e),a=null},f.isDark=function(t,r){if(t<0||i<=t||r<0||i<=r)throw t+","+r;return o[t][r]},f.getModuleCount=function(){return i},f.make=function(){if(e<1){for(var t=1;t<40;t++){for(var r=A.getRSBlocks(t,n),o=b(),i=0;i<u.length;i++){var a=u[i];o.put(a.getMode(),4),o.put(a.getLength(),B.getLengthInBits(a.getMode(),t)),a.write(o)}var g=0;for(i=0;i<r.length;i++)g+=r[i].dataCount;if(o.getLengthInBits()<=8*g)break}e=t}c(!1,function(){for(var t=0,r=0,e=0;e<8;e+=1){c(!0,e);var n=B.getLostPoint(f);(0==e||t>n)&&(t=n,r=e)}return r}())},f.createTableTag=function(t,r){t=t||2;var e="";e+='<table style="',e+=" border-width: 0px; border-style: none;",e+=" border-collapse: collapse;",e+=" padding: 0px; margin: "+(r=void 0===r?4*t:r)+"px;",e+='">',e+="<tbody>";for(var n=0;n<f.getModuleCount();n+=1){e+="<tr>";for(var o=0;o<f.getModuleCount();o+=1)e+='<td style="',e+=" border-width: 0px; border-style: none;",e+=" border-collapse: collapse;",e+=" padding: 0px; margin: 0px;",e+=" width: "+t+"px;",e+=" height: "+t+"px;",e+=" background-color: ",e+=f.isDark(n,o)?"#000000":"#ffffff",e+=";",e+='"/>';e+="</tr>"}return e+="</tbody>",e+="</table>"},f.createSvgTag=function(t,r,e,n){var o={};"object"==typeof arguments[0]&&(t=(o=arguments[0]).cellSize,r=o.margin,e=o.alt,n=o.title),t=t||2,r=void 0===r?4*t:r,(e="string"==typeof e?{text:e}:e||{}).text=e.text||null,e.id=e.text?e.id||"qrcode-description":null,(n="string"==typeof n?{text:n}:n||{}).text=n.text||null,n.id=n.text?n.id||"qrcode-title":null;var i,a,u,c,g=f.getModuleCount()*t+2*r,l="";for(c="l"+t+",0 0,"+t+" -"+t+",0 0,-"+t+"z ",l+='<svg version="1.1" xmlns="http://www.w3.org/2000/svg"',l+=o.scalable?"":' width="'+g+'px" height="'+g+'px"',l+=' viewBox="0 0 '+g+" "+g+'" ',l+=' preserveAspectRatio="xMinYMin meet"',l+=n.text||e.text?' role="img" aria-labelledby="'+y([n.id,e.id].join(" ").trim())+'"':"",l+=">",l+=n.text?'<title id="'+y(n.id)+'">'+y(n.text)+"</title>":"",l+=e.text?'<description id="'+y(e.id)+'">'+y(e.text)+"</description>":"",l+='<rect width="100%" height="100%" fill="white" cx="0" cy="0"/>',l+='<path d="',a=0;a<f.getModuleCount();a+=1)for(u=a*t+r,i=0;i<f.getModuleCount();i+=1)f.isDark(a,i)&&(l+="M"+(i*t+r)+","+u+c);return l+='" stroke="transparent" fill="black"/>',l+="</svg>"},f.createDataURL=function(t,r){t=t||2,r=void 0===r?4*t:r;var e=f.getModuleCount()*t+2*r,n=r,o=e-r;return I(e,e,function(r,e){if(n<=r&&r<o&&n<=e&&e<o){var i=Math.floor((r-n)/t),a=Math.floor((e-n)/t);return f.isDark(a,i)?0:1}return 1})},f.createImgTag=function(t,r,e){t=t||2,r=void 0===r?4*t:r;var n=f.getModuleCount()*t+2*r,o="";return o+="<img",o+=' src="',o+=f.createDataURL(t,r),o+='"',o+=' width="',o+=n,o+='"',o+=' height="',o+=n,o+='"',e&&(o+=' alt="',o+=y(e),o+='"'),o+="/>"};var y=function(t){for(var r="",e=0;e<t.length;e+=1){var n=t.charAt(e);switch(n){case"<":r+="&lt;";break;case">":r+="&gt;";break;case"&":r+="&amp;";break;case'"':r+="&quot;";break;default:r+=n}}return r};return f.createASCII=function(t,r){if((t=t||1)<2)return function(t){t=void 0===t?2:t;var r,e,n,o,i,a=1*f.getModuleCount()+2*t,u=t,c=a-t,g={"██":"█","█ ":"▀"," █":"▄","  ":" "},l={"██":"▀","█ ":"▀"," █":" ","  ":" "},h="";for(r=0;r<a;r+=2){for(n=Math.floor((r-u)/1),o=Math.floor((r+1-u)/1),e=0;e<a;e+=1)i="█",u<=e&&e<c&&u<=r&&r<c&&f.isDark(n,Math.floor((e-u)/1))&&(i=" "),u<=e&&e<c&&u<=r+1&&r+1<c&&f.isDark(o,Math.floor((e-u)/1))?i+=" ":i+="█",h+=t<1&&r+1>=c?l[i]:g[i];h+="\n"}return a%2&&t>0?h.substring(0,h.length-a-1)+Array(a+1).join("▀"):h.substring(0,h.length-1)}(r);t-=1,r=void 0===r?2*t:r;var e,n,o,i,a=f.getModuleCount()*t+2*r,u=r,c=a-r,g=Array(t+1).join("██"),l=Array(t+1).join("  "),h="",s="";for(e=0;e<a;e+=1){for(o=Math.floor((e-u)/t),s="",n=0;n<a;n+=1)i=1,u<=n&&n<c&&u<=e&&e<c&&f.isDark(o,Math.floor((n-u)/t))&&(i=0),s+=i?g:l;for(o=0;o<t;o+=1)h+=s+"\n"}return h.substring(0,h.length-1)},f.renderTo2dContext=function(t,r){r=r||2;for(var e=f.getModuleCount(),n=0;n<e;n++)for(var o=0;o<e;o++)t.fillStyle=f.isDark(n,o)?"black":"white",t.fillRect(o*r,n*r,r,r)},f};t.stringToBytes=(t.stringToBytesFuncs={default:function(t){for(var r=[],e=0;e<t.length;e+=1){var n=t.charCodeAt(e);r.push(255&n)}return r}}).default,t.createStringToBytes=function(t,r){var e=function(){for(var e=S(t),n=function(){var t=e.read();if(-1==t)throw"eof";return t},o=0,i={};;){var a=e.read();if(-1==a)break;var u=n(),f=n()<<8|n();i[String.fromCharCode(a<<8|u)]=f,o+=1}if(o!=r)throw o+" != "+r;return i}(),n="?".charCodeAt(0);return function(t){for(var r=[],o=0;o<t.length;o+=1){var i=t.charCodeAt(o);if(i<128)r.push(i);else{var a=e[t.charAt(o)];"number"==typeof a?(255&a)==a?r.push(a):(r.push(a>>>8),r.push(255&a)):r.push(n)}}return r}};var r,e,n,o,i,a=1,u=2,f=4,c=8,g={L:1,M:0,Q:3,H:2},l=0,h=1,s=2,v=3,d=4,w=5,p=6,y=7,B=(r=[[],[6,18],[6,22],[6,26],[6,30],[6,34],[6,22,38],[6,24,42],[6,26,46],[6,28,50],[6,30,54],[6,32,58],[6,34,62],[6,26,46,66],[6,26,48,70],[6,26,50,74],[6,30,54,78],[6,30,56,82],[6,30,58,86],[6,34,62,90],[6,28,50,72,94],[6,26,50,74,98],[6,30,54,78,102],[6,28,54,80,106],[6,32,58,84,110],[6,30,58,86,114],[6,34,62,90,118],[6,26,50,74,98,122],[6,30,54,78,102,126],[6,26,52,78,104,130],[6,30,56,82,108,134],[6,34,60,86,112,138],[6,30,58,86,114,142],[6,34,62,90,118,146],[6,30,54,78,102,126,150],[6,24,50,76,102,128,154],[6,28,54,80,106,132,158],[6,32,58,84,110,136,162],[6,26,54,82,110,138,166],[6,30,58,86,114,142,170]],e=1335,n=7973,i=function(t){for(var r=0;0!=t;)r+=1,t>>>=1;return r},(o={}).getBCHTypeInfo=function(t){for(var r=t<<10;i(r)-i(e)>=0;)r^=e<<i(r)-i(e);return 21522^(t<<10|r)},o.getBCHTypeNumber=function(t){for(var r=t<<12;i(r)-i(n)>=0;)r^=n<<i(r)-i(n);return t<<12|r},o.getPatternPosition=function(t){return r[t-1]},o.getMaskFunction=function(t){switch(t){case l:return function(t,r){return(t+r)%2==0};case h:return function(t,r){return t%2==0};case s:return function(t,r){return r%3==0};case v:return function(t,r){return(t+r)%3==0};case d:return function(t,r){return(Math.floor(t/2)+Math.floor(r/3))%2==0};case w:return function(t,r){return t*r%2+t*r%3==0};case p:return function(t,r){return(t*r%2+t*r%3)%2==0};case y:return function(t,r){return(t*r%3+(t+r)%2)%2==0};default:throw"bad maskPattern:"+t}},o.getErrorCorrectPolynomial=function(t){for(var r=k([1],0),e=0;e<t;e+=1)r=r.multiply(k([1,C.gexp(e)],0));return r},o.getLengthInBits=function(t,r){if(1<=r&&r<10)switch(t){case a:return 10;case u:return 9;case f:case c:return 8;default:throw"mode:"+t}else if(r<27)switch(t){case a:return 12;case u:return 11;case f:return 16;case c:return 10;default:throw"mode:"+t}else{if(!(r<41))throw"type:"+r;switch(t){case a:return 14;case u:return 13;case f:return 16;case c:return 12;default:throw"mode:"+t}}},o.getLostPoint=function(t){for(var r=t.getModuleCount(),e=0,n=0;n<r;n+=1)for(var o=0;o<r;o+=1){for(var i=0,a=t.isDark(n,o),u=-1;u<=1;u+=1)if(!(n+u<0||r<=n+u))for(var f=-1;f<=1;f+=1)o+f<0||r<=o+f||0==u&&0==f||a==t.isDark(n+u,o+f)&&(i+=1);i>5&&(e+=3+i-5)}for(n=0;n<r-1;n+=1)for(o=0;o<r-1;o+=1){var c=0;t.isDark(n,o)&&(c+=1),t.isDark(n+1,o)&&(c+=1),t.isDark(n,o+1)&&(c+=1),t.isDark(n+1,o+1)&&(c+=1),0!=c&&4!=c||(e+=3)}for(n=0;n<r;n+=1)for(o=0;o<r-6;o+=1)t.isDark(n,o)&&!t.isDark(n,o+1)&&t.isDark(n,o+2)&&t.isDark(n,o+3)&&t.isDark(n,o+4)&&!t.isDark(n,o+5)&&t.isDark(n,o+6)&&(e+=40);for(o=0;o<r;o+=1)for(n=0;n<r-6;n+=1)t.isDark(n,o)&&!t.isDark(n+1,o)&&t.isDark(n+2,o)&&t.isDark(n+3,o)&&t.isDark(n+4,o)&&!t.isDark(n+5,o)&&t.isDark(n+6,o)&&(e+=40);var g=0;for(o=0;o<r;o+=1)for(n=0;n<r;n+=1)t.isDark(n,o)&&(g+=1);return e+=Math.abs(100*g/r/r-50)/5*10},o),C=function(){for(var t=new Array(256),r=new Array(256),e=0;e<8;e+=1)t[e]=1<<e;for(e=8;e<256;e+=1)t[e]=t[e-4]^t[e-5]^t[e-6]^t[e-8];for(e=0;e<255;e+=1)r[t[e]]=e;var n={glog:function(t){if(t<1)throw"glog("+t+")";return r[t]},gexp:function(r){for(;r<0;)r+=255;for(;r>=256;)r-=255;return t[r]}};return n}();function k(t,r){if(void 0===t.length)throw t.length+"/"+r;var e=function(){for(var e=0;e<t.length&&0==t[e];)e+=1;for(var n=new Array(t.length-e+r),o=0;o<t.length-e;o+=1)n[o]=t[o+e];return n}(),n={getAt:function(t){return e[t]},getLength:function(){return e.length},multiply:function(t){for(var r=new Array(n.getLength()+t.getLength()-1),e=0;e<n.getLength();e+=1)for(var o=0;o<t.getLength();o+=1)r[e+o]^=C.gexp(C.glog(n.getAt(e))+C.glog(t.getAt(o)));return k(r,0)},mod:function(t){if(n.getLength()-t.getLength()<0)return n;for(var r=C.glog(n.getAt(0))-C.glog(t.getAt(0)),e=new Array(n.getLength()),o=0;o<n.getLength();o+=1)e[o]=n.getAt(o);for(o=0;o<t.getLength();o+=1)e[o]^=C.gexp(C.glog(t.getAt(o))+r);return k(e,0).mod(t)}};return n}var A=function(){var t=[[1,26,19],[1,26,16],[1,26,13],[1,26,9],[1,44,34],[1,44,28],[1,44,22],[1,44,16],[1,70,55],[1,70,44],[2,35,17],[2,35,13],[1,100,80],[2,50,32],[2,50,24],[4,25,9],[1,134,108],[2,67,43],[2,33,15,2,34,16],[2,33,11,2,34,12],[2,86,68],[4,43,27],[4,43,19],[4,43,15],[2,98,78],[4,49,31],[2,32,14,4,33,15],[4,39,13,1,40,14],[2,121,97],[2,60,38,2,61,39],[4,40,18,2,41,19],[4,40,14,2,41,15],[2,146,116],[3,58,36,2,59,37],[4,36,16,4,37,17],[4,36,12,4,37,13],[2,86,68,2,87,69],[4,69,43,1,70,44],[6,43,19,2,44,20],[6,43,15,2,44,16],[4,101,81],[1,80,50,4,81,51],[4,50,22,4,51,23],[3,36,12,8,37,13],[2,116,92,2,117,93],[6,58,36,2,59,37],[4,46,20,6,47,21],[7,42,14,4,43,15],[4,133,107],[8,59,37,1,60,38],[8,44,20,4,45,21],[12,33,11,4,34,12],[3,145,115,1,146,116],[4,64,40,5,65,41],[11,36,16,5,37,17],[11,36,12,5,37,13],[5,109,87,1,110,88],[5,65,41,5,66,42],[5,54,24,7,55,25],[11,36,12,7,37,13],[5,122,98,1,123,99],[7,73,45,3,74,46],[15,43,19,2,44,20],[3,45,15,13,46,16],[1,135,107,5,136,108],[10,74,46,1,75,47],[1,50,22,15,51,23],[2,42,14,17,43,15],[5,150,120,1,151,121],[9,69,43,4,70,44],[17,50,22,1,51,23],[2,42,14,19,43,15],[3,141,113,4,142,114],[3,70,44,11,71,45],[17,47,21,4,48,22],[9,39,13,16,40,14],[3,135,107,5,136,108],[3,67,41,13,68,42],[15,54,24,5,55,25],[15,43,15,10,44,16],[4,144,116,4,145,117],[17,68,42],[17,50,22,6,51,23],[19,46,16,6,47,17],[2,139,111,7,140,112],[17,74,46],[7,54,24,16,55,25],[34,37,13],[4,151,121,5,152,122],[4,75,47,14,76,48],[11,54,24,14,55,25],[16,45,15,14,46,16],[6,147,117,4,148,118],[6,73,45,14,74,46],[11,54,24,16,55,25],[30,46,16,2,47,17],[8,132,106,4,133,107],[8,75,47,13,76,48],[7,54,24,22,55,25],[22,45,15,13,46,16],[10,142,114,2,143,115],[19,74,46,4,75,47],[28,50,22,6,51,23],[33,46,16,4,47,17],[8,152,122,4,153,123],[22,73,45,3,74,46],[8,53,23,26,54,24],[12,45,15,28,46,16],[3,147,117,10,148,118],[3,73,45,23,74,46],[4,54,24,31,55,25],[11,45,15,31,46,16],[7,146,116,7,147,117],[21,73,45,7,74,46],[1,53,23,37,54,24],[19,45,15,26,46,16],[5,145,115,10,146,116],[19,75,47,10,76,48],[15,54,24,25,55,25],[23,45,15,25,46,16],[13,145,115,3,146,116],[2,74,46,29,75,47],[42,54,24,1,55,25],[23,45,15,28,46,16],[17,145,115],[10,74,46,23,75,47],[10,54,24,35,55,25],[19,45,15,35,46,16],[17,145,115,1,146,116],[14,74,46,21,75,47],[29,54,24,19,55,25],[11,45,15,46,46,16],[13,145,115,6,146,116],[14,74,46,23,75,47],[44,54,24,7,55,25],[59,46,16,1,47,17],[12,151,121,7,152,122],[12,75,47,26,76,48],[39,54,24,14,55,25],[22,45,15,41,46,16],[6,151,121,14,152,122],[6,75,47,34,76,48],[46,54,24,10,55,25],[2,45,15,64,46,16],[17,152,122,4,153,123],[29,74,46,14,75,47],[49,54,24,10,55,25],[24,45,15,46,46,16],[4,152,122,18,153,123],[13,74,46,32,75,47],[48,54,24,14,55,25],[42,45,15,32,46,16],[20,147,117,4,148,118],[40,75,47,7,76,48],[43,54,24,22,55,25],[10,45,15,67,46,16],[19,148,118,6,149,119],[18,75,47,31,76,48],[34,54,24,34,55,25],[20,45,15,61,46,16]],r=function(t,r){var e={};return e.totalCount=t,e.dataCount=r,e},e={};return e.getRSBlocks=function(e,n){var o=function(r,e){switch(e){case g.L:return t[4*(r-1)+0];case g.M:return t[4*(r-1)+1];case g.Q:return t[4*(r-1)+2];case g.H:return t[4*(r-1)+3];default:return}}(e,n);if(void 0===o)throw"bad rs block @ typeNumber:"+e+"/errorCorrectionLevel:"+n;for(var i=o.length/3,a=[],u=0;u<i;u+=1)for(var f=o[3*u+0],c=o[3*u+1],l=o[3*u+2],h=0;h<f;h+=1)a.push(r(c,l));return a},e}(),b=function(){var t=[],r=0,e={getBuffer:function(){return t},getAt:function(r){var e=Math.floor(r/8);return 1==(t[e]>>>7-r%8&1)},put:function(t,r){for(var n=0;n<r;n+=1)e.putBit(1==(t>>>r-n-1&1))},getLengthInBits:function(){return r},putBit:function(e){var n=Math.floor(r/8);t.length<=n&&t.push(0),e&&(t[n]|=128>>>r%8),r+=1}};return e},M=function(t){var r=a,e=t,n={getMode:function(){return r},getLength:function(t){return e.length},write:function(t){for(var r=e,n=0;n+2<r.length;)t.put(o(r.substring(n,n+3)),10),n+=3;n<r.length&&(r.length-n==1?t.put(o(r.substring(n,n+1)),4):r.length-n==2&&t.put(o(r.substring(n,n+2)),7))}},o=function(t){for(var r=0,e=0;e<t.length;e+=1)r=10*r+i(t.charAt(e));return r},i=function(t){if("0"<=t&&t<="9")return t.charCodeAt(0)-"0".charCodeAt(0);throw"illegal char :"+t};return n},x=function(t){var r=u,e=t,n={getMode:function(){return r},getLength:function(t){return e.length},write:function(t){for(var r=e,n=0;n+1<r.length;)t.put(45*o(r.charAt(n))+o(r.charAt(n+1)),11),n+=2;n<r.length&&t.put(o(r.charAt(n)),6)}},o=function(t){if("0"<=t&&t<="9")return t.charCodeAt(0)-"0".charCodeAt(0);if("A"<=t&&t<="Z")return t.charCodeAt(0)-"A".charCodeAt(0)+10;switch(t){case" ":return 36;case"$":return 37;case"%":return 38;case"*":return 39;case"+":return 40;case"-":return 41;case".":return 42;case"/":return 43;case":":return 44;default:throw"illegal char :"+t}};return n},m=function(r){var e=f,n=t.stringToBytes(r),o={getMode:function(){return e},getLength:function(t){return n.length},write:function(t){for(var r=0;r<n.length;r+=1)t.put(n[r],8)}};return o},L=function(r){var e=c,n=t.stringToBytesFuncs.SJIS;if(!n)throw"sjis not supported.";!function(){var t=n("友");if(2!=t.length||38726!=(t[0]<<8|t[1]))throw"sjis not supported."}();var o=n(r),i={getMode:function(){return e},getLength:function(t){return~~(o.length/2)},write:function(t){for(var r=o,e=0;e+1<r.length;){var n=(255&r[e])<<8|255&r[e+1];if(33088<=n&&n<=40956)n-=33088;else{if(!(57408<=n&&n<=60351))throw"illegal char at "+(e+1)+"/"+n;n-=49472}n=192*(n>>>8&255)+(255&n),t.put(n,13),e+=2}if(e<r.length)throw"illegal char at "+(e+1)}};return i},D=function(){var t=[],r={writeByte:function(r){t.push(255&r)},writeShort:function(t){r.writeByte(t),r.writeByte(t>>>8)},writeBytes:function(t,e,n){e=e||0,n=n||t.length;for(var o=0;o<n;o+=1)r.writeByte(t[o+e])},writeString:function(t){for(var e=0;e<t.length;e+=1)r.writeByte(t.charCodeAt(e))},toByteArray:function(){return t},toString:function(){var r="";r+="[";for(var e=0;e<t.length;e+=1)e>0&&(r+=","),r+=t[e];return r+="]"}};return r},S=function(t){var r=t,e=0,n=0,o=0,i={read:function(){for(;o<8;){if(e>=r.length){if(0==o)return-1;throw"unexpected end of file./"+o}var t=r.charAt(e);if(e+=1,"="==t)return o=0,-1;t.match(/^\s$/)||(n=n<<6|a(t.charCodeAt(0)),o+=6)}var i=n>>>o-8&255;return o-=8,i}},a=function(t){if(65<=t&&t<=90)return t-65;if(97<=t&&t<=122)return t-97+26;if(48<=t&&t<=57)return t-48+52;if(43==t)return 62;if(47==t)return 63;throw"c:"+t};return i},I=function(t,r,e){for(var n=function(t,r){var e=t,n=r,o=new Array(t*r),i={setPixel:function(t,r,n){o[r*e+t]=n},write:function(t){t.writeString("GIF87a"),t.writeShort(e),t.writeShort(n),t.writeByte(128),t.writeByte(0),t.writeByte(0),t.writeByte(0),t.writeByte(0),t.writeByte(0),t.writeByte(255),t.writeByte(255),t.writeByte(255),t.writeString(","),t.writeShort(0),t.writeShort(0),t.writeShort(e),t.writeShort(n),t.writeByte(0);var r=a(2);t.writeByte(2);for(var o=0;r.length-o>255;)t.writeByte(255),t.writeBytes(r,o,255),o+=255;t.writeByte(r.length-o),t.writeBytes(r,o,r.length-o),t.writeByte(0),t.writeString(";")}},a=function(t){for(var r=1<<t,e=1+(1<<t),n=t+1,i=u(),a=0;a<r;a+=1)i.add(String.fromCharCode(a));i.add(String.fromCharCode(r)),i.add(String.fromCharCode(e));var f,c,g,l=D(),h=(f=l,c=0,g=0,{write:function(t,r){if(t>>>r!=0)throw"length over";for(;c+r>=8;)f.writeByte(255&(t<<c|g)),r-=8-c,t>>>=8-c,g=0,c=0;g|=t<<c,c+=r},flush:function(){c>0&&f.writeByte(g)}});h.write(r,n);var s=0,v=String.fromCharCode(o[s]);for(s+=1;s<o.length;){var d=String.fromCharCode(o[s]);s+=1,i.contains(v+d)?v+=d:(h.write(i.indexOf(v),n),i.size()<4095&&(i.size()==1<<n&&(n+=1),i.add(v+d)),v=d)}return h.write(i.indexOf(v),n),h.write(e,n),h.flush(),l.toByteArray()},u=function(){var t={},r=0,e={add:function(n){if(e.contains(n))throw"dup key:"+n;t[n]=r,r+=1},size:function(){return r},indexOf:function(r){return t[r]},contains:function(r){return void 0!==t[r]}};return e};return i}(t,r),o=0;o<r;o+=1)for(var i=0;i<t;i+=1)n.setPixel(i,o,e(i,o));var a=D();n.write(a);for(var u=function(){var t=0,r=0,e=0,n="",o={},i=function(t){n+=String.fromCharCode(a(63&t))},a=function(t){if(t<0);else{if(t<26)return 65+t;if(t<52)return t-26+97;if(t<62)return t-52+48;if(62==t)return 43;if(63==t)return 47}throw"n:"+t};return o.writeByte=function(n){for(t=t<<8|255&n,r+=8,e+=1;r>=6;)i(t>>>r-6),r-=6},o.flush=function(){if(r>0&&(i(t<<6-r),t=0,r=0),e%3!=0)for(var o=3-e%3,a=0;a<o;a+=1)n+="="},o.toString=function(){return n},o}(),f=a.toByteArray(),c=0;c<f.length;c+=1)u.writeByte(f[c]);return u.flush(),"data:image/gif;base64,"+u};return t}();qrcode.stringToBytesFuncs["UTF-8"]=function(t){return function(t){for(var r=[],e=0;e<t.length;e++){var n=t.charCodeAt(e);n<128?r.push(n):n<2048?r.push(192|n>>6,128|63&n):n<55296||n>=57344?r.push(224|n>>12,128|n>>6&63,128|63&n):(e++,n=65536+((1023&n)<<10|1023&t.charCodeAt(e)),r.push(240|n>>18,128|n>>12&63,128|n>>6&63,128|63&n))}return r}(t)},function(t){"function"==typeof define&&define.amd?define([],t):"object"==typeof exports&&(module.exports=t())}(function(){return qrcode});
+</script>
+<script>
+/* ============ CONFIG ============ */
+// Optional live multi-user sync. Fill with your Firebase web config to enable Firestore (doc: portal/kds2026).
+// Leave null to run fully offline with browser localStorage.
+const FIREBASE_CONFIG = null;
+/* e.g. {apiKey:"...",authDomain:"...",projectId:"...",appId:"..."} */
+const STORE_KEY = 'kds2026_nsti_calicut_v3';
+
+/* ============ I18N ============ */
+const I = {
+en:{title:'Kaushal Deekshant Samaroh 2026',sub:'NSTI Calicut Coordination Portal · 21 Nov 2026',home:'Home',pass:'My Pass',committee:'Committee Desk',admin:'Admin',login:'Login',logout:'Logout',theme:'Theme',
+th_light:'Light',th_dark:'Dark',th_royal:'Royal Gold & Navy',th_mint:'Emerald Mint',
+inv_h:'You are warmly invited',inv_p:'NSTI Calicut cordially invites all graduating trainees and their parents/guardians to the Kaushal Deekshant Samaroh 2026 at NSTI Calicut, Govindapuram, Kozhikode.',
+inv_live:'Live-linked with the national ceremony at IGP Lucknow, attended by the Hon\'ble Prime Minister, 5:30 PM – 7:00 PM.',date_conv:'Convocation: 21 November 2026',date_dry:'Dry Run: 20 November 2026',
+guide_h:'Mandatory Trainee Guidelines',g1:'Wear the prescribed institute uniform with ID card. Trainees without uniform may not be seated on stage.',g2:'Report at NSTI Calicut by {t} on 21 November 2026 for seating and briefing.',g3:'Maintain decorum: be seated on time, switch phones to silent, follow instructions of volunteers and the committee.',g4:'Parents/guardians are requested to accompany the trainee and occupy the guest seating.',g5:'Attend the Dry Run on 20 November 2026 for rehearsal of the certificate-collection procedure.',
+agenda_h:'Event Agenda',agenda_note:'Times are indicative; the Admin updates them in real time.',
+form_h:'Participation Confirmation',scheme:'Scheme',trade:'Trade',name:'Full Name',reg:'Roll / Registration No.',mobile:'Mobile Number (10 digits)',dob:'Date of Birth (DD-MM-YYYY)',uniform:'I will attend in the prescribed uniform',parent:'Parent/Guardian will accompany',yes:'Yes',no:'No',submit:'Confirm Participation',select:'— Select —',
+thanks:'Thank you! Your participation is confirmed.',updated:'Your earlier confirmation was updated.',need_all:'Please fill all required fields correctly (mobile: 10 digits, DOB: DD-MM-YYYY).',
+counter_h:'Live Trade-wise Participation',total:'Total confirmed',parents:'Parents/guardians coming',
+login_h:'Login with Mobile Number + Date of Birth',login_btn:'Login',invalid:'No matching user. Check mobile number and date of birth.',demo_h:'Demo logins (sample data)',
+welcome:'Welcome',pass_h:'Your Convocation Pass',status:'Participation',confirmed:'Confirmed',notconf:'Not yet confirmed — please submit the form on Home.',cert:'Certificate status',cs_Pending:'Pending',cs_Ready:'Ready for collection',cs_Collected:'Collected',
+instr_h:'Reporting & Seating Instructions',print:'Print / Save',role:'Role',
+r_admin:'Admin',r_official:'Official / Committee',r_trainee:'Trainee',
+mx_h:'Committee Responsibility Matrix',mx_src:'As per Office Order No. T-11811/02/Misc/24-25',team:'Team',duty:'Responsibility',members:'Members',
+ck_h:'Internal Checklist',spoc_h:'DGT SPOC & Contacts',sop_h:'Live-Stream Technical SOP (Camera feed 5:00 PM – 7:00 PM)',stream:'Live stream link',open:'Open',
+att_h:'Trade-wise Trainee Confirmation / Attendance',all:'All trades',csv:'Export CSV',copy:'Copy',download:'Download',close:'Close',cols:'Mobile',
+notes_h:'Committee Notes & Tasks',add:'Add',save:'Save',del:'Delete',edit:'Edit',by:'by',
+a_users:'Users',a_agenda:'Agenda',a_settings:'Settings',a_roster:'Rosters & Reports',
+u_add:'Add / Update User',u_csv:'Bulk upload (CSV: name,mobile,dob,role,trade,reg)',import:'Import',role_l:'Role',cert_l:'Certificate',
+ag_date:'Date',ag_time:'Time',ag_title:'Title',ag_desc:'Description',
+set_stream:'Live stream / meeting link',set_report:'Reporting time',set_trades:'Trades (one per line)',set_spoc:'SPOC contacts (name | role | phone — one per line)',set_sop:'Live-stream SOP steps (one per line)',set_reset:'Reset all data to sample',
+rep_conf:'Trade-wise participation report',rep_roster:'Committee duty roster',rep_users:'User list',
+sync_local:'Data stored in this browser. Add Firebase config in the file to sync across users.',sync_fb:'Live sync with Firebase is ON.',
+notlogged:'Please login to access this area.',noaccess:'You do not have access to this area.',nodata:'No records yet.',saved:'Saved.',
+foot:'Kaushal Deekshant Samaroh 2026 · NSTI Calicut, Govindapuram, Kozhikode · Skill India'},
+hi:{title:'कौशल दीक्षांत समारोह 2026',sub:'एनएसटीआई कालीकट समन्वय पोर्टल · 21 नवम्बर 2026',home:'मुख्य पृष्ठ',pass:'मेरा पास',committee:'समिति डेस्क',admin:'एडमिन',login:'लॉगिन',logout:'लॉगआउट',theme:'थीम',
+th_light:'लाइट',th_dark:'डार्क',th_royal:'रॉयल गोल्ड व नेवी',th_mint:'एमरल्ड मिंट',
+inv_h:'आपका हार्दिक स्वागत है',inv_p:'एनएसटीआई कालीकट, गोविंदपुरम, कोझिकोड में आयोजित कौशल दीक्षांत समारोह 2026 में सभी उत्तीर्ण प्रशिक्षुओं एवं उनके माता-पिता/अभिभावकों को सादर आमंत्रित किया जाता है।',
+inv_live:'आईजीपी लखनऊ में माननीय प्रधानमंत्री की उपस्थिति में आयोजित राष्ट्रीय समारोह से सीधा जुड़ाव, सायं 5:30 से 7:00 बजे।',date_conv:'दीक्षांत समारोह: 21 नवम्बर 2026',date_dry:'ड्राई रन: 20 नवम्बर 2026',
+guide_h:'प्रशिक्षुओं के लिए अनिवार्य दिशानिर्देश',g1:'निर्धारित संस्थान की वर्दी एवं पहचान पत्र के साथ आएँ। वर्दी के बिना मंच पर बैठने की अनुमति नहीं होगी।',g2:'21 नवम्बर 2026 को {t} तक एनएसटीआई कालीकट में रिपोर्ट करें।',g3:'अनुशासन बनाए रखें: समय पर बैठें, फोन साइलेंट रखें, स्वयंसेवकों व समिति के निर्देशों का पालन करें।',g4:'माता-पिता/अभिभावकों से अनुरोध है कि वे प्रशिक्षु के साथ आएँ और अतिथि दीर्घा में बैठें।',g5:'प्रमाणपत्र प्राप्ति की प्रक्रिया के अभ्यास हेतु 20 नवम्बर 2026 के ड्राई रन में उपस्थित रहें।',
+agenda_h:'कार्यक्रम सूची',agenda_note:'समय अनुमानित हैं; एडमिन इन्हें तत्काल अद्यतन करता है।',
+form_h:'सहभागिता की पुष्टि',scheme:'योजना',trade:'ट्रेड',name:'पूरा नाम',reg:'रोल / पंजीकरण संख्या',mobile:'मोबाइल नंबर (10 अंक)',dob:'जन्म तिथि (DD-MM-YYYY)',uniform:'मैं निर्धारित वर्दी में उपस्थित रहूँगा/रहूँगी',parent:'माता-पिता/अभिभावक साथ आएँगे',yes:'हाँ',no:'नहीं',submit:'सहभागिता की पुष्टि करें',select:'— चुनें —',
+thanks:'धन्यवाद! आपकी सहभागिता की पुष्टि हो गई।',updated:'आपकी पिछली पुष्टि अद्यतन कर दी गई।',need_all:'कृपया सभी आवश्यक जानकारी सही भरें (मोबाइल: 10 अंक, जन्म तिथि: DD-MM-YYYY)।',
+counter_h:'ट्रेड-वार सहभागिता (लाइव)',total:'कुल पुष्टि',parents:'आने वाले माता-पिता/अभिभावक',
+login_h:'मोबाइल नंबर + जन्म तिथि से लॉगिन',login_btn:'लॉगिन करें',invalid:'कोई उपयोगकर्ता नहीं मिला। मोबाइल व जन्म तिथि जाँचें।',demo_h:'डेमो लॉगिन (नमूना डेटा)',
+welcome:'स्वागत है',pass_h:'आपका दीक्षांत पास',status:'सहभागिता',confirmed:'पुष्टि हो चुकी',notconf:'अभी पुष्टि नहीं हुई — कृपया मुख्य पृष्ठ पर फॉर्म भरें।',cert:'प्रमाणपत्र स्थिति',cs_Pending:'लंबित',cs_Ready:'प्राप्ति हेतु तैयार',cs_Collected:'प्राप्त किया',
+instr_h:'रिपोर्टिंग एवं बैठक निर्देश',print:'प्रिंट / सेव',role:'भूमिका',
+r_admin:'एडमिन',r_official:'अधिकारी / समिति',r_trainee:'प्रशिक्षु',
+mx_h:'समिति उत्तरदायित्व तालिका',mx_src:'कार्यालय आदेश सं. T-11811/02/Misc/24-25 के अनुसार',team:'टीम',duty:'उत्तरदायित्व',members:'सदस्य',
+ck_h:'आंतरिक चेकलिस्ट',spoc_h:'डीजीटी एसपीओसी एवं संपर्क',sop_h:'लाइव-स्ट्रीम तकनीकी एसओपी (कैमरा फीड सायं 5:00–7:00)',stream:'लाइव स्ट्रीम लिंक',open:'खोलें',
+att_h:'ट्रेड-वार प्रशिक्षु पुष्टि / उपस्थिति सूची',all:'सभी ट्रेड',csv:'CSV निर्यात',copy:'कॉपी',download:'डाउनलोड',close:'बंद करें',cols:'मोबाइल',
+notes_h:'समिति नोट्स एवं कार्य',add:'जोड़ें',save:'सहेजें',del:'हटाएँ',edit:'संपादित करें',by:'द्वारा',
+a_users:'उपयोगकर्ता',a_agenda:'कार्यक्रम',a_settings:'सेटिंग्स',a_roster:'रोस्टर व रिपोर्ट',
+u_add:'उपयोगकर्ता जोड़ें / अद्यतन करें',u_csv:'बल्क अपलोड (CSV: name,mobile,dob,role,trade,reg)',import:'आयात करें',role_l:'भूमिका',cert_l:'प्रमाणपत्र',
+ag_date:'तिथि',ag_time:'समय',ag_title:'शीर्षक',ag_desc:'विवरण',
+set_stream:'लाइव स्ट्रीम / मीटिंग लिंक',set_report:'रिपोर्टिंग समय',set_trades:'ट्रेड (प्रति पंक्ति एक)',set_spoc:'एसपीओसी संपर्क (नाम | भूमिका | फोन — प्रति पंक्ति एक)',set_sop:'लाइव-स्ट्रीम एसओपी चरण (प्रति पंक्ति एक)',set_reset:'सारा डेटा नमूने पर रीसेट करें',
+rep_conf:'ट्रेड-वार सहभागिता रिपोर्ट',rep_roster:'समिति ड्यूटी रोस्टर',rep_users:'उपयोगकर्ता सूची',
+sync_local:'डेटा इसी ब्राउज़र में सहेजा गया है। सभी उपयोगकर्ताओं में सिंक हेतु फ़ाइल में Firebase कॉन्फ़िग जोड़ें।',sync_fb:'Firebase लाइव सिंक चालू है।',
+notlogged:'इस भाग के लिए कृपया लॉगिन करें।',noaccess:'इस भाग तक आपकी पहुँच नहीं है।',nodata:'अभी कोई रिकॉर्ड नहीं।',saved:'सहेजा गया।',
+foot:'कौशल दीक्षांत समारोह 2026 · एनएसटीआई कालीकट, गोविंदपुरम, कोझिकोड · स्किल इंडिया'},
+ml:{title:'കൗശൽ ദീക്ഷാന്ത് സമാരോഹ് 2026',sub:'എൻഎസ്ടിഐ കോഴിക്കോട് കോർഡിനേഷൻ പോർട്ടൽ · 2026 നവംബർ 21',home:'ഹോം',pass:'എന്റെ പാസ്',committee:'കമ്മിറ്റി ഡെസ്ക്',admin:'അഡ്മിൻ',login:'ലോഗിൻ',logout:'ലോഗൗട്ട്',theme:'തീം',
+th_light:'ലൈറ്റ്',th_dark:'ഡാർക്ക്',th_royal:'റോയൽ ഗോൾഡ് & നേവി',th_mint:'എമറാൾഡ് മിന്റ്',
+inv_h:'സ്നേഹപൂർവ്വം ക്ഷണിക്കുന്നു',inv_p:'കോഴിക്കോട് ഗോവിന്ദപുരത്തുള്ള എൻഎസ്ടിഐ കോഴിക്കോട് നടത്തുന്ന കൗശൽ ദീക്ഷാന്ത് സമാരോഹ് 2026-ലേക്ക് പഠനം പൂർത്തിയാക്കിയ എല്ലാ ട്രെയിനികളെയും അവരുടെ രക്ഷിതാക്കളെയും ഹൃദയപൂർവ്വം ക്ഷണിക്കുന്നു.',
+inv_live:'ബഹുമാനപ്പെട്ട പ്രധാനമന്ത്രി പങ്കെടുക്കുന്ന ഐജിപി ലഖ്നൗവിലെ ദേശീയ ചടങ്ങുമായി തത്സമയം ബന്ധിപ്പിക്കുന്നു, വൈകിട്ട് 5:30 മുതൽ 7:00 വരെ.',date_conv:'ദീക്ഷാന്ത് സമാരോഹ്: 2026 നവംബർ 21',date_dry:'ഡ്രൈ റൺ: 2026 നവംബർ 20',
+guide_h:'ട്രെയിനികൾക്കുള്ള നിർബന്ധിത മാർഗ്ഗനിർദ്ദേശങ്ങൾ',g1:'നിർദ്ദിഷ്ട യൂണിഫോമും ഐഡി കാർഡും ധരിക്കണം. യൂണിഫോം ഇല്ലാത്തവർക്ക് വേദിയിൽ ഇരിപ്പിടം അനുവദിക്കില്ല.',g2:'2026 നവംബർ 21-ന് {t}-നകം എൻഎസ്ടിഐ കോഴിക്കോട്ടിൽ റിപ്പോർട്ട് ചെയ്യുക.',g3:'അച്ചടക്കം പാലിക്കുക: കൃത്യസമയത്ത് ഇരിപ്പിടത്തിൽ എത്തുക, ഫോൺ സൈലന്റ് ആക്കുക, വോളണ്ടിയർമാരുടെയും കമ്മിറ്റിയുടെയും നിർദ്ദേശങ്ങൾ പാലിക്കുക.',g4:'രക്ഷിതാക്കൾ ട്രെയിനിക്കൊപ്പം വന്ന് അതിഥി ഇരിപ്പിടത്തിൽ ഇരിക്കണമെന്ന് അഭ്യർത്ഥിക്കുന്നു.',g5:'സർട്ടിഫിക്കറ്റ് സ്വീകരിക്കുന്ന രീതിയുടെ റിഹേഴ്സലിനായി 2026 നവംബർ 20-ലെ ഡ്രൈ റണ്ണിൽ പങ്കെടുക്കുക.',
+agenda_h:'പരിപാടി ക്രമം',agenda_note:'സമയം സൂചകമാണ്; അഡ്മിൻ തത്സമയം പുതുക്കും.',
+form_h:'പങ്കാളിത്ത സ്ഥിരീകരണം',scheme:'സ്കീം',trade:'ട്രേഡ്',name:'പൂർണ്ണ നാമം',reg:'റോൾ / രജിസ്ട്രേഷൻ നമ്പർ',mobile:'മൊബൈൽ നമ്പർ (10 അക്കം)',dob:'ജനന തീയതി (DD-MM-YYYY)',uniform:'നിർദ്ദിഷ്ട യൂണിഫോമിൽ ഞാൻ പങ്കെടുക്കും',parent:'രക്ഷിതാവ് ഒപ്പം വരും',yes:'അതെ',no:'ഇല്ല',submit:'പങ്കാളിത്തം സ്ഥിരീകരിക്കുക',select:'— തിരഞ്ഞെടുക്കുക —',
+thanks:'നന്ദി! നിങ്ങളുടെ പങ്കാളിത്തം സ്ഥിരീകരിച്ചു.',updated:'നിങ്ങളുടെ മുൻ സ്ഥിരീകരണം പുതുക്കി.',need_all:'ആവശ്യമായ എല്ലാ വിവരങ്ങളും ശരിയായി നൽകുക (മൊബൈൽ: 10 അക്കം, ജനന തീയതി: DD-MM-YYYY).',
+counter_h:'ട്രേഡ് തിരിച്ചുള്ള പങ്കാളിത്തം (തത്സമയം)',total:'ആകെ സ്ഥിരീകരിച്ചവർ',parents:'വരുന്ന രക്ഷിതാക്കൾ',
+login_h:'മൊബൈൽ നമ്പർ + ജനന തീയതി ഉപയോഗിച്ച് ലോഗിൻ',login_btn:'ലോഗിൻ',invalid:'ഉപയോക്താവിനെ കണ്ടെത്തിയില്ല. മൊബൈൽ നമ്പറും ജനന തീയതിയും പരിശോധിക്കുക.',demo_h:'ഡെമോ ലോഗിനുകൾ (സാമ്പിൾ ഡാറ്റ)',
+welcome:'സ്വാഗതം',pass_h:'നിങ്ങളുടെ ദീക്ഷാന്ത് പാസ്',status:'പങ്കാളിത്തം',confirmed:'സ്ഥിരീകരിച്ചു',notconf:'ഇതുവരെ സ്ഥിരീകരിച്ചിട്ടില്ല — ഹോമിലെ ഫോം പൂരിപ്പിക്കുക.',cert:'സർട്ടിഫിക്കറ്റ് നില',cs_Pending:'ബാക്കി',cs_Ready:'കൈപ്പറ്റാൻ തയ്യാർ',cs_Collected:'കൈപ്പറ്റി',
+instr_h:'റിപ്പോർട്ടിംഗ് & ഇരിപ്പിട നിർദ്ദേശങ്ങൾ',print:'പ്രിന്റ് / സേവ്',role:'റോൾ',
+r_admin:'അഡ്മിൻ',r_official:'ഉദ്യോഗസ്ഥൻ / കമ്മിറ്റി',r_trainee:'ട്രെയിനി',
+mx_h:'കമ്മിറ്റി ചുമതല പട്ടിക',mx_src:'ഓഫീസ് ഓർഡർ നം. T-11811/02/Misc/24-25 പ്രകാരം',team:'ടീം',duty:'ചുമതല',members:'അംഗങ്ങൾ',
+ck_h:'ആഭ്യന്തര ചെക്ക്‌ലിസ്റ്റ്',spoc_h:'ഡിജിടി എസ്പിഒസി & ബന്ധപ്പെടേണ്ടവർ',sop_h:'ലൈവ്-സ്ട്രീം സാങ്കേതിക എസ്ഒപി (ക്യാമറ ഫീഡ് 5:00–7:00 PM)',stream:'ലൈവ് സ്ട്രീം ലിങ്ക്',open:'തുറക്കുക',
+att_h:'ട്രേഡ് തിരിച്ചുള്ള ട്രെയിനി സ്ഥിരീകരണ / ഹാജർ പട്ടിക',all:'എല്ലാ ട്രേഡുകളും',csv:'CSV എക്സ്പോർട്ട്',copy:'കോപ്പി',download:'ഡൗൺലോഡ്',close:'അടയ്ക്കുക',cols:'മൊബൈൽ',
+notes_h:'കമ്മിറ്റി കുറിപ്പുകൾ & ചുമതലകൾ',add:'ചേർക്കുക',save:'സേവ്',del:'ഇല്ലാതാക്കുക',edit:'തിരുത്തുക',by:'—',
+a_users:'ഉപയോക്താക്കൾ',a_agenda:'അജണ്ട',a_settings:'സെറ്റിംഗ്സ്',a_roster:'റോസ്റ്ററും റിപ്പോർട്ടും',
+u_add:'ഉപയോക്താവിനെ ചേർക്കുക / പുതുക്കുക',u_csv:'ബൾക്ക് അപ്‌ലോഡ് (CSV: name,mobile,dob,role,trade,reg)',import:'ഇമ്പോർട്ട്',role_l:'റോൾ',cert_l:'സർട്ടിഫിക്കറ്റ്',
+ag_date:'തീയതി',ag_time:'സമയം',ag_title:'തലക്കെട്ട്',ag_desc:'വിവരണം',
+set_stream:'ലൈവ് സ്ട്രീം / മീറ്റിംഗ് ലിങ്ക്',set_report:'റിപ്പോർട്ടിംഗ് സമയം',set_trades:'ട്രേഡുകൾ (ഒരു വരിയിൽ ഒന്ന്)',set_spoc:'എസ്പിഒസി വിവരങ്ങൾ (പേര് | റോൾ | ഫോൺ — ഒരു വരിയിൽ ഒന്ന്)',set_sop:'ലൈവ്-സ്ട്രീം എസ്ഒപി ഘട്ടങ്ങൾ (ഒരു വരിയിൽ ഒന്ന്)',set_reset:'എല്ലാ ഡാറ്റയും സാമ്പിളിലേക്ക് റീസെറ്റ് ചെയ്യുക',
+rep_conf:'ട്രേഡ് തിരിച്ചുള്ള പങ്കാളിത്ത റിപ്പോർട്ട്',rep_roster:'കമ്മിറ്റി ഡ്യൂട്ടി റോസ്റ്റർ',rep_users:'ഉപയോക്തൃ പട്ടിക',
+sync_local:'ഡാറ്റ ഈ ബ്രൗസറിൽ സൂക്ഷിക്കുന്നു. എല്ലാവർക്കും സിങ്ക് ചെയ്യാൻ ഫയലിൽ Firebase കോൺഫിഗ് ചേർക്കുക.',sync_fb:'Firebase ലൈവ് സിങ്ക് ഓണാണ്.',
+notlogged:'ഈ ഭാഗം കാണാൻ ലോഗിൻ ചെയ്യുക.',noaccess:'ഈ ഭാഗത്തേക്ക് പ്രവേശനമില്ല.',nodata:'രേഖകൾ ഇല്ല.',saved:'സേവ് ചെയ്തു.',
+foot:'കൗശൽ ദീക്ഷാന്ത് സമാരോഹ് 2026 · എൻഎസ്ടിഐ കോഴിക്കോട്, ഗോവിന്ദപുരം · സ്കിൽ ഇന്ത്യ'}
+};
+let lang='en';
+const T=(k,v)=>{let s=(I[lang][k]??I.en[k]??k);if(v)for(const x in v)s=s.replace('{'+x+'}',v[x]);return s};
+const L=o=>typeof o==='string'?o:(o[lang]||o.en||'');
+
+/* ===== v2: event settings, extra i18n, helpers ===== */
+const EVENT_DEFAULTS={
+ title:{en:'Kaushal Deekshant Samaroh 2026',hi:'कौशल दीक्षांत समारोह 2026',ml:'കൗശൽ ദീക്ഷാന്ത് സമാരോഹ് 2026'},
+ code:'KDS26',schedImg:'',convDate:'21 November 2026',dryDate:'20 November 2026',venue:'NSTI Calicut, Govindapuram, Kozhikode',inviteParents:true,
+ liveNote:{en:"Live-linked with the national ceremony at IGP Lucknow, attended by the Hon'ble Prime Minister, 5:30 PM – 7:00 PM.",hi:'आईजीपी लखनऊ में माननीय प्रधानमंत्री की उपस्थिति में आयोजित राष्ट्रीय समारोह से सीधा जुड़ाव, सायं 5:30 से 7:00 बजे।',ml:'ബഹുമാനപ്പെട്ട പ്രധാനമന്ത്രി പങ്കെടുക്കുന്ന ഐജിപി ലഖ്നൗവിലെ ദേശീയ ചടങ്ങുമായി തത്സമയം ബന്ധിപ്പിക്കുന്നു, വൈകിട്ട് 5:30 മുതൽ 7:00 വരെ.'},
+ certNotice:{en:'Certificates will not be handed over at the convocation. They will be distributed separately at the institute level; the date, time and counter will be intimated by NSTI Calicut.',hi:'प्रमाणपत्र दीक्षांत समारोह में नहीं दिए जाएँगे। इनका वितरण संस्थान स्तर पर अलग से होगा; तिथि, समय व काउंटर की सूचना एनएसटीआई कालीकट द्वारा दी जाएगी।',ml:'സർട്ടിഫിക്കറ്റുകൾ ദീക്ഷാന്ത് സമാരോഹിൽ നൽകുന്നതല്ല. അവ സ്ഥാപന തലത്തിൽ പ്രത്യേകമായി വിതരണം ചെയ്യും; തീയതി, സമയം, കൗണ്ടർ എന്നിവ എൻഎസ്ടിഐ കോഴിക്കോട് അറിയിക്കും.'},
+ extraNote:{en:'',hi:'',ml:''}};
+Object.assign(I.en,{
+ portal:'NSTI Calicut Coordination Portal',
+ inv_p:'NSTI Calicut cordially invites all graduating trainees and their parents/guardians to the {title} at {venue}.',
+ inv_p2:'NSTI Calicut cordially invites all graduating trainees to the {title} at {venue}.',
+ g2:'Report at NSTI Calicut by {t} on {d} for seating and briefing.',g5:'Attend the Dry Run on {dd} for rehearsal of the stage procedure.',
+ date_conv:'Convocation: {d}',date_dry:'Dry Run: {dd}',cert_notice_h:'Certificate Distribution',
+ a_event:'Event & Invitation',a_trainees:'Trainee Roster',a_staff:'Staff Logins',a_reports:'Reports',
+ ev_title:'Event title',ev_code:'Short code (used in pass ID)',ev_conv:'Convocation date',ev_dry:'Dry run date',ev_venue:'Venue',ev_live:'Live-link note (leave blank to hide)',ev_cert:'Certificate distribution notice (shown in invitation)',ev_extra:'Extra invitation note (optional)',
+ ev_parents:'Invite parents/guardians (controls invitation text, guidelines, form field and counter)',ev_newyear:'Start new year',ev_newyear_note:'Clears the trainee roster, confirmations and certificate records. Staff logins, committee, agenda and settings are kept. Export reports first.',ev_newyear_btn:'Clear roster & confirmations',ev_sure:'⚠ Click again to confirm',
+ pick_name:'Select your name',not_listed:'My name is not in the list (enter manually)',dob_verify:'Date of Birth (to verify it is you)',dob_mismatch:'Date of birth does not match the records for the selected trainee.',manual_note:'Manual entry — the office will verify this record.',no_roster:'No trainee list uploaded for this trade yet — choose "not in the list" to enter manually.',pick_first:'Select scheme and trade first.',
+ tr_h:'Trainee Roster (master list)',tr_fmt:'Standard upload format (CSV, one trainee per row)',tr_cols:'Reg No, Name, Scheme (CTS/CITS/Other), Trade, Mobile (10 digits), DOB (DD-MM-YYYY), Batch (optional)',tr_tpl:'Get template',tr_file:'Upload CSV file',tr_paste:'…or paste rows copied from Excel/CSV',tr_merge:'Import (merges by Reg No.)',tr_count:'{n} trainees in roster',tr_search:'Search name / reg no.',tr_add:'Add / update one trainee',tr_export:'Export roster',
+ cd_h:'Certificate Distribution Desk (institute level)',cd_pending:'Pending',cd_ready:'Ready',cd_self:'Collected – Trainee',cd_parent:'Collected – Parent/Guardian',cd_auth:'Collected – Authorised person',cd_sum:'Collected {c} · Ready {r} · Pending {p}',cd_on:'on',
+ manual:'Manual',staff_h:'Add / update staff login',a_cert:'Certificates',all_status:'All statuses',participated:'Confirmed?',ev_saved:'Event details saved.'});
+Object.assign(I.hi,{
+ portal:'एनएसटीआई कालीकट समन्वय पोर्टल',
+ inv_p:'एनएसटीआई कालीकट, {venue} में आयोजित {title} में सभी उत्तीर्ण प्रशिक्षुओं एवं उनके माता-पिता/अभिभावकों को सादर आमंत्रित करता है।',
+ inv_p2:'एनएसटीआई कालीकट, {venue} में आयोजित {title} में सभी उत्तीर्ण प्रशिक्षुओं को सादर आमंत्रित करता है।',
+ g2:'{d} को {t} तक एनएसटीआई कालीकट में रिपोर्ट करें।',g5:'मंच प्रक्रिया के अभ्यास हेतु {dd} के ड्राई रन में उपस्थित रहें।',
+ date_conv:'दीक्षांत समारोह: {d}',date_dry:'ड्राई रन: {dd}',cert_notice_h:'प्रमाणपत्र वितरण',
+ a_event:'कार्यक्रम व निमंत्रण',a_trainees:'प्रशिक्षु सूची',a_staff:'स्टाफ लॉगिन',a_reports:'रिपोर्ट',
+ ev_title:'कार्यक्रम का शीर्षक',ev_code:'संक्षिप्त कोड (पास आईडी हेतु)',ev_conv:'दीक्षांत तिथि',ev_dry:'ड्राई रन तिथि',ev_venue:'स्थान',ev_live:'लाइव-लिंक सूचना (छिपाने हेतु खाली छोड़ें)',ev_cert:'प्रमाणपत्र वितरण सूचना (निमंत्रण में दिखेगी)',ev_extra:'अतिरिक्त निमंत्रण सूचना (वैकल्पिक)',
+ ev_parents:'माता-पिता/अभिभावकों को आमंत्रित करें (निमंत्रण, दिशानिर्देश, फॉर्म व काउंटर)',ev_newyear:'नया वर्ष शुरू करें',ev_newyear_note:'प्रशिक्षु सूची, पुष्टियाँ व प्रमाणपत्र रिकॉर्ड हटेंगे। स्टाफ लॉगिन, समिति, कार्यक्रम व सेटिंग्स सुरक्षित रहेंगे। पहले रिपोर्ट निर्यात करें।',ev_newyear_btn:'सूची व पुष्टियाँ हटाएँ',ev_sure:'⚠ पुष्टि हेतु पुनः क्लिक करें',
+ pick_name:'अपना नाम चुनें',not_listed:'मेरा नाम सूची में नहीं है (हाथ से भरें)',dob_verify:'जन्म तिथि (आपकी पहचान हेतु)',dob_mismatch:'चयनित प्रशिक्षु के रिकॉर्ड से जन्म तिथि मेल नहीं खाती।',manual_note:'हाथ से प्रविष्टि — कार्यालय इसका सत्यापन करेगा।',no_roster:'इस ट्रेड की प्रशिक्षु सूची अभी अपलोड नहीं है — "सूची में नहीं" चुनकर हाथ से भरें।',pick_first:'पहले योजना व ट्रेड चुनें।',
+ tr_h:'प्रशिक्षु सूची (मास्टर लिस्ट)',tr_fmt:'मानक अपलोड प्रारूप (CSV, प्रति पंक्ति एक प्रशिक्षु)',tr_cols:'Reg No, Name, Scheme (CTS/CITS/Other), Trade, Mobile (10 अंक), DOB (DD-MM-YYYY), Batch (वैकल्पिक)',tr_tpl:'टेम्पलेट लें',tr_file:'CSV फ़ाइल अपलोड करें',tr_paste:'…या Excel/CSV से कॉपी की पंक्तियाँ यहाँ चिपकाएँ',tr_merge:'आयात करें (Reg No. से मर्ज)',tr_count:'सूची में {n} प्रशिक्षु',tr_search:'नाम / रजि. नं. खोजें',tr_add:'एक प्रशिक्षु जोड़ें / अद्यतन करें',tr_export:'सूची निर्यात करें',
+ cd_h:'प्रमाणपत्र वितरण डेस्क (संस्थान स्तर)',cd_pending:'लंबित',cd_ready:'तैयार',cd_self:'प्राप्त – प्रशिक्षु',cd_parent:'प्राप्त – माता-पिता/अभिभावक',cd_auth:'प्राप्त – अधिकृत व्यक्ति',cd_sum:'प्राप्त {c} · तैयार {r} · लंबित {p}',cd_on:'को',
+ manual:'हस्त-प्रविष्टि',staff_h:'स्टाफ लॉगिन जोड़ें / अद्यतन करें',a_cert:'प्रमाणपत्र',all_status:'सभी स्थितियाँ',participated:'पुष्टि?',ev_saved:'कार्यक्रम विवरण सहेजे गए।'});
+Object.assign(I.ml,{
+ portal:'എൻഎസ്ടിഐ കോഴിക്കോട് കോർഡിനേഷൻ പോർട്ടൽ',
+ inv_p:'{venue}-ൽ നടക്കുന്ന {title}-ലേക്ക് പഠനം പൂർത്തിയാക്കിയ എല്ലാ ട്രെയിനികളെയും അവരുടെ രക്ഷിതാക്കളെയും എൻഎസ്ടിഐ കോഴിക്കോട് ഹൃദയപൂർവ്വം ക്ഷണിക്കുന്നു.',
+ inv_p2:'{venue}-ൽ നടക്കുന്ന {title}-ലേക്ക് പഠനം പൂർത്തിയാക്കിയ എല്ലാ ട്രെയിനികളെയും എൻഎസ്ടിഐ കോഴിക്കോട് ഹൃദയപൂർവ്വം ക്ഷണിക്കുന്നു.',
+ g2:'{d}-ന് {t}-നകം എൻഎസ്ടിഐ കോഴിക്കോട്ടിൽ റിപ്പോർട്ട് ചെയ്യുക.',g5:'സ്റ്റേജ് നടപടികളുടെ റിഹേഴ്സലിനായി {dd}-ലെ ഡ്രൈ റണ്ണിൽ പങ്കെടുക്കുക.',
+ date_conv:'ദീക്ഷാന്ത് സമാരോഹ്: {d}',date_dry:'ഡ്രൈ റൺ: {dd}',cert_notice_h:'സർട്ടിഫിക്കറ്റ് വിതരണം',
+ a_event:'പരിപാടി & ക്ഷണം',a_trainees:'ട്രെയിനി പട്ടിക',a_staff:'സ്റ്റാഫ് ലോഗിൻ',a_reports:'റിപ്പോർട്ടുകൾ',
+ ev_title:'പരിപാടിയുടെ തലക്കെട്ട്',ev_code:'ചുരുക്ക കോഡ് (പാസ് ഐഡിക്ക്)',ev_conv:'ദീക്ഷാന്ത് തീയതി',ev_dry:'ഡ്രൈ റൺ തീയതി',ev_venue:'വേദി',ev_live:'ലൈവ്-ലിങ്ക് കുറിപ്പ് (മറയ്ക്കാൻ ഒഴിച്ചിടുക)',ev_cert:'സർട്ടിഫിക്കറ്റ് വിതരണ അറിയിപ്പ് (ക്ഷണത്തിൽ കാണിക്കും)',ev_extra:'അധിക ക്ഷണക്കുറിപ്പ് (ഐച്ഛികം)',
+ ev_parents:'രക്ഷിതാക്കളെ ക്ഷണിക്കുക (ക്ഷണം, നിർദ്ദേശങ്ങൾ, ഫോം, കൗണ്ടർ)',ev_newyear:'പുതിയ വർഷം ആരംഭിക്കുക',ev_newyear_note:'ട്രെയിനി പട്ടിക, സ്ഥിരീകരണങ്ങൾ, സർട്ടിഫിക്കറ്റ് രേഖകൾ എന്നിവ നീക്കും. സ്റ്റാഫ് ലോഗിൻ, കമ്മിറ്റി, അജണ്ട, സെറ്റിംഗ്സ് നിലനിൽക്കും. ആദ്യം റിപ്പോർട്ട് എക്സ്പോർട്ട് ചെയ്യുക.',ev_newyear_btn:'പട്ടികയും സ്ഥിരീകരണങ്ങളും നീക്കുക',ev_sure:'⚠ സ്ഥിരീകരിക്കാൻ വീണ്ടും ക്ലിക്ക് ചെയ്യുക',
+ pick_name:'നിങ്ങളുടെ പേര് തിരഞ്ഞെടുക്കുക',not_listed:'എന്റെ പേര് പട്ടികയിലില്ല (കൈകൊണ്ട് നൽകുക)',dob_verify:'ജനന തീയതി (നിങ്ങളാണെന്ന് ഉറപ്പാക്കാൻ)',dob_mismatch:'തിരഞ്ഞെടുത്ത ട്രെയിനിയുടെ രേഖയുമായി ജനന തീയതി യോജിക്കുന്നില്ല.',manual_note:'കൈകൊണ്ടുള്ള എൻട്രി — ഓഫീസ് പരിശോധിക്കും.',no_roster:'ഈ ട്രേഡിന്റെ ട്രെയിനി പട്ടിക ഇതുവരെ അപ്‌ലോഡ് ചെയ്തിട്ടില്ല — "പട്ടികയിലില്ല" തിരഞ്ഞെടുത്ത് നൽകുക.',pick_first:'ആദ്യം സ്കീമും ട്രേഡും തിരഞ്ഞെടുക്കുക.',
+ tr_h:'ട്രെയിനി പട്ടിക (മാസ്റ്റർ ലിസ്റ്റ്)',tr_fmt:'സ്റ്റാൻഡേർഡ് അപ്‌ലോഡ് ഫോർമാറ്റ് (CSV, ഒരു വരിയിൽ ഒരു ട്രെയിനി)',tr_cols:'Reg No, Name, Scheme (CTS/CITS/Other), Trade, Mobile (10 അക്കം), DOB (DD-MM-YYYY), Batch (ഐച്ഛികം)',tr_tpl:'ടെംപ്ലേറ്റ് എടുക്കുക',tr_file:'CSV ഫയൽ അപ്‌ലോഡ് ചെയ്യുക',tr_paste:'…അല്ലെങ്കിൽ Excel/CSV-യിൽ നിന്ന് പകർത്തിയ വരികൾ ഇവിടെ ഒട്ടിക്കുക',tr_merge:'ഇമ്പോർട്ട് (Reg No. പ്രകാരം ലയിപ്പിക്കും)',tr_count:'പട്ടികയിൽ {n} ട്രെയിനികൾ',tr_search:'പേര് / റെജി. നം. തിരയുക',tr_add:'ഒരു ട്രെയിനിയെ ചേർക്കുക / പുതുക്കുക',tr_export:'പട്ടിക എക്സ്പോർട്ട്',
+ cd_h:'സർട്ടിഫിക്കറ്റ് വിതരണ ഡെസ്ക് (സ്ഥാപന തലം)',cd_pending:'ബാക്കി',cd_ready:'തയ്യാർ',cd_self:'കൈപ്പറ്റി – ട്രെയിനി',cd_parent:'കൈപ്പറ്റി – രക്ഷിതാവ്',cd_auth:'കൈപ്പറ്റി – അധികൃത വ്യക്തി',cd_sum:'കൈപ്പറ്റി {c} · തയ്യാർ {r} · ബാക്കി {p}',cd_on:'തീയതി',
+ manual:'കൈകൊണ്ട്',staff_h:'സ്റ്റാഫ് ലോഗിൻ ചേർക്കുക / പുതുക്കുക',a_cert:'സർട്ടിഫിക്കറ്റ്',all_status:'എല്ലാ നിലകളും',participated:'സ്ഥിരീകരിച്ചോ?',ev_saved:'പരിപാടി വിവരങ്ങൾ സേവ് ചെയ്തു.'});
+
+const ST=()=>L(S.settings.title);
+const ES=k=>L(S.settings[k]||'');
+const GV=()=>({t:S.settings.reportingTime,d:S.settings.convDate,dd:S.settings.dryDate});
+const trainees=()=>S.users.filter(u=>u.role==='trainee');
+const ukey=u=>u.role==='trainee'?'T:'+u.reg:'S:'+u.mobile;
+function allTrades(){return [...new Set([...Object.values(S.settings.trades||DEFAULT_TRADES).flat(),...trainees().map(u=>u.trade)].filter(Boolean))]}
+function ensureDefaults(){S.settings=Object.assign({},JSON.parse(JSON.stringify(EVENT_DEFAULTS)),S.settings||{});S.confirmations.forEach(c=>{if(!c.key)c.key=c.reg?'T:'+c.reg:'M:'+c.mobile});S.cultural=S.cultural||[];S.toppers=S.toppers||[];S.attendance=S.attendance||{};if(!S.settings.qrSecret)S.settings.qrSecret=Math.random().toString(36).slice(2)+Date.now().toString(36)}
+function parseCSV(text,delim){delim=delim||',';const rows=[];let r=[],c='',q=false;for(let i=0;i<text.length;i++){const ch=text[i];if(q){if(ch=='"'){if(text[i+1]=='"'){c+='"';i++}else q=false}else c+=ch}else if(ch=='"')q=true;else if(ch==delim){r.push(c);c=''}else if(ch=='\n'||ch=='\r'){if(ch=='\r'&&text[i+1]=='\n')i++;r.push(c);c='';if(r.some(x=>x.trim()))rows.push(r);r=[]}else c+=ch}r.push(c);if(r.some(x=>x.trim()))rows.push(r);return rows}
+
+
+
+/* ===== v3: structured agenda, cultural, attendance/QR ===== */
+Object.assign(I.en,{
+ conv_h:'Institute Convocation',sched_photo:'Programme schedule',sched_tap:'Tap the schedule to enlarge',
+ cult_h:'Cultural Programme',cult_prog:'Programme item',cult_part:'Participants',cult_time:'Time / slot (optional)',cult_note:'Cultural committee members and Admin can add or edit items here.',cult_by:'Entered by',
+ t_present:'Attendance',t_cultural:'Cultural',pres_h:'Presence at Venue',pres_scan:'Scan trainee QR',pres_mark:'Mark present',pres_undo:'Undo',pres_sum:'Present {p} of {t}',pres_by:'by',pres_qr:'QR',pres_manual:'Manual',pres_state:'Presence',pres_none:'Not marked',pres_export:'Attendance CSV',
+ qr_h:'Your venue entry QR',qr_note:'Show this QR to the committee member at the venue entry. It changes every 30 seconds, so screenshots will not work.',qr_marked:'✓ Presence marked',qr_nolib:'QR could not be drawn.',
+ sc_unsupported:'Camera scanning is not available in this browser/viewer. Use the manual list below.',sc_ok:'✓ {n} marked present',sc_dup:'{n} was already marked present',sc_bad:'Invalid or expired QR',sc_stop:'Close scanner',sc_hint:'Point the camera at the trainee\'s QR.',
+ ev_sched:'Institute programme schedule photo',ev_sched_rm:'Remove photo',ev_dry_int:'Dry run date (internal only)',
+ ag_kind:'Type',ag_start:'Start time',ag_end:'End time',ag_note:'Time note (used when no start time)',ag_internal:'Staff only — hide from public view',
+ k_local:'Institute convocation',k_live:'Live national programme',k_other:'Other',k_cultural:'Cultural programme (public only if items are entered)',
+ sf_teams:'Committee team(s)',my_teams:'Your team(s)',int_h:'Internal schedule (staff only)',tr_scheme_note:'Scheme is set by the Admin in the roster.',trade_lbl:'Trade'});
+Object.assign(I.hi,{
+ conv_h:'संस्थान दीक्षांत समारोह',sched_photo:'कार्यक्रम अनुसूची',sched_tap:'बड़ा देखने हेतु अनुसूची पर टैप करें',
+ cult_h:'सांस्कृतिक कार्यक्रम',cult_prog:'कार्यक्रम मद',cult_part:'प्रतिभागी',cult_time:'समय / स्लॉट (वैकल्पिक)',cult_note:'सांस्कृतिक समिति के सदस्य व एडमिन यहाँ मद जोड़/संपादित कर सकते हैं।',cult_by:'दर्ज करने वाले',
+ t_present:'उपस्थिति',t_cultural:'सांस्कृतिक',pres_h:'स्थल पर उपस्थिति',pres_scan:'प्रशिक्षु QR स्कैन करें',pres_mark:'उपस्थित अंकित करें',pres_undo:'वापस',pres_sum:'{t} में से {p} उपस्थित',pres_by:'द्वारा',pres_qr:'QR',pres_manual:'हस्तचालित',pres_state:'उपस्थिति',pres_none:'अंकित नहीं',pres_export:'उपस्थिति CSV',
+ qr_h:'आपका प्रवेश QR',qr_note:'स्थल के प्रवेश पर समिति सदस्य को यह QR दिखाएँ। यह हर 30 सेकंड में बदलता है, इसलिए स्क्रीनशॉट काम नहीं करेगा।',qr_marked:'✓ उपस्थिति अंकित',qr_nolib:'QR नहीं बन सका।',
+ sc_unsupported:'इस ब्राउज़र/व्यूअर में कैमरा स्कैन उपलब्ध नहीं है। नीचे की सूची से हस्तचालित अंकन करें।',sc_ok:'✓ {n} उपस्थित अंकित',sc_dup:'{n} पहले ही अंकित है',sc_bad:'अमान्य या समाप्त QR',sc_stop:'स्कैनर बंद करें',sc_hint:'कैमरा प्रशिक्षु के QR पर रखें।',
+ ev_sched:'संस्थान कार्यक्रम अनुसूची की फोटो',ev_sched_rm:'फोटो हटाएँ',ev_dry_int:'ड्राई रन तिथि (केवल आंतरिक)',
+ ag_kind:'प्रकार',ag_start:'आरंभ समय',ag_end:'समाप्ति समय',ag_note:'समय टिप्पणी (आरंभ समय न होने पर)',ag_internal:'केवल स्टाफ — सार्वजनिक दृश्य में छिपाएँ',
+ k_local:'संस्थान दीक्षांत',k_live:'लाइव राष्ट्रीय कार्यक्रम',k_other:'अन्य',k_cultural:'सांस्कृतिक कार्यक्रम (मद दर्ज होने पर ही सार्वजनिक)',
+ sf_teams:'समिति टीम',my_teams:'आपकी टीम',int_h:'आंतरिक अनुसूची (केवल स्टाफ)',tr_scheme_note:'योजना एडमिन द्वारा सूची में तय की जाती है।',trade_lbl:'ट्रेड'});
+Object.assign(I.ml,{
+ conv_h:'സ്ഥാപന ദീക്ഷാന്ത് ചടങ്ങ്',sched_photo:'പരിപാടി ഷെഡ്യൂൾ',sched_tap:'വലുതായി കാണാൻ ഷെഡ്യൂളിൽ ടാപ്പ് ചെയ്യുക',
+ cult_h:'കലാപരിപാടികൾ',cult_prog:'പരിപാടി ഇനം',cult_part:'പങ്കെടുക്കുന്നവർ',cult_time:'സമയം / സ്ലോട്ട് (ഐച്ഛികം)',cult_note:'കൾച്ചറൽ കമ്മിറ്റി അംഗങ്ങൾക്കും അഡ്മിനും ഇവിടെ ഇനങ്ങൾ ചേർക്കാം/തിരുത്താം.',cult_by:'നൽകിയത്',
+ t_present:'ഹാജർ',t_cultural:'കലാപരിപാടി',pres_h:'വേദിയിലെ ഹാജർ',pres_scan:'ട്രെയിനി QR സ്കാൻ ചെയ്യുക',pres_mark:'ഹാജർ രേഖപ്പെടുത്തുക',pres_undo:'തിരുത്തുക',pres_sum:'{t}-ൽ {p} പേർ ഹാജർ',pres_by:'—',pres_qr:'QR',pres_manual:'കൈകൊണ്ട്',pres_state:'ഹാജർ',pres_none:'രേഖപ്പെടുത്തിയിട്ടില്ല',pres_export:'ഹാജർ CSV',
+ qr_h:'നിങ്ങളുടെ പ്രവേശന QR',qr_note:'വേദിയുടെ പ്രവേശനത്തിൽ കമ്മിറ്റി അംഗത്തെ ഈ QR കാണിക്കുക. ഇത് ഓരോ 30 സെക്കൻഡിലും മാറും, അതിനാൽ സ്ക്രീൻഷോട്ട് പ്രവർത്തിക്കില്ല.',qr_marked:'✓ ഹാജർ രേഖപ്പെടുത്തി',qr_nolib:'QR വരയ്ക്കാനായില്ല.',
+ sc_unsupported:'ഈ ബ്രൗസറിൽ ക്യാമറ സ്കാൻ ലഭ്യമല്ല. താഴെയുള്ള പട്ടികയിൽ നിന്ന് കൈകൊണ്ട് രേഖപ്പെടുത്തുക.',sc_ok:'✓ {n} ഹാജർ രേഖപ്പെടുത്തി',sc_dup:'{n} നേരത്തെ രേഖപ്പെടുത്തിയിട്ടുണ്ട്',sc_bad:'അസാധുവായ അല്ലെങ്കിൽ കാലഹരണപ്പെട്ട QR',sc_stop:'സ്കാനർ അടയ്ക്കുക',sc_hint:'ക്യാമറ ട്രെയിനിയുടെ QR-ലേക്ക് പിടിക്കുക.',
+ ev_sched:'സ്ഥാപന പരിപാടി ഷെഡ്യൂൾ ഫോട്ടോ',ev_sched_rm:'ഫോട്ടോ നീക്കുക',ev_dry_int:'ഡ്രൈ റൺ തീയതി (ആഭ്യന്തരം മാത്രം)',
+ ag_kind:'തരം',ag_start:'ആരംഭ സമയം',ag_end:'അവസാന സമയം',ag_note:'സമയ കുറിപ്പ് (ആരംഭ സമയമില്ലെങ്കിൽ)',ag_internal:'സ്റ്റാഫിന് മാത്രം — പൊതു കാഴ്ചയിൽ മറയ്ക്കുക',
+ k_local:'സ്ഥാപന ദീക്ഷാന്ത്',k_live:'തത്സമയ ദേശീയ പരിപാടി',k_other:'മറ്റുള്ളവ',k_cultural:'കലാപരിപാടി (ഇനങ്ങൾ നൽകിയാൽ മാത്രം പൊതുവിൽ കാണിക്കും)',
+ sf_teams:'കമ്മിറ്റി ടീം',my_teams:'നിങ്ങളുടെ ടീം',int_h:'ആഭ്യന്തര ഷെഡ്യൂൾ (സ്റ്റാഫ് മാത്രം)',tr_scheme_note:'സ്കീം അഡ്മിൻ പട്ടികയിൽ നിശ്ചയിക്കുന്നു.',trade_lbl:'ട്രേഡ്'});
+
+
+Object.assign(I.en,{tp_tab:'Toppers',tp_h:'Our Toppers',lv_all:'All categories',lv_national:'National Topper',lv_state:'State Topper',lv_institute:'Institute Topper',tier_1:'Platinum',tier_2:'Gold',tier_3:'Silver',
+ tp_trade_all:'All trades',tp_search:'Search by name',tp_back:'Back',tp_manage:'Manage toppers',tp_project:'Projection mode',tp_none:'No toppers announced yet.',tp_default_msg:'Congratulations, {name}! {level} — {trade}. We are proud of you!',
+ tp_level:'Category',tp_rank:'Position',tp_trainee:'Trainee (type name or Reg No.)',tp_manual:'Not in roster — enter manually',tp_score:'Marks / score (optional)',tp_msg:'Congratulation message (optional)',tp_photo:'Photo (optional)',tp_rm_photo:'Remove photo',
+ tp_noshow:'Non-attending',tp_noshow_note:'Non-attending trainees are skipped in the projection.',tp_start:'Start',tp_sound:'Sound',tp_exit:'Exit',tp_hint:'→ / Space: next · ← back · Esc: exit',tp_final:'Congratulations to all our toppers!'});
+Object.assign(I.hi,{tp_tab:'टॉपर्स',tp_h:'हमारे टॉपर्स',lv_all:'सभी श्रेणियाँ',lv_national:'राष्ट्रीय टॉपर',lv_state:'राज्य टॉपर',lv_institute:'संस्थान टॉपर',tier_1:'प्लेटिनम',tier_2:'स्वर्ण',tier_3:'रजत',
+ tp_trade_all:'सभी ट्रेड',tp_search:'नाम से खोजें',tp_back:'वापस',tp_manage:'टॉपर्स प्रबंधित करें',tp_project:'प्रोजेक्शन मोड',tp_none:'अभी कोई टॉपर घोषित नहीं।',tp_default_msg:'बधाई, {name}! {level} — {trade}। हमें आप पर गर्व है!',
+ tp_level:'श्रेणी',tp_rank:'स्थान',tp_trainee:'प्रशिक्षु (नाम या रजि. नं. लिखें)',tp_manual:'सूची में नहीं — हाथ से भरें',tp_score:'अंक / स्कोर (वैकल्पिक)',tp_msg:'बधाई संदेश (वैकल्पिक)',tp_photo:'फोटो (वैकल्पिक)',tp_rm_photo:'फोटो हटाएँ',
+ tp_noshow:'अनुपस्थित',tp_noshow_note:'अनुपस्थित प्रशिक्षुओं को प्रोजेक्शन में छोड़ दिया जाएगा।',tp_start:'शुरू करें',tp_sound:'ध्वनि',tp_exit:'बाहर',tp_hint:'→ / स्पेस: आगे · ← पीछे · Esc: बाहर',tp_final:'हमारे सभी टॉपर्स को हार्दिक बधाई!'});
+Object.assign(I.ml,{tp_tab:'ടോപ്പർമാർ',tp_h:'നമ്മുടെ ടോപ്പർമാർ',lv_all:'എല്ലാ വിഭാഗങ്ങളും',lv_national:'ദേശീയ ടോപ്പർ',lv_state:'സംസ്ഥാന ടോപ്പർ',lv_institute:'സ്ഥാപന ടോപ്പർ',tier_1:'പ്ലാറ്റിനം',tier_2:'സ്വർണ്ണം',tier_3:'വെള്ളി',
+ tp_trade_all:'എല്ലാ ട്രേഡുകളും',tp_search:'പേര് തിരയുക',tp_back:'തിരികെ',tp_manage:'ടോപ്പർമാരെ നിയന്ത്രിക്കുക',tp_project:'പ്രൊജക്ഷൻ മോഡ്',tp_none:'ടോപ്പർമാരെ ഇതുവരെ പ്രഖ്യാപിച്ചിട്ടില്ല.',tp_default_msg:'അഭിനന്ദനങ്ങൾ, {name}! {level} — {trade}. ഞങ്ങൾക്ക് അഭിമാനം!',
+ tp_level:'വിഭാഗം',tp_rank:'സ്ഥാനം',tp_trainee:'ട്രെയിനി (പേര് അല്ലെങ്കിൽ റെജി. നം. ടൈപ്പ് ചെയ്യുക)',tp_manual:'പട്ടികയിലില്ല — കൈകൊണ്ട് നൽകുക',tp_score:'മാർക്ക് / സ്കോർ (ഐച്ഛികം)',tp_msg:'അഭിനന്ദന സന്ദേശം (ഐച്ഛികം)',tp_photo:'ഫോട്ടോ (ഐച്ഛികം)',tp_rm_photo:'ഫോട്ടോ നീക്കുക',
+ tp_noshow:'ഹാജരാകാത്തവർ',tp_noshow_note:'ഹാജരാകാത്ത ട്രെയിനികളെ പ്രൊജക്ഷനിൽ ഒഴിവാക്കും.',tp_start:'ആരംഭിക്കുക',tp_sound:'ശബ്ദം',tp_exit:'പുറത്ത്',tp_hint:'→ / സ്പേസ്: അടുത്തത് · ← പിന്നോട്ട് · Esc: പുറത്ത്',tp_final:'എല്ലാ ടോപ്പർമാർക്കും അഭിനന്ദനങ്ങൾ!'});
+const pad2=n=>String(n).padStart(2,'0');
+function fmtT(t){if(!t)return'';const [h,m]=t.split(':').map(Number);return ((h%12)||12)+':'+pad2(m)+' '+(h<12?'AM':'PM')}
+function fmtD(d){if(!d)return'';const x=new Date(d+'T00:00:00');return isNaN(x)?d:x.toLocaleDateString({en:'en-IN',hi:'hi-IN',ml:'ml-IN'}[lang]||'en-IN',{day:'numeric',month:'short',year:'numeric'})}
+const fmtWhen=a=>[fmtD(a.date),a.start?fmtT(a.start)+(a.end?' – '+fmtT(a.end):''):(a.note||'')].filter(Boolean).join(' · ');
+const agSorted=()=>S.agenda.slice().sort((a,b)=>((a.date||'')+(a.start||'99:99')).localeCompare((b.date||'')+(b.start||'99:99')));
+const publicAgenda=()=>agSorted().filter(a=>!a.internal&&(a.kind!=='cultural'||S.cultural.length));
+const KIND_ICON={live:'📡',local:'🎓',cultural:'🎭',other:'•'};
+function seedAgenda(){return[
+ {id:1,kind:'other',internal:true,date:'2026-11-20',start:'10:00',end:'',title:{en:'Dry Run (internal rehearsal)',hi:'ड्राई रन (आंतरिक पूर्वाभ्यास)',ml:'ഡ്രൈ റൺ (ആഭ്യന്തര റിഹേഴ്സൽ)'},desc:{en:'Staff and committee teams: seating, stage movement, certificate procedure, live-stream test.',hi:'स्टाफ व समिति टीमें: बैठक, मंच संचालन, प्रमाणपत्र प्रक्रिया, लाइव-स्ट्रीम परीक्षण।',ml:'സ്റ്റാഫും കമ്മിറ്റി ടീമുകളും: ഇരിപ്പിടം, സ്റ്റേജ്, സർട്ടിഫിക്കറ്റ് നടപടി, ലൈവ്-സ്ട്രീം പരിശോധന.'}},
+ {id:2,kind:'other',date:'2026-11-21',start:'16:00',end:'',title:{en:'Reporting & Seating',hi:'रिपोर्टिंग व बैठक',ml:'റിപ്പോർട്ടിംഗ് & ഇരിപ്പിടം'},desc:{en:'Trainees report in uniform; seating as per trade.',hi:'प्रशिक्षु वर्दी में रिपोर्ट करें; ट्रेड के अनुसार बैठक।',ml:'ട്രെയിനികൾ യൂണിഫോമിൽ റിപ്പോർട്ട് ചെയ്യണം; ട്രേഡ് അനുസരിച്ച് ഇരിപ്പിടം.'}},
+ {id:3,kind:'live',date:'2026-11-21',start:'17:00',end:'19:00',title:{en:'Live Stream Session',hi:'लाइव स्ट्रीम सत्र',ml:'ലൈവ് സ്ട്രീം സെഷൻ'},desc:{en:'Live link with the national ceremony at IGP Lucknow with the Hon\'ble Prime Minister (5:30 – 7:00 PM).',hi:'आईजीपी लखनऊ में माननीय प्रधानमंत्री के राष्ट्रीय समारोह से सीधा प्रसारण (5:30–7:00 बजे)।',ml:'ഐജിപി ലഖ്നൗവിലെ ബഹുമാനപ്പെട്ട പ്രധാനമന്ത്രിയുടെ ദേശീയ ചടങ്ങിന്റെ തത്സമയ സംപ്രേഷണം (5:30–7:00).'}},
+ {id:4,kind:'local',date:'2026-11-21',start:'19:15',end:'',title:{en:'Institute Convocation Ceremony',hi:'संस्थान दीक्षांत समारोह',ml:'സ്ഥാപന ദീക്ഷാന്ത് ചടങ്ങ്'},desc:{en:'Trade-wise felicitation of graduating trainees at NSTI Calicut. Certificates are distributed separately at institute level.',hi:'एनएसटीआई कालीकट में ट्रेड-वार प्रशिक्षुओं का सम्मान। प्रमाणपत्र संस्थान स्तर पर अलग से वितरित होंगे।',ml:'എൻഎസ്ടിഐ കോഴിക്കോട്ടിൽ ട്രേഡ് തിരിച്ച് ട്രെയിനികളെ ആദരിക്കുന്നു. സർട്ടിഫിക്കറ്റുകൾ സ്ഥാപന തലത്തിൽ പ്രത്യേകം വിതരണം ചെയ്യും.'}},
+ {id:5,kind:'cultural',date:'2026-11-21',start:'',end:'',note:'After the ceremony',title:{en:'Cultural Programme',hi:'सांस्कृतिक कार्यक्रम',ml:'കലാപരിപാടികൾ'},desc:{en:'Performances by trainees and staff.',hi:'प्रशिक्षुओं व स्टाफ द्वारा प्रस्तुतियाँ।',ml:'ട്രെയിനികളുടെയും സ്റ്റാഫിന്റെയും പരിപാടികൾ.'}},
+ {id:6,kind:'other',date:'2026-11-21',start:'',end:'',note:'Evening',title:{en:'Refreshments',hi:'जलपान',ml:'ലഘുഭക്ഷണം'},desc:{en:'Refreshments for trainees and guests.',hi:'प्रशिक्षुओं व अतिथियों के लिए जलपान।',ml:'ട്രെയിനികൾക്കും അതിഥികൾക്കും ലഘുഭക്ഷണം.'}}]}
+function tradeCombos(){const m=new Map();const t=S.settings.trades||DEFAULT_TRADES;Object.keys(t).forEach(sc=>t[sc].forEach(x=>m.set(sc+'||'+x,{sc,tr:x})));trainees().forEach(u=>{if(u.scheme&&u.trade)m.set(u.scheme+'||'+u.trade,{sc:u.scheme,tr:u.trade})});return [...m.entries()].sort((a,b)=>a[1].tr.localeCompare(b[1].tr)||a[1].sc.localeCompare(b[1].sc))}
+const CULT_TEAM=8;
+const myTeams=()=>{const u=curUser();return(u&&u.teams)||[]};
+const canCult=()=>isAdmin()||myTeams().includes(CULT_TEAM);
+/* dynamic entry QR */
+function cyrb53(str,seed){seed=seed||0;let h1=0xdeadbeef^seed,h2=0x41c6ce57^seed;for(let i=0,ch;i<str.length;i++){ch=str.charCodeAt(i);h1=Math.imul(h1^ch,2654435761);h2=Math.imul(h2^ch,1597334677)}h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);return 4294967296*(2097151&h2)+(h1>>>0)}
+const qrSlot=()=>Math.floor(Date.now()/30000);
+const qrSig=(k,s)=>cyrb53(S.settings.qrSecret+'|'+k+'|'+s).toString(36);
+const qrPayload=u=>{const s=qrSlot(),k=ukey(u);return 'KDS|'+k+'|'+s+'|'+qrSig(k,s)};
+function verifyPayload(p){const a=String(p).split('|');if(a[0]!=='KDS'||a.length<4)return null;const sg=a.pop(),sl=+a.pop();a.shift();const k=a.join('|');if(!(Math.abs(qrSlot()-sl)<=2)||qrSig(k,sl)!==sg)return null;return S.users.find(u=>ukey(u)===k)||null}
+
+/* ============ SAMPLE DATA ============ */
+const DEFAULT_TRADES={CTS:['Electrician','Electronic Mechanic','Refrigeration & Air Conditioner (RAC)','Fitter','Welder','Computer Operator & Programming Assistant (COPA)'],CITS:['Electrician','Electronic Mechanic','Refrigeration & Air Conditioner (RAC)','AI Programming Assistant'],Other:['AI Programming Assistant','Other Short-term / NSQF Course']};
+function seed(){return{
+ users:[
+  {mobile:'9000000001',dob:'01-01-1980',name:'Portal Admin',role:'admin'},
+  {mobile:'9000000002',dob:'15-05-1985',name:'Committee Member (Demo)',role:'official',teams:[2]},
+  {mobile:'9000000005',dob:'05-05-1988',name:'Cultural Committee (Demo)',role:'official',teams:[8]},
+  {mobile:'9000000003',dob:'10-10-2005',name:'Demo Trainee',role:'trainee',scheme:'CTS',trade:'Electrician',reg:'CTS26-EL-001',cert:'Pending'},
+  {mobile:'9000000004',dob:'22-03-2006',name:'Demo Trainee 2',role:'trainee',scheme:'CITS',trade:'Electronic Mechanic',reg:'CITS26-EM-002',cert:'Ready'}],
+ confirmations:[
+  {key:'T:CTS26-EL-001',name:'Demo Trainee',reg:'CTS26-EL-001',mobile:'9000000003',dob:'10-10-2005',scheme:'CTS',trade:'Electrician',uniform:true,parent:true,at:Date.now()-86400000},
+  {key:'T:CITS26-EM-002',name:'Demo Trainee 2',reg:'CITS26-EM-002',mobile:'9000000004',dob:'22-03-2006',scheme:'CITS',trade:'Electronic Mechanic',uniform:true,parent:false,at:Date.now()-43200000}],
+ agenda:seedAgenda(),cultural:[],attendance:{},toppers:SEED_TOPPERS(),
+ committee:[
+  {no:1,duty:'Chief Guest / Invitations',members:'Smt. Rejani & Shri. Riyas K'},
+  {no:2,duty:'Live Streaming / Stage / Sound / Lights',members:'Shri. Prasad U M & Shri. Vishnu'},
+  {no:3,duty:'Banners / Bouquets',members:'Shri. Rajan & Shri. Milju P.V.'},
+  {no:4,duty:'Chief Guest Hospitality',members:'Shri. Vinod A.R.'},
+  {no:5,duty:'Certificates / Marksheets',members:'Shri. Riyas K'},
+  {no:6,duty:'Refreshments',members:'Shri. Shantilal T.C.'},
+  {no:7,duty:'Mementos',members:'Shri. Bijoy B.K.'},
+  {no:8,duty:'Cultural Programme',members:'Smt. Praveena & Smt. Jincy'},
+  {no:9,duty:'Photo / Video / Press Release',members:'Shri. Shaukhath Hussain & Shri. Arjun'}],
+ checklist:[
+  {id:1,text:'Invitations sent to Chief Guest and invitees',done:false},{id:2,text:'Stage, sound and lights tested (Dry Run, 20 Nov)',done:false},
+  {id:3,text:'Live-stream link tested; backup internet line ready',done:false},{id:4,text:'Certificates & marksheets sorted trade-wise',done:false},
+  {id:5,text:'Banners, bouquets and mementos ready',done:false},{id:6,text:'Refreshments order confirmed',done:false},{id:7,text:'Photo/Video team briefed; press release drafted',done:false}],
+ notes:[{id:1,text:'Welcome to the coordination desk. Post updates and tasks here.',by:'Portal Admin',at:Date.now()}],
+ settings:{streamLink:'https://example.com/kds2026-live (Admin to update)',reportingTime:'4:00 PM',
+  spoc:[{name:'DGT SPOC (to be updated by Admin)',role:'DGT Nodal Officer',phone:'— add number —'},{name:'NSTI Calicut Coordinator',role:'Event Coordinator',phone:'— add number —'}],
+  sop:['Camera feed live from 5:00 PM; confirm audio/video with DGT SPOC at 4:30 PM.','Primary link on the main projector; backup on a laptop with mobile hotspot.','Stage lights dimmed and sound level checked during the Prime Minister\'s address (5:30–7:00 PM).','Camera operator records the local convocation separately for archive.','Do not leave the stream unattended until DGT SPOC confirms close.'],
+  trades:DEFAULT_TRADES}};}
+
+/* ============ STATE / PERSISTENCE ============ */
+let S, fbDoc=null, memOnly=false;
+function load(){try{const r=localStorage.getItem(STORE_KEY);if(r)return JSON.parse(r)}catch(e){memOnly=true}return seed()}
+function persist(){try{localStorage.setItem(STORE_KEY,JSON.stringify(S))}catch(e){memOnly=true}if(fbDoc){try{fbDoc.set(JSON.parse(JSON.stringify(S)))}catch(e){console.warn(e)}}}
+function initFirebase(){
+  if(!FIREBASE_CONFIG)return;
+  const add=src=>new Promise((res,rej)=>{const s=document.createElement('script');s.src=src;s.onload=res;s.onerror=rej;document.head.appendChild(s)});
+  add('https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js').then(()=>add('https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js')).then(()=>{
+    firebase.initializeApp(FIREBASE_CONFIG);fbDoc=firebase.firestore().doc('portal/kds2026');
+    fbDoc.onSnapshot(snap=>{if(snap.exists){S=snap.data();ensureDefaults();try{localStorage.setItem(STORE_KEY,JSON.stringify(S))}catch(e){}render()}else{fbDoc.set(JSON.parse(JSON.stringify(S)))}});
+  }).catch(e=>console.warn('Firebase load failed',e));
+}
+S=load();ensureDefaults();
+let me=null;try{const m=sessionStorage.getItem('kds_me');if(m)me=JSON.parse(m)}catch(e){}
+let view='home',adminTab='event',ckTab='matrix',attTrade='',flash=null;
+
+/* ============ HELPERS ============ */
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const normDob=s=>{const m=String(s||'').trim().match(/^(\d{1,2})[-\/.](\d{1,2})[-\/.](\d{4})$/);if(!m)return null;const d=+m[1],mo=+m[2],y=+m[3];if(d<1||d>31||mo<1||mo>12||y<1950||y>2020)return null;return String(d).padStart(2,'0')+'-'+String(mo).padStart(2,'0')+'-'+y};
+const normMob=s=>{const d=String(s||'').replace(/\D/g,'').slice(-10);return d.length===10?d:null};
+const curUser=()=>me&&me.key?S.users.find(u=>ukey(u)===me.key)||null:null;
+const isStaff=()=>{const u=curUser();return u&&(u.role==='admin'||u.role==='official')};
+const isAdmin=()=>{const u=curUser();return u&&u.role==='admin'};
+const csvCell=v=>'"'+String(v??'').replace(/"/g,'""')+'"';
+const toCSV=rows=>rows.map(r=>r.map(csvCell).join(',')).join('\r\n');
+function tradesFor(scheme){const t=S.settings.trades||DEFAULT_TRADES;return t[scheme]||[]}
+function modal(html){$('#modalHost').innerHTML='<div class="modal" onclick="if(event.target===this)closeModal()"><div>'+html+'</div></div>'}
+function closeModal(){$('#modalHost').innerHTML=''}
+function exportCSV(name,rows){
+  const csv=toCSV(rows);
+  window.__csv=csv;window.__csvName=name;
+  modal(`<h3>${esc(name)}</h3><textarea id="csvBox" readonly>${esc(csv)}</textarea><div class="row" style="margin-top:.6rem"><button onclick="copyCSV()">${T('copy')}</button><button class="ghost" onclick="dlCSV()">${T('download')}</button><button class="ghost" onclick="closeModal()">${T('close')}</button></div><div id="csvMsg" class="msg info" style="display:none"></div>`);
+}
+function copyCSV(){const b=$('#csvBox');b.select();let ok=false;try{ok=navigator.clipboard?(navigator.clipboard.writeText(window.__csv),true):document.execCommand('copy')}catch(e){try{ok=document.execCommand('copy')}catch(_){}}const m=$('#csvMsg');m.style.display='block';m.textContent=ok?'✓ Copied':'Press Ctrl/Cmd+C to copy the selected text.'}
+function dlCSV(){try{const b=new Blob(['﻿'+window.__csv],{type:'text/csv;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=window.__csvName+'.csv';document.body.appendChild(a);a.click();a.remove()}catch(e){}const m=$('#csvMsg');m.style.display='block';m.textContent='If the download did not start in this viewer, use Copy and paste into Excel/Sheets.'}
+function doPrint(){try{window.print()}catch(e){}}
+const WAVE=(flip)=>`<svg class="wave" viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true" ${flip?'style="transform:scaleY(-1)"':''}><path fill="currentColor" d="M0 30c150 40 300 40 450 10s300-40 450-5 200 25 300 5v20H0z"/></svg>`;
+
+/* ============ RENDER ============ */
+function render(){
+  document.documentElement.lang=lang;
+  $('#hTitle').textContent=ST();$('#hSub').textContent=T('portal')+' · '+S.settings.convDate;$('#foot').textContent=ST()+' · '+S.settings.venue+' · Skill India';document.title=ST()+' — NSTI Calicut Coordination Portal';
+  const ts=$('#themeSel');const cur=document.body.dataset.theme;
+  ts.innerHTML=['light','dark','royal','mint'].map(k=>`<option value="${k}" ${k===cur?'selected':''}>${T('th_'+k)}</option>`).join('');
+  const u=curUser();
+  $('#userBox').innerHTML=u?`<span class="pill">${esc(T('r_'+u.role))}</span> <b>${esc(u.name.split(' ')[0])}</b> <button class="ghost sm" onclick="logout()">${T('logout')}</button>`:`<button class="sm" onclick="go('login')">${T('login')}</button>`;
+  const tabs=[['home',T('home')]];
+  if(S.toppers.length||isStaff())tabs.push(['toppers',T('tp_tab')]);
+  if(u&&u.role==='trainee')tabs.push(['pass',T('pass')]);
+  if(isStaff())tabs.push(['committee',T('committee')]);
+  if(isAdmin())tabs.push(['admin',T('admin')]);
+  $('#nav').innerHTML=tabs.map(([k,l])=>`<button class="${view===k?'on':''}" onclick="go('${k}')">${esc(l)}</button>`).join('');
+  const fn={home:vHome,toppers:vToppers,login:vLogin,pass:vPass,committee:vCommittee,admin:vAdmin}[view]||vHome;
+  $('#app').innerHTML=fn();
+  if(view==='home')bindForm();if(view==='pass')drawQR(true);
+}
+function go(v){view=v;flash=null;render();window.scrollTo(0,0)}
+function logout(){me=null;try{sessionStorage.removeItem('kds_me')}catch(e){}view='home';render()}
+
+/* ---------- Home ---------- */
+function counts(){const by={};let parents=0;S.confirmations.forEach(c=>{const k=c.trade||'Other';by[k]=(by[k]||0)+1;if(c.parent)parents++});return{by,parents,total:S.confirmations.length}}
+function showSched(){modal(`<img src="${S.settings.schedImg}" alt="${esc(T('sched_photo'))}" style="width:100%;border-radius:12px"><p><button onclick="closeModal()">${T('close')}</button></p>`)}
+function vHome(){
+  const c=counts();const max=Math.max(1,...Object.values(c.by));const sp=S.settings.inviteParents;const st=S.settings;
+  const live=ES('liveNote'),extra=ES('extraNote');
+  const loc=agSorted().find(a=>a.kind==='local'&&!a.internal);
+  return `
+<section class="card hero"><h2>${T('inv_h')}</h2><p>${esc(T(sp?'inv_p':'inv_p2',{title:ST(),venue:st.venue}))}</p>${live?`<p>${esc(live)}</p>`:''}${extra?`<p>${esc(extra)}</p>`:''}
+<p style="background:#ffffff2e;border-radius:14px;padding:.6rem .85rem"><b>🎓 ${T('cert_notice_h')}:</b> ${esc(ES('certNotice'))}</p>
+<span class="chip">🎓 ${esc(T('date_conv',GV()))}</span><span class="chip">📍 ${esc(st.venue)}</span>
+${WAVE().replace('class="wave"','').replace('<svg','<svg style="color:var(--card)"')}</section>
+${(loc||st.schedImg)?`<section class="card"><h2>🎓 ${esc(loc?L(loc.title):T('conv_h'))}</h2>${loc?`<p style="font-size:1.1rem"><b class="tt">${esc(fmtWhen(loc))}</b></p><p style="color:var(--mute)">${esc(L(loc.desc))}</p>`:''}
+${st.schedImg?`<h3>${T('sched_photo')}</h3><img src="${st.schedImg}" alt="${esc(T('sched_photo'))}" style="width:100%;max-width:640px;border-radius:16px;cursor:zoom-in;border:1px solid var(--line)" onclick="showSched()"><div style="color:var(--mute);font-size:.8rem">${T('sched_tap')}</div>`:''}</section>`:''}
+<div class="grid g2">
+<section class="card"><h2>📋 ${T('guide_h')}</h2><ol style="padding-left:1.2rem;margin:0">${[1,2,3,4].filter(i=>i!==4||sp).map(i=>`<li style="margin:.4rem 0">${esc(T('g'+i,GV()))}</li>`).join('')}</ol></section>
+<section class="card"><h2>📊 ${T('counter_h')}</h2>
+<p><b style="font-size:1.6rem;color:var(--pri)">${c.total}</b> ${T('total')}${sp?` · <b>${c.parents}</b> ${T('parents')}`:''}</p>
+${Object.keys(c.by).length?Object.entries(c.by).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<div style="margin:.5rem 0"><div style="display:flex;justify-content:space-between"><span>${esc(k)}</span><b>${v}</b></div><div class="bar"><i style="width:${v/max*100}%"></i></div></div>`).join(''):`<p class="msg info">${T('nodata')}</p>`}
+</section></div>
+${WAVE()}
+<section class="card"><h2>🗓️ ${T('agenda_h')}</h2><p style="color:var(--mute);margin-top:0">${T('agenda_note')}</p>
+<ul class="tl">${publicAgenda().map(a=>`<li><b class="t">${esc(fmtWhen(a))}</b><br><b>${KIND_ICON[a.kind]||''} ${esc(L(a.title))}</b><br><span style="color:var(--mute)">${esc(L(a.desc))}</span></li>`).join('')}</ul></section>
+${S.cultural.length?`<section class="card"><h2>🎭 ${T('cult_h')}</h2><div class="scroll"><table><tr><th>#</th><th>${T('cult_prog')}</th><th>${T('cult_part')}</th><th>${T('cult_time')}</th></tr>${cultSorted().map((x,i)=>`<tr><td>${i+1}</td><td><b>${esc(x.name)}</b></td><td>${esc(x.participants)}</td><td>${esc(x.time||'')}</td></tr>`).join('')}</table></div></section>`:''}
+${WAVE(true)}
+<section class="card" id="formCard"><h2>✅ ${T('form_h')}</h2>
+<div id="formMsg">${flash?`<div class="msg ${flash.t}">${esc(flash.m)}</div>`:''}</div>
+<form id="pf" novalidate>
+<label>${T('trade_lbl')} *</label><select id="f_trade"><option value="">${T('select')}</option>${tradeCombos().map(([k,v])=>`<option value="${esc(k)}">${esc(v.tr)} (${esc(v.sc)})</option>`).join('')}</select>
+<label>${T('pick_name')} *</label><select id="f_name_sel"><option value="">${T('select')}</option></select><div id="f_hint" style="color:var(--mute);font-size:.85rem;margin-top:.2rem">${T('pick_first')}</div>
+<div id="f_manual" style="display:none"><div class="msg info">${T('manual_note')}</div><div class="row"><div><label>${T('name')} *</label><input id="f_name" autocomplete="name"></div><div><label>${T('reg')}</label><input id="f_reg"></div></div></div>
+<div class="row"><div><label>${T('mobile')} *</label><input id="f_mob" inputmode="numeric" maxlength="10"></div><div><label>${T('dob_verify')} *</label><input id="f_dob" placeholder="DD-MM-YYYY"></div></div>
+<div class="row"><div><label><input type="checkbox" id="f_uni" style="width:auto"> ${T('uniform')} *</label></div>
+${sp?`<div><label>${T('parent')}</label><select id="f_par"><option value="1">${T('yes')}</option><option value="0">${T('no')}</option></select></div>`:''}</div>
+<p><button type="submit">${T('submit')}</button></p></form></section>`;
+}
+const cultSorted=()=>S.cultural.slice();
+function bindForm(){
+  const tr=$('#f_trade'),nm=$('#f_name_sel'),hint=$('#f_hint');
+  const msg=(t,m)=>{$('#formMsg').innerHTML=`<div class="msg ${t}">${esc(m)}</div>`};
+  const sel=()=>{const p=(tr.value||'').split('||');return{sc:p[0],tr:p[1]}};
+  tr.onchange=()=>{
+    const {sc,tr:t}=sel();
+    if(!sc){nm.innerHTML=`<option value="">${T('select')}</option>`;hint.textContent=T('pick_first');$('#f_manual').style.display='none';return}
+    const list=trainees().filter(u=>u.scheme===sc&&u.trade===t).sort((a,b)=>a.name.localeCompare(b.name));
+    nm.innerHTML=`<option value="">${T('select')}</option>`+list.map(u=>`<option value="${esc(u.reg)}">${esc(u.name)} (${esc(u.reg)})</option>`).join('')+`<option value="__new">${T('not_listed')}</option>`;
+    hint.textContent=list.length?'':T('no_roster');$('#f_manual').style.display='none'};
+  nm.onchange=()=>{$('#f_manual').style.display=nm.value==='__new'?'block':'none'};
+  $('#pf').onsubmit=e=>{e.preventDefault();
+    const {sc,tr:t}=sel();const mobRaw=$('#f_mob').value.replace(/\D/g,''),mob=normMob($('#f_mob').value),dob=normDob($('#f_dob').value);
+    const parent=$('#f_par')?$('#f_par').value==='1':false;
+    if(!sc||!nm.value||mobRaw.length!==10||!mob||!dob||!$('#f_uni').checked){msg('err',T('need_all'));return}
+    let rec;
+    if(nm.value==='__new'){const n=$('#f_name').value.trim();if(!n){msg('err',T('need_all'));return}
+      rec={key:'M:'+mob,name:n,reg:$('#f_reg').value.trim(),manual:true}}
+    else{const u=trainees().find(x=>x.reg===nm.value&&x.scheme===sc&&x.trade===t);if(!u){msg('err',T('need_all'));return}
+      if(normDob(u.dob)!==dob){msg('err',T('dob_mismatch'));return}
+      rec={key:'T:'+u.reg,name:u.name,reg:u.reg}}
+    Object.assign(rec,{mobile:mob,dob,scheme:sc,trade:t,uniform:true,parent,at:Date.now()});
+    const i=S.confirmations.findIndex(c=>c.key===rec.key);
+    if(i>=0){S.confirmations[i]=rec;flash={t:'ok',m:T('updated')}}else{S.confirmations.push(rec);flash={t:'ok',m:T('thanks')}}
+    persist();render();const f=document.getElementById('formCard');if(f&&f.scrollIntoView)f.scrollIntoView({behavior:'smooth'});};
+}
+
+/* ---------- Login ---------- */
+function vLogin(){return `<section class="card" style="max-width:520px;margin:1.5rem auto"><h2>🔐 ${T('login_h')}</h2>
+${flash?`<div class="msg ${flash.t}">${esc(flash.m)}</div>`:''}
+<form onsubmit="doLogin(event)"><label>${T('mobile')}</label><input id="l_mob" inputmode="numeric" maxlength="10" autocomplete="username"><label>${T('dob')}</label><input id="l_dob" placeholder="DD-MM-YYYY" autocomplete="off"><p><button type="submit">${T('login_btn')}</button></p></form>
+<div class="msg info"><b>${T('demo_h')}</b><br>Admin: 9000000001 · 01-01-1980<br>Official: 9000000002 · 15-05-1985<br>Trainee: 9000000003 · 10-10-2005</div></section>`}
+function doLogin(e){e.preventDefault();const m=normMob($('#l_mob').value),d=normDob($('#l_dob').value);
+  const u=m&&d&&S.users.find(x=>x.mobile===m&&normDob(x.dob)===d);
+  if(!u){flash={t:'err',m:T('invalid')};render();return}
+  me={key:ukey(u)};try{sessionStorage.setItem('kds_me',JSON.stringify(me))}catch(e){}
+  flash=null;view=u.role==='trainee'?'pass':'committee';render()}
+
+/* ---------- Trainee pass ---------- */
+function vPass(){const u=curUser();if(!u)return `<div class="msg err">${T('notlogged')}</div>`;
+  const k=ukey(u);const c=S.confirmations.find(x=>x.key===k);const id=S.settings.code+'-'+u.mobile.slice(-4)+'-'+(u.reg||'').replace(/\W/g,'').slice(-4).toUpperCase();
+  const at=S.attendance[k];
+  return `<section class="card"><h2>🎫 ${T('pass_h')}</h2><div class="pass"><div style="font-size:.85rem;color:var(--mute)">${esc(ST())} · ${esc(S.settings.convDate)}</div>
+<h2 style="margin:.4rem 0">${esc(u.name)}</h2><div>${esc(u.scheme||'')} · ${esc(u.trade||'')} · ${esc(u.reg||'')}</div><div class="id" style="margin:.6rem 0">${esc(id)}</div>
+<p>${T('status')}: ${c?`<span class="pill">${T('confirmed')}</span>`:`<span class="msg err" style="display:inline-block;margin:0">${T('notconf')}</span>`}</p>
+<p>${T('cert')}: <span class="pill">${certLabel(u)}</span></p></div>
+<p class="hide-print"><button onclick="doPrint()">${T('print')}</button></p></section>
+<section class="card hide-print"><h2>📲 ${T('qr_h')}</h2>${at?`<div class="msg ok">${T('qr_marked')} · ${new Date(at.at).toLocaleTimeString()}</div>`:''}
+<div style="text-align:center"><div id="qrBox" style="width:240px;max-width:100%;margin:auto;background:#fff;padding:10px;border-radius:16px;min-height:120px"></div><div class="bar" style="max-width:240px;margin:.6rem auto"><i id="qrBar" style="width:100%"></i></div><p style="color:var(--mute)">${T('qr_note')}</p></div></section>
+<section class="card"><h2>📍 ${T('instr_h')}</h2><ul>${[1,2,3,4].filter(i=>i!==4||S.settings.inviteParents).map(i=>`<li>${esc(T('g'+i,GV()))}</li>`).join('')}</ul>
+<p class="msg info"><b>🎓 ${T('cert_notice_h')}:</b> ${esc(ES('certNotice'))}</p></section>`}
+let qrLast=-1;
+function drawQR(force){const el=$('#qrBox');if(!el)return;const u=curUser();if(!u)return;const bar=$('#qrBar');if(bar)bar.style.width=(100-((Date.now()%30000)/300))+'%';
+  const s=qrSlot();if(s===qrLast&&!force&&el.firstChild)return;qrLast=s;
+  try{const q=qrcode(0,'M');q.addData(qrPayload(u));q.make();el.innerHTML=q.createSvgTag({cellSize:4,margin:0,scalable:true})}catch(e){el.textContent=T('qr_nolib')}}
+function certLabel(u){const s=u.cert||'Pending';if(s==='Collected'){const m={self:'cd_self',parent:'cd_parent',auth:'cd_auth'}[u.certBy]||'cs_Collected';return esc(T(m))+(u.certAt?' '+T('cd_on')+' '+new Date(u.certAt).toLocaleDateString():'')}return esc(T(s==='Ready'?'cs_Ready':'cs_Pending'))}
+
+/* ---------- Committee desk ---------- */
+let certQ='',certTrade='',certStat='',trQ='';
+function vCommittee(){if(!me)return `<div class="msg err">${T('notlogged')}</div>`;if(!isStaff())return `<div class="msg err">${T('noaccess')}</div>`;
+  const names={matrix:T('mx_h'),ck:T('ck_h'),spoc:'SPOC / SOP',present:T('t_present'),cultural:T('t_cultural'),att:T('att_h').split(' / ')[0],cert:T('a_cert'),notes:T('notes_h').split(' & ')[0]};
+  let body='';
+  if(ckTab==='matrix'){const mt=myTeams();body=`<h2>👥 ${T('mx_h')}</h2><p style="color:var(--mute)">${T('mx_src')}</p><div class="scroll"><table><tr><th>#</th><th>${T('duty')}</th><th>${T('members')}</th></tr>${S.committee.map(r=>`<tr><td>${r.no}</td><td><b>${esc(r.duty)}</b></td><td>${esc(r.members)}</td></tr>`).join('')}</table></div>
+   ${mt.length?`<p class="msg info"><b>${T('my_teams')}:</b> ${mt.map(n=>esc((S.committee.find(r=>r.no===n)||{}).duty||n)).join(', ')}</p>`:''}
+   <h3>${T('int_h')}</h3><ul class="tl">${agSorted().filter(a=>a.internal).map(a=>`<li><b class="t">${esc(fmtWhen(a))}</b><br><b>${esc(L(a.title))}</b><br><span style="color:var(--mute)">${esc(L(a.desc))}</span></li>`).join('')||`<li>${T('nodata')}</li>`}</ul>`}
+  if(ckTab==='ck')body=`<h2>☑️ ${T('ck_h')}</h2>${S.checklist.map(c=>`<label style="font-weight:500"><input type="checkbox" style="width:auto" ${c.done?'checked':''} onchange="toggleCk(${c.id})"> <span style="${c.done?'text-decoration:line-through;color:var(--mute)':''}">${esc(c.text)}</span></label>`).join('')}`;
+  if(ckTab==='spoc')body=`<h2>📞 ${T('spoc_h')}</h2><div class="scroll"><table>${S.settings.spoc.map(s=>`<tr><td><b>${esc(s.name)}</b></td><td>${esc(s.role)}</td><td>${esc(s.phone)}</td></tr>`).join('')}</table></div>
+   <h3>📡 ${T('stream')}</h3><p>${/^https?:\/\//.test(S.settings.streamLink)?`<a href="${esc(S.settings.streamLink.split(' ')[0])}" target="_blank" rel="noopener">${esc(S.settings.streamLink)}</a>`:esc(S.settings.streamLink)}</p>
+   <h3>🎥 ${T('sop_h')}</h3><ol>${S.settings.sop.map(x=>`<li>${esc(x)}</li>`).join('')}</ol>`;
+  if(ckTab==='present')body=presView();
+  if(ckTab==='cultural')body=cultView();
+  if(ckTab==='att')body=attView();
+  if(ckTab==='cert')body=certView();
+  if(ckTab==='notes')body=`<h2>📝 ${T('notes_h')}</h2><form onsubmit="addNote(event)" class="row"><input id="n_txt" placeholder="…" style="flex:3 1 260px"><button style="flex:0 0 auto">${T('add')}</button></form>
+   ${S.notes.slice().reverse().map(n=>`<div class="msg info"><div>${esc(n.text)}</div><small style="color:var(--mute)">${T('by')} ${esc(n.by)} · ${new Date(n.at).toLocaleString()}</small> ${isAdmin()?`<button class="ghost sm" onclick="delNote(${n.id})">${T('del')}</button>`:''}</div>`).join('')}`;
+  return `<div class="subnav hide-print">${Object.keys(names).map(k=>`<button class="${ckTab===k?'on':'ghost'}" onclick="ckTab='${k}';render()">${esc(names[k])}</button>`).join('')}</div><section class="card">${body}</section>`}
+
+/* ---- Presence at venue (QR scan + manual) ---- */
+let prQ='',prTrade='';
+function prRows(){const q=prQ.toLowerCase();return trainees().filter(u=>(!prTrade||u.trade===prTrade)&&(!q||(u.name+' '+u.reg).toLowerCase().includes(q))).sort((a,b)=>(a.trade||'').localeCompare(b.trade||'')||a.name.localeCompare(b.name))}
+function prTable(){const rows=prRows().slice(0,300);const conf=new Set(S.confirmations.map(c=>c.key));
+  return `<div class="scroll"><table><tr><th>${T('reg')}</th><th>${T('name')}</th><th>${T('trade')}</th><th>${T('participated')}</th><th>${T('pres_state')}</th><th>${T('tp_noshow')}</th></tr>
+  ${rows.map(u=>{const k=ukey(u),a=S.attendance[k];return `<tr><td>${esc(u.reg)}</td><td>${esc(u.name)}</td><td>${esc(u.scheme)} · ${esc(u.trade)}</td><td>${conf.has(k)?'✓':'—'}</td><td>${a?`<span class="pill">✓ ${new Date(a.at).toLocaleTimeString()}</span> <small style="color:var(--mute)">${T(a.method==='qr'?'pres_qr':'pres_manual')} ${T('pres_by')} ${esc(a.by)}</small> <button class="ghost sm" data-k="${esc(k)}" onclick="togglePres(this.dataset.k)">${T('pres_undo')}</button>`:`<button class="sm" data-k="${esc(k)}" onclick="togglePres(this.dataset.k)">${T('pres_mark')}</button>`}</td><td><input type="checkbox" style="width:auto" data-k="${esc(k)}" ${u.noShow?'checked':''} onchange="toggleNoShow(this.dataset.k)"></td></tr>`}).join('')||`<tr><td colspan="6">${T('nodata')}</td></tr>`}</table></div>`}
+function presView(){const all=trainees();const p=all.filter(u=>S.attendance[ukey(u)]).length;
+  return `<h2>📍 ${T('pres_h')}</h2><p><b>${T('pres_sum',{p,t:all.length})}</b></p>
+  <div class="row hide-print"><button onclick="startScan()" style="flex:0 0 auto">📷 ${T('pres_scan')}</button><input placeholder="${T('tr_search')}" value="${esc(prQ)}" oninput="prQ=this.value;updPres()"><select onchange="prTrade=this.value;updPres()"><option value="">${T('all')}</option>${allTrades().map(t=>`<option ${t===prTrade?'selected':''}>${esc(t)}</option>`).join('')}</select><button class="ghost" style="flex:0 0 auto" onclick="exportPres()">${T('pres_export')}</button></div><div id="prTbl">${prTable()}</div>`}
+function updPres(){const e=$('#prTbl');if(e)e.innerHTML=prTable()}
+function markPresent(k,method){if(S.attendance[k])return false;S.attendance[k]={at:Date.now(),by:curUser().name,method};persist();return true}
+function togglePres(k){if(S.attendance[k]){delete S.attendance[k];persist()}else markPresent(k,'manual');render()}
+function exportPres(){exportCSV(S.settings.code+'_venue_attendance',[['Reg No','Name','Scheme','Trade','Mobile','Present','Time','Method','Marked By'],...trainees().sort((a,b)=>(a.trade||'').localeCompare(b.trade||'')).map(u=>{const a=S.attendance[ukey(u)];return [u.reg,u.name,u.scheme,u.trade,u.mobile,a?'Yes':'No',a?new Date(a.at).toLocaleString():'',a?a.method:'',a?a.by:'']})])}
+let scanStream=null,scanTimer=null,lastScan='',lastScanAt=0;
+async function startScan(){
+  if(!('BarcodeDetector' in window)||!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){modal(`<div class="msg info">${T('sc_unsupported')}</div><p><button onclick="closeModal()">${T('close')}</button></p>`);return}
+  try{scanStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}})}catch(e){modal(`<div class="msg info">${T('sc_unsupported')}</div><p><button onclick="closeModal()">${T('close')}</button></p>`);return}
+  modal(`<p>${T('sc_hint')}</p><video id="scv" autoplay playsinline muted style="width:100%;border-radius:14px;background:#000"></video><div id="scMsg" class="msg info">…</div><p><button onclick="stopScan()">${T('sc_stop')}</button></p>`);
+  const v=$('#scv');v.srcObject=scanStream;const det=new BarcodeDetector({formats:['qr_code']});
+  scanTimer=setInterval(async()=>{try{const r=await det.detect(v);if(r.length)handleScan(r[0].rawValue)}catch(e){}},400)}
+function handleScan(raw){const now=Date.now();if(raw===lastScan&&now-lastScanAt<3000)return;lastScan=raw;lastScanAt=now;const u=verifyPayload(raw),m=$('#scMsg');
+  if(!u||u.role!=='trainee'){m.className='msg err';m.textContent=T('sc_bad');return}
+  if(markPresent(ukey(u),'qr')){m.className='msg ok';m.textContent=T('sc_ok',{n:u.name})}else{m.className='msg info';m.textContent=T('sc_dup',{n:u.name})}}
+function stopScan(){clearInterval(scanTimer);if(scanStream)scanStream.getTracks().forEach(t=>t.stop());scanStream=null;closeModal();render()}
+
+/* ---- Cultural programme ---- */
+function cultView(){const can=canCult();return `<h2>🎭 ${T('cult_h')}</h2><p style="color:var(--mute)">${T('cult_note')}</p>
+  ${can?`<form onsubmit="saveCult(event)"><input type="hidden" id="c_id"><div class="row"><div><label>${T('cult_prog')} *</label><input id="c_name"></div><div style="flex:2 1 300px"><label>${T('cult_part')} *</label><input id="c_part"></div><div><label>${T('cult_time')}</label><input id="c_time"></div></div><p><button>${T('save')}</button></p></form>`:''}
+  <div class="scroll"><table><tr><th>#</th><th>${T('cult_prog')}</th><th>${T('cult_part')}</th><th>${T('cult_time')}</th><th>${T('cult_by')}</th>${can?'<th></th>':''}</tr>
+  ${S.cultural.map((x,i)=>`<tr><td>${i+1}</td><td><b>${esc(x.name)}</b></td><td>${esc(x.participants)}</td><td>${esc(x.time||'')}</td><td>${esc(x.by||'')}</td>${can?`<td style="white-space:nowrap"><button class="ghost sm" onclick="mvCult(${x.id},-1)">↑</button> <button class="ghost sm" onclick="mvCult(${x.id},1)">↓</button> <button class="ghost sm" onclick="editCult(${x.id})">${T('edit')}</button> <button class="danger sm" onclick="delCult(${x.id})">${T('del')}</button></td>`:''}</tr>`).join('')||`<tr><td colspan="6">${T('nodata')}</td></tr>`}</table></div>`}
+function saveCult(e){e.preventDefault();if(!canCult())return;const n=$('#c_name').value.trim(),p=$('#c_part').value.trim();if(!n||!p)return;const id=+$('#c_id').value;
+  if(id){const x=S.cultural.find(y=>y.id===id);if(x){x.name=n;x.participants=p;x.time=$('#c_time').value.trim()}}else S.cultural.push({id:Date.now(),name:n,participants:p,time:$('#c_time').value.trim(),by:curUser().name});persist();render()}
+function editCult(id){const x=S.cultural.find(y=>y.id===id);if(!x)return;$('#c_id').value=x.id;$('#c_name').value=x.name;$('#c_part').value=x.participants;$('#c_time').value=x.time||''}
+function delCult(id){if(!canCult())return;S.cultural=S.cultural.filter(x=>x.id!==id);persist();render()}
+function mvCult(id,d){const i=S.cultural.findIndex(x=>x.id===id),j=i+d;if(j<0||j>=S.cultural.length)return;[S.cultural[i],S.cultural[j]]=[S.cultural[j],S.cultural[i]];persist();render()}
+function toggleCk(id){const c=S.checklist.find(x=>x.id===id);c.done=!c.done;persist();render()}
+function addNote(e){e.preventDefault();const v=$('#n_txt').value.trim();if(!v)return;S.notes.push({id:Date.now(),text:v,by:curUser().name,at:Date.now()});persist();render()}
+function delNote(id){S.notes=S.notes.filter(n=>n.id!==id);persist();render()}
+function attRows(){return S.confirmations.filter(c=>!attTrade||c.trade===attTrade).sort((a,b)=>(a.trade||'').localeCompare(b.trade||'')||a.name.localeCompare(b.name))}
+function attView(){const rows=attRows(),sp=S.settings.inviteParents;
+  return `<h2>🧾 ${T('att_h')}</h2><div class="row hide-print"><select onchange="attTrade=this.value;render()"><option value="">${T('all')}</option>${allTrades().map(t=>`<option ${t===attTrade?'selected':''}>${esc(t)}</option>`).join('')}</select><button onclick="exportAtt()">${T('csv')}</button><button class="ghost" onclick="doPrint()">${T('print')}</button></div>
+  <div class="scroll"><table><tr><th>#</th><th>${T('trade')}</th><th>${T('name')}</th><th>${T('reg')}</th><th>${T('cols')}</th>${sp?`<th>${T('parent')}</th>`:''}<th>Sign</th></tr>
+  ${rows.map((c,i)=>`<tr><td>${i+1}</td><td>${esc(c.scheme)} · ${esc(c.trade)}</td><td>${esc(c.name)} ${c.manual?`<span class="pill" style="background:var(--acc)">${T('manual')}</span>`:''}</td><td>${esc(c.reg)}</td><td>${esc(c.mobile)}</td>${sp?`<td>${c.parent?T('yes'):T('no')}</td>`:''}<td style="min-width:90px"></td></tr>`).join('')||`<tr><td colspan="7">${T('nodata')}</td></tr>`}</table></div>`}
+function exportAtt(){exportCSV(S.settings.code+'_trade_wise_confirmations',[['Sl','Scheme','Trade','Name','Reg No','Mobile','DOB','Uniform','Parent/Guardian','Entry','Confirmed At'],...attRows().map((c,i)=>[i+1,c.scheme,c.trade,c.name,c.reg,c.mobile,c.dob,c.uniform?'Yes':'No',S.settings.inviteParents?(c.parent?'Yes':'No'):'n/a',c.manual?'Manual':'Roster',new Date(c.at).toLocaleString()])])}
+
+/* ---- Certificate distribution desk ---- */
+function certRows(){const q=certQ.toLowerCase();return trainees().filter(u=>(!certTrade||u.trade===certTrade)&&(!certStat||(u.cert||'Pending')===certStat)&&(!q||(u.name+' '+u.reg).toLowerCase().includes(q))).sort((a,b)=>(a.trade||'').localeCompare(b.trade||'')||a.name.localeCompare(b.name))}
+function certTable(){const rows=certRows().slice(0,300);const conf=new Set(S.confirmations.map(c=>c.key));
+  return `<div class="scroll"><table><tr><th>${T('reg')}</th><th>${T('name')}</th><th>${T('trade')}</th><th>${T('participated')}</th><th>${T('cert')}</th></tr>
+  ${rows.map(u=>{const v=(u.cert||'Pending')==='Collected'?'Collected:'+(u.certBy||'self'):(u.cert||'Pending');
+   return `<tr><td>${esc(u.reg)}</td><td>${esc(u.name)}</td><td>${esc(u.scheme)} · ${esc(u.trade)}</td><td>${conf.has(ukey(u))?'✓':'—'}</td><td><select data-k="${esc(ukey(u))}" onchange="setCert(this.dataset.k,this.value)">
+   <option value="Pending" ${v==='Pending'?'selected':''}>${T('cd_pending')}</option><option value="Ready" ${v==='Ready'?'selected':''}>${T('cd_ready')}</option>
+   <option value="Collected:self" ${v==='Collected:self'?'selected':''}>${T('cd_self')}</option><option value="Collected:parent" ${v==='Collected:parent'?'selected':''}>${T('cd_parent')}</option><option value="Collected:auth" ${v==='Collected:auth'?'selected':''}>${T('cd_auth')}</option></select>
+   ${u.cert==='Collected'&&u.certAt?`<small style="color:var(--mute)">${new Date(u.certAt).toLocaleDateString()}</small>`:''}</td></tr>`}).join('')||`<tr><td colspan="5">${T('nodata')}</td></tr>`}</table></div>`}
+function certView(){const all=trainees();const n=s=>all.filter(u=>(u.cert||'Pending')===s).length;
+  return `<h2>🎓 ${T('cd_h')}</h2><p style="color:var(--mute)">${esc(ES('certNotice'))}</p><p><b>${T('cd_sum',{c:n('Collected'),r:n('Ready'),p:n('Pending')})}</b></p>
+  <div class="row hide-print"><input placeholder="${T('tr_search')}" value="${esc(certQ)}" oninput="certQ=this.value;updCert()"><select onchange="certTrade=this.value;updCert()"><option value="">${T('all')}</option>${allTrades().map(t=>`<option ${t===certTrade?'selected':''}>${esc(t)}</option>`).join('')}</select>
+  <select onchange="certStat=this.value;updCert()"><option value="">${T('all_status')}</option>${['Pending','Ready','Collected'].map(s=>`<option ${s===certStat?'selected':''} value="${s}">${s}</option>`).join('')}</select><button onclick="exportCert()">${T('csv')}</button></div><div id="certTbl">${certTable()}</div>`}
+function updCert(){const e=$('#certTbl');if(e)e.innerHTML=certTable()}
+function setCert(k,v){const u=S.users.find(x=>ukey(x)===k);if(!u)return;if(v.startsWith('Collected')){u.cert='Collected';u.certBy=v.split(':')[1];u.certAt=Date.now()}else{u.cert=v;delete u.certBy;delete u.certAt}persist();render()}
+function exportCert(){exportCSV(S.settings.code+'_certificate_distribution',[['Reg No','Name','Scheme','Trade','Mobile','Status','Collected By','Collected On'],...trainees().sort((a,b)=>(a.trade||'').localeCompare(b.trade||'')).map(u=>[u.reg,u.name,u.scheme,u.trade,u.mobile,u.cert||'Pending',u.certBy||'',u.certAt?new Date(u.certAt).toLocaleString():''])])}
+
+/* ---------- Admin ---------- */
+function vAdmin(){if(!isAdmin())return `<div class="msg err">${T('noaccess')}</div>`;
+  const tabs=[['event',T('a_event')],['trainees',T('a_trainees')],['staff',T('a_staff')],['agenda',T('a_agenda')],['settings',T('a_settings')],['reports',T('a_reports')]];
+  const fns={event:adminEvent,trainees:adminTrainees,staff:adminStaff,agenda:adminAgenda,settings:adminSettings,reports:adminReports};
+  return `<div class="subnav">${tabs.map(([k,l])=>`<button class="${adminTab===k?'on':'ghost'}" onclick="adminTab='${k}';flash=null;render()">${esc(l)}</button>`).join('')}</div>${flash?`<div class="msg ${flash.t}">${esc(flash.m)}</div>`:''}<section class="card">${(fns[adminTab]||adminEvent)()}</section>
+  <p class="msg info">${fbDoc?T('sync_fb'):T('sync_local')}</p>`}
+
+/* -- Event & invitation (yearly customisation) -- */
+const tri=(id,label,o)=>['en','hi','ml'].map(l=>`<label>${label} (${l.toUpperCase()})</label><input id="${id}_${l}" value="${esc((o&&o[l])||'')}">`).join('');
+const rd=id=>({en:$('#'+id+'_en').value.trim(),hi:$('#'+id+'_hi').value.trim(),ml:$('#'+id+'_ml').value.trim()});
+function adminEvent(){const s=S.settings;return `<h2>🎛️ ${T('a_event')}</h2>
+${tri('e_title',T('ev_title'),s.title)}
+<div class="row"><div><label>${T('ev_code')}</label><input id="e_code" value="${esc(s.code)}"></div><div><label>${T('ev_conv')}</label><input id="e_conv" value="${esc(s.convDate)}"></div></div>
+<label>${T('ev_venue')}</label><input id="e_venue" value="${esc(s.venue)}">
+<label style="font-weight:500"><input type="checkbox" id="e_par" style="width:auto" ${s.inviteParents?'checked':''}> ${T('ev_parents')}</label>
+${tri('e_cert',T('ev_cert'),s.certNotice)}${tri('e_live',T('ev_live'),s.liveNote)}${tri('e_extra',T('ev_extra'),s.extraNote)}
+<p><button onclick="saveEvent()">${T('save')}</button></p>
+<h3>🖼️ ${T('ev_sched')}</h3>${s.schedImg?`<img src="${s.schedImg}" alt="" style="width:100%;max-width:420px;border-radius:14px;border:1px solid var(--line)"><p><button class="danger sm" onclick="S.settings.schedImg='';persist();render()">${T('ev_sched_rm')}</button></p>`:''}
+<input type="file" accept="image/*" onchange="readSched(this)">
+<h3>🗓️ ${T('ev_newyear')}</h3><p style="color:var(--mute)">${T('ev_newyear_note')}</p>
+<button class="danger" onclick="newYear(this)">${T('ev_newyear_btn')}</button>`}
+function readSched(inp){const f=inp.files&&inp.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const img=new Image();img.onload=()=>{
+  let max=1400,q=.72,out='';for(let i=0;i<4;i++){const k=Math.min(1,max/Math.max(img.width,img.height));const c=document.createElement('canvas');c.width=Math.round(img.width*k);c.height=Math.round(img.height*k);c.getContext('2d').drawImage(img,0,0,c.width,c.height);out=c.toDataURL('image/jpeg',q);if(out.length<650000)break;max*=.75;q-=.08}
+  S.settings.schedImg=out;persist();flash={t:'ok',m:T('saved')};render()};img.src=r.result};r.readAsDataURL(f)}
+function saveEvent(){const s=S.settings;s.title=rd('e_title');s.certNotice=rd('e_cert');s.liveNote=rd('e_live');s.extraNote=rd('e_extra');
+  s.code=$('#e_code').value.trim()||'KDS';s.convDate=$('#e_conv').value.trim();s.venue=$('#e_venue').value.trim();s.inviteParents=$('#e_par').checked;
+  persist();flash={t:'ok',m:T('ev_saved')};render()}
+let nyArmed=false;
+function newYear(btn){if(!nyArmed){nyArmed=true;btn.textContent=T('ev_sure');return}
+  nyArmed=false;S.users=S.users.filter(u=>u.role!=='trainee');S.confirmations=[];S.cultural=[];S.attendance={};S.toppers=[];S.checklist.forEach(c=>c.done=false);persist();flash={t:'ok',m:T('saved')};render()}
+
+/* -- Trainee roster -- */
+function importRoster(text){
+  text=text.replace(/^﻿/,'');const first=text.split(/\r?\n/)[0]||'';
+  const delim=first.includes('\t')&&!first.includes(',')?'\t':',';
+  let rows=parseCSV(text,delim);if(rows.length&&/reg/i.test(rows[0][0]||''))rows.shift();
+  let add=0,upd=0;const bad=[];
+  rows.forEach((p,i)=>{p=p.map(x=>x.trim());const [reg,name,scheme,trade,mob,dob,batch]=p;const m=normMob(mob),d=normDob(dob);
+    const sc=['CTS','CITS','Other'].find(s=>s.toLowerCase()===(scheme||'').toLowerCase());
+    const miss=!reg?'Reg No':!name?'Name':!sc?'Scheme':!trade?'Trade':!m?'Mobile':!d?'DOB':'';
+    if(miss){bad.push('Row '+(i+1)+': '+miss);return}
+    const u={reg,name,scheme:sc,trade,mobile:m,dob:d,batch:batch||'',role:'trainee',cert:'Pending'};
+    const k=S.users.findIndex(x=>x.role==='trainee'&&String(x.reg).toLowerCase()===reg.toLowerCase());
+    if(k>=0){const o=S.users[k];u.cert=o.cert||'Pending';if(o.certAt)u.certAt=o.certAt;if(o.certBy)u.certBy=o.certBy;S.users[k]=u;upd++}else{S.users.push(u);add++}});
+  return{add,upd,bad}}
+function runImport(text){const r=importRoster(text);persist();flash={t:(r.bad.length&&!r.add&&!r.upd)?'err':'ok',m:`Added ${r.add}, updated ${r.upd}, rejected ${r.bad.length}`+(r.bad.length?' — '+r.bad.slice(0,8).join('; '):'')};render()}
+function readRosterFile(inp){const f=inp.files&&inp.files[0];if(!f)return;const r=new FileReader();r.onload=()=>runImport(String(r.result));r.readAsText(f)}
+function rosterTemplate(){exportCSV('trainee_roster_template',[['Reg No','Name','Scheme','Trade','Mobile','DOB','Batch'],['CTS26-EL-001','Sample Trainee','CTS','Electrician','9876543210','25-12-2005','2025-26']])}
+function exportRoster(){exportCSV(S.settings.code+'_trainee_roster',[['Reg No','Name','Scheme','Trade','Mobile','DOB','Batch'],...trainees().map(u=>[u.reg,u.name,u.scheme,u.trade,u.mobile,u.dob,u.batch||''])])}
+function trTable(){const q=trQ.toLowerCase();const rows=trainees().filter(u=>!q||(u.name+' '+u.reg).toLowerCase().includes(q)).slice(0,200);
+  return `<div class="scroll"><table><tr><th>${T('reg')}</th><th>${T('name')}</th><th>${T('scheme')}/${T('trade')}</th><th>${T('cols')}</th><th>DOB</th><th></th></tr>
+  ${rows.map(u=>`<tr><td>${esc(u.reg)}</td><td>${esc(u.name)}</td><td>${esc(u.scheme)} · ${esc(u.trade)}</td><td>${esc(u.mobile)}</td><td>${esc(u.dob)}</td><td><button class="ghost sm" data-k="${esc(ukey(u))}" onclick="editTr(this.dataset.k)">${T('edit')}</button> <button class="danger sm" data-k="${esc(ukey(u))}" onclick="delTr(this.dataset.k)">${T('del')}</button></td></tr>`).join('')||`<tr><td colspan="6">${T('nodata')}</td></tr>`}</table></div>`}
+function updTr(){const e=$('#trTbl');if(e)e.innerHTML=trTable()}
+function adminTrainees(){return `<h2>🧑‍🎓 ${T('tr_h')}</h2><p><b>${T('tr_count',{n:trainees().length})}</b></p>
+<div class="msg info"><b>${T('tr_fmt')}</b><br><code>${T('tr_cols')}</code></div>
+<div class="row"><button onclick="rosterTemplate()">${T('tr_tpl')}</button><button class="ghost" onclick="exportRoster()">${T('tr_export')}</button></div>
+<label>${T('tr_file')}</label><input type="file" accept=".csv,.tsv,.txt" onchange="readRosterFile(this)">
+<label>${T('tr_paste')}</label><textarea id="r_paste" rows="4" placeholder="CTS26-EL-001,Sample Trainee,CTS,Electrician,9876543210,25-12-2005,2025-26"></textarea><p><button onclick="runImport($('#r_paste').value)">${T('tr_merge')}</button></p>
+<h3>${T('tr_add')}</h3><form onsubmit="saveTr(event)"><div class="row"><div><label>${T('reg')}</label><input id="t_reg"></div><div><label>${T('name')}</label><input id="t_name"></div>
+<div><label>${T('scheme')}</label><select id="t_scheme"><option>CTS</option><option>CITS</option><option>Other</option></select></div><div><label>${T('trade')}</label><input id="t_trade" list="tl2"><datalist id="tl2">${allTrades().map(t=>`<option value="${esc(t)}">`).join('')}</datalist></div>
+<div><label>${T('mobile')}</label><input id="t_mob" maxlength="10"></div><div><label>DOB (DD-MM-YYYY)</label><input id="t_dob"></div></div><p><button>${T('save')}</button></p></form>
+<input placeholder="${T('tr_search')}" oninput="trQ=this.value;updTr()" value="${esc(trQ)}"><div id="trTbl">${trTable()}</div>`}
+function saveTr(e){e.preventDefault();const reg=$('#t_reg').value.trim(),name=$('#t_name').value.trim(),trade=$('#t_trade').value.trim(),m=normMob($('#t_mob').value),d=normDob($('#t_dob').value);
+  if(!reg||!name||!trade||!m||!d){flash={t:'err',m:T('need_all')};render();return}
+  const u={reg,name,trade,scheme:$('#t_scheme').value,mobile:m,dob:d,role:'trainee',cert:'Pending'};
+  const k=S.users.findIndex(x=>x.role==='trainee'&&String(x.reg).toLowerCase()===reg.toLowerCase());if(k>=0){u.cert=S.users[k].cert||'Pending';S.users[k]=u}else S.users.push(u);persist();flash={t:'ok',m:T('saved')};render()}
+function editTr(k){const u=S.users.find(x=>ukey(x)===k);if(!u)return;$('#t_reg').value=u.reg;$('#t_name').value=u.name;$('#t_scheme').value=u.scheme;$('#t_trade').value=u.trade;$('#t_mob').value=u.mobile;$('#t_dob').value=u.dob;window.scrollTo(0,0)}
+function delTr(k){S.users=S.users.filter(u=>ukey(u)!==k);persist();updTr()}
+
+/* -- Staff logins -- */
+function adminStaff(){return `<h2>👤 ${T('staff_h')}</h2>
+<form onsubmit="saveStaff(event)"><div class="row"><div><label>${T('name')}</label><input id="u_name"></div><div><label>${T('mobile')}</label><input id="u_mob" maxlength="10" inputmode="numeric"></div><div><label>${T('dob')}</label><input id="u_dob" placeholder="DD-MM-YYYY"></div>
+<div><label>${T('role_l')}</label><select id="u_role"><option value="official">${T('r_official')}</option><option value="admin">${T('r_admin')}</option></select></div></div>
+<label>${T('sf_teams')}</label><div class="row">${S.committee.map(r=>`<label style="font-weight:500;flex:1 1 230px"><input type="checkbox" class="u_team" value="${r.no}" style="width:auto"> ${r.no}. ${esc(r.duty)}</label>`).join('')}</div><p><button>${T('save')}</button></p></form>
+<div class="scroll"><table><tr><th>${T('name')}</th><th>${T('mobile')}</th><th>DOB</th><th>${T('role_l')}</th><th>${T('sf_teams')}</th><th></th></tr>
+${S.users.filter(u=>u.role!=='trainee').map(u=>`<tr><td>${esc(u.name)}</td><td>${esc(u.mobile)}</td><td>${esc(u.dob)}</td><td>${esc(T('r_'+u.role))}</td><td>${esc((u.teams||[]).join(', '))}</td><td><button class="ghost sm" data-k="${esc(ukey(u))}" onclick="editStaff(this.dataset.k)">${T('edit')}</button> <button class="danger sm" data-k="${esc(ukey(u))}" onclick="delStaff(this.dataset.k)">${T('del')}</button></td></tr>`).join('')}</table></div>`}
+function saveStaff(e){e.preventDefault();const m=normMob($('#u_mob').value),d=normDob($('#u_dob').value),n=$('#u_name').value.trim();
+  if(!m||!d||!n){flash={t:'err',m:T('need_all')};render();return}
+  const teams=[...document.querySelectorAll('.u_team')].filter(x=>x.checked).map(x=>+x.value);
+  const u={mobile:m,dob:d,name:n,role:$('#u_role').value,teams};const i=S.users.findIndex(x=>x.role!=='trainee'&&x.mobile===m);if(i>=0)S.users[i]=u;else S.users.push(u);persist();flash={t:'ok',m:T('saved')};render()}
+function editStaff(k){const u=S.users.find(x=>ukey(x)===k);if(!u)return;$('#u_name').value=u.name;$('#u_mob').value=u.mobile;$('#u_dob').value=u.dob;$('#u_role').value=u.role;document.querySelectorAll('.u_team').forEach(x=>x.checked=(u.teams||[]).includes(+x.value));window.scrollTo(0,0)}
+function delStaff(k){if(me&&me.key===k)return;S.users=S.users.filter(u=>ukey(u)!==k);persist();render()}
+
+/* -- Agenda -- */
+function adminAgenda(){return `<h2>🗓️ ${T('a_agenda')}</h2><p style="color:var(--mute)">${T('agenda_note')}</p>
+${S.agenda.map(a=>`<div class="msg info"><div class="row"><div><label>${T('ag_kind')}</label><select onchange="upAg(${a.id},'kind',this.value)">${[['other','k_other'],['live','k_live'],['local','k_local'],['cultural','k_cultural']].map(([v,l])=>`<option value="${v}" ${a.kind===v?'selected':''}>${T(l)}</option>`).join('')}</select></div>
+<div><label>${T('ag_date')}</label><input type="date" value="${esc(a.date)}" onchange="upAg(${a.id},'date',this.value)"></div><div><label>${T('ag_start')}</label><input type="time" value="${esc(a.start||'')}" onchange="upAg(${a.id},'start',this.value)"></div><div><label>${T('ag_end')}</label><input type="time" value="${esc(a.end||'')}" onchange="upAg(${a.id},'end',this.value)"></div>
+<div><label>${T('ag_note')}</label><input value="${esc(a.note||'')}" onchange="upAg(${a.id},'note',this.value)"></div></div>
+<label style="font-weight:500"><input type="checkbox" style="width:auto" ${a.internal?'checked':''} onchange="upAg(${a.id},'internal',this.checked)"> ${T('ag_internal')}</label>
+${['en','hi','ml'].map(l=>`<div class="row"><div><label>${T('ag_title')} (${l.toUpperCase()})</label><input value="${esc(a.title[l]||'')}" onchange="upAgL(${a.id},'title','${l}',this.value)"></div><div style="flex:2 1 300px"><label>${T('ag_desc')} (${l.toUpperCase()})</label><input value="${esc(a.desc[l]||'')}" onchange="upAgL(${a.id},'desc','${l}',this.value)"></div></div>`).join('')}
+<p><button class="danger sm" onclick="delAg(${a.id})">${T('del')}</button></p></div>`).join('')}
+<button onclick="addAg()">+ ${T('add')}</button>`}
+function upAg(id,k,v){S.agenda.find(a=>a.id===id)[k]=v;persist()}
+function upAgL(id,k,l,v){S.agenda.find(a=>a.id===id)[k][l]=v;persist()}
+function delAg(id){S.agenda=S.agenda.filter(a=>a.id!==id);persist();render()}
+function mvAg(id,d){const i=S.agenda.findIndex(a=>a.id===id),j=i+d;if(j<0||j>=S.agenda.length)return;[S.agenda[i],S.agenda[j]]=[S.agenda[j],S.agenda[i]];persist();render()}
+function addAg(){S.agenda.push({id:Date.now(),kind:'other',date:'2026-11-21',start:'',end:'',note:'',title:{en:'New item',hi:'',ml:''},desc:{en:'',hi:'',ml:''}});persist();render()}
+/* -- Settings -- */
+function adminSettings(){const s=S.settings;const tr=s.trades||DEFAULT_TRADES;return `<h2>⚙️ ${T('a_settings')}</h2>
+<label>${T('set_stream')}</label><input id="s_stream" value="${esc(s.streamLink)}"><label>${T('set_report')}</label><input id="s_rep" value="${esc(s.reportingTime)}">
+${['CTS','CITS','Other'].map(k=>`<label>${T('set_trades')} — ${k}</label><textarea id="s_tr_${k}" rows="4">${esc((tr[k]||[]).join('\n'))}</textarea>`).join('')}
+<label>${T('set_spoc')}</label><textarea id="s_spoc" rows="4">${esc(s.spoc.map(x=>[x.name,x.role,x.phone].join(' | ')).join('\n'))}</textarea>
+<label>${T('set_sop')}</label><textarea id="s_sop" rows="6">${esc(s.sop.join('\n'))}</textarea>
+<h3>${T('mx_h')}</h3>${S.committee.map((r,i)=>`<div class="row"><input value="${esc(r.duty)}" onchange="S.committee[${i}].duty=this.value;persist()"><input value="${esc(r.members)}" onchange="S.committee[${i}].members=this.value;persist()"></div>`).join('')}
+<h3>${T('ck_h')}</h3>${S.checklist.map((c,i)=>`<div class="row"><input value="${esc(c.text)}" onchange="S.checklist[${i}].text=this.value;persist()"><button class="danger sm" style="flex:0 0 auto" onclick="S.checklist.splice(${i},1);persist();render()">${T('del')}</button></div>`).join('')}<p><button class="ghost sm" onclick="S.checklist.push({id:Date.now(),text:'New task',done:false});persist();render()">+ ${T('add')}</button></p>
+<p><button onclick="saveSettings()">${T('save')}</button> <button class="danger" onclick="if(window.__rc){S=seed();ensureDefaults();persist();window.__rc=0;render()}else{window.__rc=1;this.textContent='${T('ev_sure')}'}">${T('set_reset')}</button></p>`}
+function saveSettings(){const s=S.settings;s.streamLink=$('#s_stream').value.trim();s.reportingTime=$('#s_rep').value.trim();
+  s.trades={};['CTS','CITS','Other'].forEach(k=>s.trades[k]=$('#s_tr_'+k).value.split('\n').map(x=>x.trim()).filter(Boolean));
+  s.spoc=$('#s_spoc').value.split('\n').filter(x=>x.trim()).map(l=>{const p=l.split('|').map(x=>x.trim());return{name:p[0]||'',role:p[1]||'',phone:p[2]||''}});
+  s.sop=$('#s_sop').value.split('\n').map(x=>x.trim()).filter(Boolean);persist();flash={t:'ok',m:T('saved')};render()}
+
+/* -- Reports -- */
+function adminReports(){const c=counts();return `<h2>📤 ${T('a_reports')}</h2>
+<div class="grid g3"><button onclick="exportAtt()">${T('rep_conf')}</button><button onclick="exportPres()">${T('pres_export')}</button><button onclick="exportCert()">${T('cd_h').split(' (')[0]}</button><button onclick="exportRoster2()">${T('rep_roster')}</button><button onclick="exportRoster()">${T('tr_export')}</button><button onclick="exportUsers()">${T('rep_users')}</button></div>
+<h3>${T('counter_h')}</h3><div class="scroll"><table><tr><th>${T('trade')}</th><th>#</th></tr>${Object.entries(c.by).map(([k,v])=>`<tr><td>${esc(k)}</td><td>${v}</td></tr>`).join('')}<tr><th>${T('total')}</th><th>${c.total}</th></tr></table></div>`}
+function exportRoster2(){exportCSV(S.settings.code+'_committee_duty_roster',[['No','Responsibility','Members'],...S.committee.map(r=>[r.no,r.duty,r.members])])}
+function exportUsers(){exportCSV(S.settings.code+'_all_users',[['Name','Mobile','DOB','Role','Scheme','Trade','Reg No','Certificate'],...S.users.map(u=>[u.name,u.mobile,u.dob,u.role,u.scheme||'',u.trade||'',u.reg||'',u.cert||''])])}
+
+/* ---------- Toppers ---------- */
+const LV=['national','state','institute'];
+const TIER_COL={1:'1',2:'2',3:'3'};
+function medalSvg(rank,w){w=w||40;const c=TIER_COL[rank];if(!c)return '';
+  return `<svg class="tmedal" viewBox="0 0 64 86" width="${w}" aria-hidden="true"><path d="M16 0h13l9 28H25z" fill="#c0392b"/><path d="M48 0H35l-9 28h13z" fill="#2c5fb3"/><circle cx="32" cy="55" r="27" fill="url(#mg${c})" stroke="#ffffff99" stroke-width="2"/><circle cx="32" cy="55" r="20" fill="none" stroke="#00000040" stroke-width="2"/><text x="32" y="65" text-anchor="middle" font-size="30" font-weight="900" fill="#00000080" font-family="Georgia,serif">${rank}</text></svg>`}
+function SEED_TOPPERS(){return[
+ {id:1,level:'institute',rank:1,key:'T:CTS26-EL-001',name:'Demo Trainee',scheme:'CTS',trade:'Electrician',score:'',message:'',photo:''},
+ {id:2,level:'institute',rank:2,key:'',name:'Sample Topper B',scheme:'CTS',trade:'Electrician',score:'',message:'',photo:''},
+ {id:3,level:'institute',rank:3,key:'',name:'Sample Topper C',scheme:'CTS',trade:'Electrician',score:'',message:'',photo:''},
+ {id:4,level:'state',rank:1,key:'',name:'Sample State Topper',scheme:'CTS',trade:'Electrician',score:'',message:'',photo:''},
+ {id:5,level:'institute',rank:1,key:'T:CITS26-EM-002',name:'Demo Trainee 2',scheme:'CITS',trade:'Electronic Mechanic',score:'',message:'',photo:''}]}
+const canTopper=()=>isAdmin()||myTeams().includes(5);
+const tpUser=t=>t.key?S.users.find(u=>ukey(u)===t.key):null;
+const tpNoShow=t=>{const u=tpUser(t);return u?!!u.noShow:!!t.noShow};
+const tpMsg=t=>(t.message&&t.message.trim())?t.message:T('tp_default_msg',{name:t.name,level:T('lv_'+t.level),trade:t.trade});
+let tpLevel='',tpTrade='',tpQ='',tpSel=null,tpMode='grid',tpPhoto='';
+const tpSorted=()=>S.toppers.slice().sort((a,b)=>LV.indexOf(a.level)-LV.indexOf(b.level)||a.trade.localeCompare(b.trade)||a.rank-b.rank||a.name.localeCompare(b.name));
+const tpFiltered=()=>{const q=tpQ.toLowerCase();return tpSorted().filter(t=>(!tpLevel||t.level===tpLevel)&&(!tpTrade||t.trade===tpTrade)&&(!q||t.name.toLowerCase().includes(q)))};
+const tpTradesList=()=>[...new Set(S.toppers.map(t=>t.trade))].sort();
+const tpAvatar=t=>t.photo?`<img src="${t.photo}" alt="">`:esc((t.name||'?').trim().charAt(0).toUpperCase());
+function tpCard(t){return `<div class="tcard" onclick="tpOpen(${t.id})">${medalSvg(t.rank,68)}<div class="tph">${tpAvatar(t)}</div><div><b>${esc(t.name)}</b></div><div style="color:var(--mute);font-size:.85rem">${esc(t.trade)} · ${esc(t.scheme)}</div>
+ <div style="margin:.4rem 0"><span class="lvl lv-${t.level}">🏆 ${T('lv_'+t.level)}</span></div>${t.rank>3?`<div class="tier">#${t.rank}</div>`:''}${t.score?`<div style="font-size:.8rem;color:var(--mute)">${esc(t.score)}</div>`:''}${isStaff()&&tpNoShow(t)?`<div class="msg err" style="padding:.1rem .4rem;font-size:.75rem;margin:.3rem 0 0">${T('tp_noshow')}</div>`:''}</div>`}
+function tpGridHtml(){const l=tpFiltered();return l.length?`<div class="tgrid">${l.map(tpCard).join('')}</div>`:`<p class="msg info">${T('tp_none')}</p>`}
+function updTpGrid(){const e=$('#tpGrid');if(e)e.innerHTML=tpGridHtml()}
+function tpOpen(id){tpSel=id;render();window.scrollTo(0,0)}
+function vToppers(){
+  if(tpMode==='manage'&&canTopper())return tpManage();
+  if(tpSel){const d=tpDetail();if(d)return d;tpSel=null}
+  return `<section class="card"><h2>🏆 ${T('tp_h')}</h2>
+  <div class="subnav">${[['',T('lv_all')],...LV.map(l=>[l,T('lv_'+l)])].map(([v,l])=>`<button class="${tpLevel===v?'on':'ghost'}" onclick="tpLevel='${v}';render()">${esc(l)}</button>`).join('')}</div>
+  <div class="row"><select onchange="tpTrade=this.value;render()"><option value="">${T('tp_trade_all')}</option>${tpTradesList().map(t=>`<option ${t===tpTrade?'selected':''}>${esc(t)}</option>`).join('')}</select><input placeholder="${T('tp_search')}" value="${esc(tpQ)}" oninput="tpQ=this.value;updTpGrid()">
+  ${isStaff()?`<button onclick="projDialog()" style="flex:0 0 auto">📽️ ${T('tp_project')}</button>`:''}${canTopper()?`<button class="ghost" onclick="tpMode='manage';render()" style="flex:0 0 auto">⚙️ ${T('tp_manage')}</button><button class="ghost" onclick="exportTopperPage()" style="flex:0 0 auto">🌐 ${T('tp_export')}</button>`:''}</div></section>
+  <div id="tpGrid">${tpGridHtml()}</div>`}
+function tpDetail(){const l=tpFiltered();const i=l.findIndex(x=>x.id===tpSel);const t=i>=0?l[i]:S.toppers.find(x=>x.id===tpSel);if(!t)return null;
+  const prev=i>0?l[i-1].id:null,next=i>=0&&i<l.length-1?l[i+1].id:null;
+  return `<section class="card" style="text-align:center;position:relative;overflow:hidden">
+  <div class="hide-print" style="text-align:left"><button class="ghost sm" onclick="tpSel=null;render()">← ${T('tp_back')}</button></div>
+  <div style="font-size:3.2rem;line-height:1">🏆</div><span class="lvl lv-${t.level}" style="font-size:.95rem;padding:.2rem 1rem">${T('lv_'+t.level)}</span>
+  <div class="tph big">${tpAvatar(t)}</div>${t.rank<=3?`<div style="margin:-1.9rem auto .2rem;width:100px">${medalSvg(t.rank,100)}</div>`:`<div class="tier">#${t.rank}</div>`}
+  <h2 style="margin:.4rem 0 0;font-size:1.7rem">${esc(t.name)}</h2><div style="color:var(--mute)">${esc(t.trade)} · ${esc(t.scheme)}${t.score?' · '+esc(t.score):''}</div>
+  <p style="font-size:1.15rem;max-width:640px;margin:1rem auto">🎉 ${esc(tpMsg(t))}</p>
+  <div class="row hide-print" style="justify-content:center">${prev?`<button class="ghost" style="flex:0 0 auto" onclick="tpOpen(${prev})">◀</button>`:''}${next?`<button class="ghost" style="flex:0 0 auto" onclick="tpOpen(${next})">▶</button>`:''}</div></section>`}
+
+
+Object.assign(I.en,{sh_card:'Share card (image)',sh_link:'Copy link',sh_copied:'Link copied',sh_dl:'Download image',sh_share:'Share',sh_hint:'If the download does not start, press and hold the image to save it.',sh_close:'Close',
+ tp_export:'Create shareable page',tp_exp_note:'Creates one independent web page of all toppers (no logins, no personal data except name, trade, photo and message). Host it anywhere or share the file; each topper also gets a social-media share card.',tp_exp_dl:'Download page (.html)',tp_exp_copy:'Copy HTML',tp_exp_done:'Copied.'});
+Object.assign(I.hi,{sh_card:'शेयर कार्ड (इमेज)',sh_link:'लिंक कॉपी करें',sh_copied:'लिंक कॉपी हो गया',sh_dl:'इमेज डाउनलोड करें',sh_share:'शेयर करें',sh_hint:'डाउनलोड शुरू न हो तो इमेज को देर तक दबाकर सेव करें।',sh_close:'बंद करें',
+ tp_export:'शेयर योग्य पेज बनाएँ',tp_exp_note:'सभी टॉपर्स का एक स्वतंत्र वेब पेज बनता है (कोई लॉगिन नहीं; केवल नाम, ट्रेड, फोटो व संदेश)। इसे कहीं भी होस्ट या शेयर करें; हर टॉपर का सोशल-मीडिया शेयर कार्ड भी बनता है।',tp_exp_dl:'पेज डाउनलोड करें (.html)',tp_exp_copy:'HTML कॉपी करें',tp_exp_done:'कॉपी हो गया।'});
+Object.assign(I.ml,{sh_card:'ഷെയർ കാർഡ് (ഇമേജ്)',sh_link:'ലിങ്ക് കോപ്പി',sh_copied:'ലിങ്ക് കോപ്പി ചെയ്തു',sh_dl:'ഇമേജ് ഡൗൺലോഡ്',sh_share:'ഷെയർ',sh_hint:'ഡൗൺലോഡ് തുടങ്ങിയില്ലെങ്കിൽ ഇമേജിൽ അമർത്തിപ്പിടിച്ച് സേവ് ചെയ്യുക.',sh_close:'അടയ്ക്കുക',
+ tp_export:'ഷെയർ ചെയ്യാവുന്ന പേജ് ഉണ്ടാക്കുക',tp_exp_note:'എല്ലാ ടോപ്പർമാരുടെയും സ്വതന്ത്രമായ ഒരു വെബ് പേജ് ഉണ്ടാക്കുന്നു (ലോഗിൻ ഇല്ല; പേര്, ട്രേഡ്, ഫോട്ടോ, സന്ദേശം മാത്രം). എവിടെയും ഹോസ്റ്റ് ചെയ്യാം/പങ്കിടാം; ഓരോ ടോപ്പർക്കും സോഷ്യൽ മീഡിയ ഷെയർ കാർഡും ലഭിക്കും.',tp_exp_dl:'പേജ് ഡൗൺലോഡ് (.html)',tp_exp_copy:'HTML കോപ്പി',tp_exp_done:'കോപ്പി ചെയ്തു.'});
+const TOP_TPL_B64='PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ+CjxtZXRhIGNoYXJzZXQ9InV0Zi04Ij4KPG1ldGEgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13aWR0aCwgaW5pdGlhbC1zY2FsZT0xIj4KPHRpdGxlPl9fVElUTEVfXzwvdGl0bGU+CjxtZXRhIHByb3BlcnR5PSJvZzp0aXRsZSIgY29udGVudD0iX19PR1RJVExFX18iPgo8bWV0YSBwcm9wZXJ0eT0ib2c6ZGVzY3JpcHRpb24iIGNvbnRlbnQ9Il9fT0dERVNDX18iPgo8bWV0YSBwcm9wZXJ0eT0ib2c6dHlwZSIgY29udGVudD0id2Vic2l0ZSI+CjxtZXRhIG5hbWU9InR3aXR0ZXI6Y2FyZCIgY29udGVudD0ic3VtbWFyeSI+CjxzdHlsZT4KKntib3gtc2l6aW5nOmJvcmRlci1ib3h9Cjpyb290ey0taW5rOiMxZjJhNDQ7LS1tdXRlOiM1YjY3ODQ7LS1wcmk6IzNiODJjNDstLWFjYzojZTVhOTNjOy0tbGluZTojZDdlM2YyOy0tY2FyZDojZmZmZmZmZTZ9CmJvZHl7bWFyZ2luOjA7Zm9udC1mYW1pbHk6IlNlZ29lIFVJIiwiTm90byBTYW5zIiwiTm90byBTYW5zIERldmFuYWdhcmkiLCJOb3RvIFNhbnMgTWFsYXlhbGFtIiwiTmlybWFsYSBVSSIsc3lzdGVtLXVpLHNhbnMtc2VyaWY7Y29sb3I6dmFyKC0taW5rKTtiYWNrZ3JvdW5kOmxpbmVhci1ncmFkaWVudCgxNjBkZWcsI2VhZjRmZiwjZmZmNmU2IDU1JSwjZTlmYmYzKTtiYWNrZ3JvdW5kLXNpemU6MjIwJSAyMjAlO2FuaW1hdGlvbjpiZ3MgNjBzIGVhc2UtaW4tb3V0IGluZmluaXRlIGFsdGVybmF0ZTttaW4taGVpZ2h0OjEwMHZoO2xpbmUtaGVpZ2h0OjEuNTtvdmVyZmxvdy14OmhpZGRlbn0KQGtleWZyYW1lcyBiZ3N7ZnJvbXtiYWNrZ3JvdW5kLXBvc2l0aW9uOjAgMH10b3tiYWNrZ3JvdW5kLXBvc2l0aW9uOjEwMCUgMTAwJX19Ci5iZ3twb3NpdGlvbjpmaXhlZDtpbnNldDowO3otaW5kZXg6MDtwb2ludGVyLWV2ZW50czpub25lO292ZXJmbG93OmhpZGRlbn0KLmJnIHN2Z3twb3NpdGlvbjphYnNvbHV0ZTtsZWZ0OjA7d2lkdGg6MjAwJTtoZWlnaHQ6NDJ2aDttaW4taGVpZ2h0OjIwMHB4fS5iZyBwYXRoe2ZpbGw6IzdjYzRmMH0KLncxe2JvdHRvbTotMnZoO29wYWNpdHk6LjMwO2FuaW1hdGlvbjpmbCA3MHMgbGluZWFyIGluZmluaXRlfS53Mntib3R0b206OHZoO29wYWNpdHk6LjI7YW5pbWF0aW9uOmZsIDExMHMgbGluZWFyIGluZmluaXRlIHJldmVyc2V9Lncze2JvdHRvbToxOHZoO29wYWNpdHk6LjEyO2FuaW1hdGlvbjpmbCAxNTBzIGxpbmVhciBpbmZpbml0ZX0KQGtleWZyYW1lcyBmbHtmcm9te3RyYW5zZm9ybTp0cmFuc2xhdGVYKDApfXRve3RyYW5zZm9ybTp0cmFuc2xhdGVYKC01MCUpfX0KQG1lZGlhKHByZWZlcnMtcmVkdWNlZC1tb3Rpb246cmVkdWNlKXtib2R5LC5iZyBzdmd7YW5pbWF0aW9uOm5vbmUhaW1wb3J0YW50fX0KaGVhZGVyLG1haW4sZm9vdGVye3Bvc2l0aW9uOnJlbGF0aXZlO3otaW5kZXg6MX0KaGVhZGVye2JhY2tncm91bmQ6bGluZWFyLWdyYWRpZW50KDEzNWRlZywjMGIxZDQ2LCMyYTFiNjYpO2NvbG9yOiNmZmU5YTY7cGFkZGluZzoxLjFyZW0gMXJlbSAxLjZyZW07dGV4dC1hbGlnbjpjZW50ZXI7Ym9yZGVyLXJhZGl1czowIDAgNDBweCA0MHB4fQpoZWFkZXIgaDF7bWFyZ2luOi4ycmVtIDA7Zm9udC1zaXplOmNsYW1wKDEuM3JlbSw0dncsMi4xcmVtKX1oZWFkZXIgcHttYXJnaW46MDtjb2xvcjojZmZmO29wYWNpdHk6Ljg1fQouc2Vne2Rpc3BsYXk6aW5saW5lLWZsZXg7Ym9yZGVyOjFweCBzb2xpZCAjZmZmZmZmNTU7Ym9yZGVyLXJhZGl1czo5OXB4O292ZXJmbG93OmhpZGRlbjttYXJnaW4tdG9wOi42cmVtfQouc2VnIGJ1dHRvbntiYWNrZ3JvdW5kOnRyYW5zcGFyZW50O2NvbG9yOiNmZmY7Ym9yZGVyOjA7cGFkZGluZzouM3JlbSAuOHJlbTtmb250OmluaGVyaXQ7Y3Vyc29yOnBvaW50ZXJ9LnNlZyBidXR0b24ub257YmFja2dyb3VuZDojZTViOTRhO2NvbG9yOiMwYjFkNDY7Zm9udC13ZWlnaHQ6NzAwfQptYWlue21heC13aWR0aDoxMTAwcHg7bWFyZ2luOjAgYXV0bztwYWRkaW5nOjFyZW19CmJ1dHRvbixzZWxlY3QsaW5wdXR7Zm9udDppbmhlcml0fQpzZWxlY3QsaW5wdXR7Ym9yZGVyOjFweCBzb2xpZCB2YXIoLS1saW5lKTtib3JkZXItcmFkaXVzOjEycHg7cGFkZGluZzouNDVyZW0gLjdyZW07YmFja2dyb3VuZDojZmZmO2NvbG9yOnZhcigtLWluayk7d2lkdGg6MTAwJX0KYnV0dG9uLmJ7Ym9yZGVyOjA7Ym9yZGVyLXJhZGl1czo5OXB4O3BhZGRpbmc6LjQ1cmVtIDFyZW07YmFja2dyb3VuZDpsaW5lYXItZ3JhZGllbnQoMTM1ZGVnLCMzYjgyYzQsIzdjYzRmMCk7Y29sb3I6I2ZmZjtmb250LXdlaWdodDo2MDA7Y3Vyc29yOnBvaW50ZXJ9CmJ1dHRvbi5ne2JhY2tncm91bmQ6I2ZmZjtjb2xvcjp2YXIoLS1pbmspO2JvcmRlcjoxcHggc29saWQgdmFyKC0tbGluZSl9YnV0dG9uLm9ue2JhY2tncm91bmQ6bGluZWFyLWdyYWRpZW50KDEzNWRlZywjM2I4MmM0LCM3Y2M0ZjApO2NvbG9yOiNmZmY7Ym9yZGVyOjB9Ci5yb3d7ZGlzcGxheTpmbGV4O2dhcDouNnJlbTtmbGV4LXdyYXA6d3JhcDttYXJnaW46LjZyZW0gMH0ucm93Pip7ZmxleDoxIDEgMjAwcHh9LmNoaXBze2Rpc3BsYXk6ZmxleDtnYXA6LjRyZW07ZmxleC13cmFwOndyYXB9Ci5jaGlwcyBidXR0b257Ym9yZGVyLXJhZGl1czo5OXB4O3BhZGRpbmc6LjM1cmVtIC45cmVtO2N1cnNvcjpwb2ludGVyfQoudGdyaWR7ZGlzcGxheTpncmlkO2dhcDoxcmVtO2dyaWQtdGVtcGxhdGUtY29sdW1uczpyZXBlYXQoYXV0by1maWxsLG1pbm1heCgxOTBweCwxZnIpKX0KLnRjYXJke3Bvc2l0aW9uOnJlbGF0aXZlO2JhY2tncm91bmQ6dmFyKC0tY2FyZCk7Ym9yZGVyOjFweCBzb2xpZCB2YXIoLS1saW5lKTtib3JkZXItcmFkaXVzOjIwcHg7cGFkZGluZzoxcmVtIC44cmVtO3RleHQtYWxpZ246Y2VudGVyO2N1cnNvcjpwb2ludGVyO3RyYW5zaXRpb246dHJhbnNmb3JtIC4ycyxib3gtc2hhZG93IC4yc30KLnRjYXJkOmhvdmVye3RyYW5zZm9ybTp0cmFuc2xhdGVZKC00cHgpO2JveC1zaGFkb3c6MCAxMnB4IDMwcHggIzAwMDJ9LnRjYXJkIC50bWVkYWx7ZGlzcGxheTpibG9jazttYXJnaW46MCBhdXRvIC4zNXJlbTt3aWR0aDo2OHB4O2hlaWdodDphdXRvfQoudHBoe3dpZHRoOjkycHg7aGVpZ2h0OjkycHg7Ym9yZGVyLXJhZGl1czo1MCU7bWFyZ2luOjAgYXV0byAuNXJlbTtiYWNrZ3JvdW5kOmxpbmVhci1ncmFkaWVudCgxMzVkZWcsIzNiODJjNCwjZTVhOTNjKTtkaXNwbGF5OmZsZXg7YWxpZ24taXRlbXM6Y2VudGVyO2p1c3RpZnktY29udGVudDpjZW50ZXI7Zm9udC1zaXplOjIuMnJlbTtmb250LXdlaWdodDo3MDA7Y29sb3I6I2ZmZjtvdmVyZmxvdzpoaWRkZW47Ym9yZGVyOjNweCBzb2xpZCAjZTVhOTNjfQoudHBoIGltZ3t3aWR0aDoxMDAlO2hlaWdodDoxMDAlO29iamVjdC1maXQ6Y292ZXJ9LnRwaC5iaWd7d2lkdGg6MTUwcHg7aGVpZ2h0OjE1MHB4O2ZvbnQtc2l6ZTozLjRyZW07bWFyZ2luOjFyZW0gYXV0b30KLmx2bHtkaXNwbGF5OmlubGluZS1ibG9jaztib3JkZXItcmFkaXVzOjk5cHg7cGFkZGluZzouMXJlbSAuN3JlbTtmb250LXNpemU6Ljc0cmVtO2ZvbnQtd2VpZ2h0OjcwMDtjb2xvcjojZmZmfQoubHYtbmF0aW9uYWx7YmFja2dyb3VuZDpsaW5lYXItZ3JhZGllbnQoMTM1ZGVnLCNmZjk5MzMsI2Q5NzMxYSl9Lmx2LXN0YXRle2JhY2tncm91bmQ6bGluZWFyLWdyYWRpZW50KDEzNWRlZywjM2I4MmM0LCMxZDRmOTEpfS5sdi1pbnN0aXR1dGV7YmFja2dyb3VuZDpsaW5lYXItZ3JhZGllbnQoMTM1ZGVnLCMxZmEzN2EsIzBmN2E1YSl9Ci50aWVye2ZvbnQtd2VpZ2h0OjgwMDtsZXR0ZXItc3BhY2luZzouMDRlbX0udGllcjF7Y29sb3I6IzdjOTNhZH0udGllcjJ7Y29sb3I6I2M1OGYxN30udGllcjN7Y29sb3I6IzhhOGE4YX0KLmNhcmR7YmFja2dyb3VuZDp2YXIoLS1jYXJkKTtib3JkZXI6MXB4IHNvbGlkIHZhcigtLWxpbmUpO2JvcmRlci1yYWRpdXM6MjBweDtwYWRkaW5nOjEuMnJlbTt0ZXh0LWFsaWduOmNlbnRlcn0KLm1zZ3twYWRkaW5nOi42cmVtIC45cmVtO2JvcmRlci1yYWRpdXM6MTRweDtiYWNrZ3JvdW5kOiNmZmY7Ym9yZGVyOjFweCBkYXNoZWQgdmFyKC0tcHJpKX0KLm1vZGFse3Bvc2l0aW9uOmZpeGVkO2luc2V0OjA7YmFja2dyb3VuZDojMDAwOTt6LWluZGV4OjUwO2Rpc3BsYXk6ZmxleDthbGlnbi1pdGVtczpjZW50ZXI7anVzdGlmeS1jb250ZW50OmNlbnRlcjtwYWRkaW5nOjFyZW19Lm1vZGFsPmRpdntiYWNrZ3JvdW5kOiNmZmY7Ym9yZGVyLXJhZGl1czoyMHB4O21heC13aWR0aDo1NjBweDt3aWR0aDoxMDAlO3BhZGRpbmc6MXJlbTttYXgtaGVpZ2h0Ojk0dmg7b3ZlcmZsb3c6YXV0b30KZm9vdGVye3RleHQtYWxpZ246Y2VudGVyO2NvbG9yOnZhcigtLW11dGUpO2ZvbnQtc2l6ZTouODVyZW07cGFkZGluZzoxLjVyZW0gMXJlbSAzcmVtfQo8L3N0eWxlPgo8L2hlYWQ+Cjxib2R5Pgo8c3ZnIHdpZHRoPSIwIiBoZWlnaHQ9IjAiIHN0eWxlPSJwb3NpdGlvbjphYnNvbHV0ZSIgYXJpYS1oaWRkZW49InRydWUiPjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9Im1nMSIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2ZmZjNiMCIvPjxzdG9wIG9mZnNldD0iLjUiIHN0b3AtY29sb3I9IiNmMGI3MmYiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNiNDdhMGEiLz48L2xpbmVhckdyYWRpZW50Pgo8bGluZWFyR3JhZGllbnQgaWQ9Im1nMiIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2ZiZmJmYiIvPjxzdG9wIG9mZnNldD0iLjUiIHN0b3AtY29sb3I9IiNjM2M3Y2MiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiM4NjhiOTIiLz48L2xpbmVhckdyYWRpZW50Pgo8bGluZWFyR3JhZGllbnQgaWQ9Im1nMyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2YzYzc5YSIvPjxzdG9wIG9mZnNldD0iLjUiIHN0b3AtY29sb3I9IiNjZDdmMzIiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiM4YTRkMTciLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48L3N2Zz4KPGRpdiBjbGFzcz0iYmciIGFyaWEtaGlkZGVuPSJ0cnVlIj4KPHN2ZyBjbGFzcz0idzMiIHZpZXdCb3g9IjAgMCAyNDAwIDIwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PHBhdGggZD0iTTAgMTAwQzIwMCA0MCA0MDAgNDAgNjAwIDEwMFMxMDAwIDE2MCAxMjAwIDEwMFMxNjAwIDQwIDE4MDAgMTAwUzIyMDAgMTYwIDI0MDAgMTAwVjIwMEgwWiIvPjwvc3ZnPgo8c3ZnIGNsYXNzPSJ3MiIgdmlld0JveD0iMCAwIDI0MDAgMjAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cGF0aCBkPSJNMCAxMDBDMjAwIDQwIDQwMCA0MCA2MDAgMTAwUzEwMDAgMTYwIDEyMDAgMTAwUzE2MDAgNDAgMTgwMCAxMDBTMjIwMCAxNjAgMjQwMCAxMDBWMjAwSDBaIi8+PC9zdmc+CjxzdmcgY2xhc3M9IncxIiB2aWV3Qm94PSIwIDAgMjQwMCAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxwYXRoIGQ9Ik0wIDEwMEMyMDAgNDAgNDAwIDQwIDYwMCAxMDBTMTAwMCAxNjAgMTIwMCAxMDBTMTYwMCA0MCAxODAwIDEwMFMyMjAwIDE2MCAyNDAwIDEwMFYyMDBIMFoiLz48L3N2Zz48L2Rpdj4KPGhlYWRlcj48ZGl2IHN0eWxlPSJmb250LXNpemU6Mi40cmVtIj7wn4+GPC9kaXY+PGgxIGlkPSJ0dGwiPjwvaDE+PHAgaWQ9InN1YiI+PC9wPgo8ZGl2IGNsYXNzPSJzZWciPjxidXR0b24gZGF0YS1sPSJlbiIgY2xhc3M9Im9uIj5FTjwvYnV0dG9uPjxidXR0b24gZGF0YS1sPSJoaSI+4KS54KS/4KSo4KWN4KSm4KWAPC9idXR0b24+PGJ1dHRvbiBkYXRhLWw9Im1sIj7gtK7gtLLgtK/gtL7gtLPgtII8L2J1dHRvbj48L2Rpdj48L2hlYWRlcj4KPG1haW4gaWQ9ImFwcCI+PC9tYWluPjxmb290ZXIgaWQ9ImZvb3QiPjwvZm9vdGVyPjxkaXYgaWQ9Im1vZGFsIj48L2Rpdj4KPHNjcmlwdD4KLypfX0RBVEFfXyovCmNvbnN0IEk9REFUQS5pMThuLExWPVsnbmF0aW9uYWwnLCdzdGF0ZScsJ2luc3RpdHV0ZSddO2xldCBsYW5nPSdlbicsbGV2ZWw9JycsdHJhZGU9JycscT0nJyxzZWw9bnVsbCxsYXN0QmxvYj1udWxsOwpjb25zdCBUPShrLHYpPT57bGV0IHM9KElbbGFuZ10mJklbbGFuZ11ba10pfHxJLmVuW2tdfHxrO2lmKHYpZm9yKGNvbnN0IHggaW4gdilzPXMuc3BsaXQoJ3snK3grJ30nKS5qb2luKHZbeF0pO3JldHVybiBzfTsKY29uc3QgTD1vPT50eXBlb2Ygbz09PSdzdHJpbmcnP286KG9bbGFuZ118fG8uZW58fCcnKTsKY29uc3QgZXNjPXM9PlN0cmluZyhzPT1udWxsPycnOnMpLnJlcGxhY2UoL1smPD4iJ10vZyxjPT4oeycmJzonJmFtcDsnLCc8JzonJmx0OycsJz4nOicmZ3Q7JywnIic6JyZxdW90OycsIiciOicmIzM5Oyd9W2NdKSk7CmNvbnN0ICQ9cz0+ZG9jdW1lbnQucXVlcnlTZWxlY3RvcihzKTsKY29uc3QgbXNnT2Y9dD0+KHQubWVzc2FnZSYmdC5tZXNzYWdlLnRyaW0oKSk/dC5tZXNzYWdlOlQoJ3RwX2RlZmF1bHRfbXNnJyx7bmFtZTp0Lm5hbWUsbGV2ZWw6VCgnbHZfJyt0LmxldmVsKSx0cmFkZTp0LnRyYWRlfSk7CmNvbnN0IHNvcnRlZD0oKT0+REFUQS50b3BwZXJzLnNsaWNlKCkuc29ydCgoYSxiKT0+TFYuaW5kZXhPZihhLmxldmVsKS1MVi5pbmRleE9mKGIubGV2ZWwpfHxhLnRyYWRlLmxvY2FsZUNvbXBhcmUoYi50cmFkZSl8fGEucmFuay1iLnJhbmt8fGEubmFtZS5sb2NhbGVDb21wYXJlKGIubmFtZSkpOwpjb25zdCBmaWx0PSgpPT57Y29uc3Qgcz1xLnRvTG93ZXJDYXNlKCk7cmV0dXJuIHNvcnRlZCgpLmZpbHRlcih0PT4oIWxldmVsfHx0LmxldmVsPT09bGV2ZWwpJiYoIXRyYWRlfHx0LnRyYWRlPT09dHJhZGUpJiYoIXN8fHQubmFtZS50b0xvd2VyQ2FzZSgpLmluY2x1ZGVzKHMpKSl9Owpjb25zdCBUQz17MTonMScsMjonMicsMzonMyd9OwpmdW5jdGlvbiBtZWRhbChyLHcpe2NvbnN0IGM9VENbcl07aWYoIWMpcmV0dXJuICcnO3JldHVybiBgPHN2ZyBjbGFzcz0idG1lZGFsIiB2aWV3Qm94PSIwIDAgNjQgODYiIHdpZHRoPSIke3d9IiBhcmlhLWhpZGRlbj0idHJ1ZSI+PHBhdGggZD0iTTE2IDBoMTNsOSAyOEgyNXoiIGZpbGw9IiNjMDM5MmIiLz48cGF0aCBkPSJNNDggMEgzNWwtOSAyOGgxM3oiIGZpbGw9IiMyYzVmYjMiLz48Y2lyY2xlIGN4PSIzMiIgY3k9IjU1IiByPSIyNyIgZmlsbD0idXJsKCNtZyR7Y30pIiBzdHJva2U9IiNmZmZmZmY5OSIgc3Ryb2tlLXdpZHRoPSIyIi8+PGNpcmNsZSBjeD0iMzIiIGN5PSI1NSIgcj0iMjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMDQwIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIzMiIgeT0iNjUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMzAiIGZvbnQtd2VpZ2h0PSI5MDAiIGZpbGw9IiMwMDAwMDA4MCIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsc2VyaWYiPiR7cn08L3RleHQ+PC9zdmc+YH0KY29uc3QgYXY9dD0+dC5waG90bz9gPGltZyBzcmM9IiR7dC5waG90b30iIGFsdD0iIj5gOmVzYygodC5uYW1lfHwnPycpLnRyaW0oKS5jaGFyQXQoMCkudG9VcHBlckNhc2UoKSk7CmZ1bmN0aW9uIGNhcmRIdG1sKHQpe3JldHVybiBgPGRpdiBjbGFzcz0idGNhcmQiIG9uY2xpY2s9Im9wZW5UKCR7dC5pZH0pIj4ke21lZGFsKHQucmFuayw2OCl9PGRpdiBjbGFzcz0idHBoIj4ke2F2KHQpfTwvZGl2PjxkaXY+PGI+JHtlc2ModC5uYW1lKX08L2I+PC9kaXY+PGRpdiBzdHlsZT0iY29sb3I6dmFyKC0tbXV0ZSk7Zm9udC1zaXplOi44NXJlbSI+JHtlc2ModC50cmFkZSl9IMK3ICR7ZXNjKHQuc2NoZW1lKX08L2Rpdj48ZGl2IHN0eWxlPSJtYXJnaW46LjRyZW0gMCI+PHNwYW4gY2xhc3M9Imx2bCBsdi0ke3QubGV2ZWx9Ij7wn4+GICR7ZXNjKFQoJ2x2XycrdC5sZXZlbCkpfTwvc3Bhbj48L2Rpdj4ke3QucmFuaz4zP2A8ZGl2IGNsYXNzPSJ0aWVyIj4jJHt0LnJhbmt9PC9kaXY+YDonJ30ke3Quc2NvcmU/YDxkaXYgc3R5bGU9ImZvbnQtc2l6ZTouOHJlbTtjb2xvcjp2YXIoLS1tdXRlKSI+JHtlc2ModC5zY29yZSl9PC9kaXY+YDonJ308L2Rpdj5gfQpmdW5jdGlvbiBncmlkSHRtbCgpe2NvbnN0IGw9ZmlsdCgpO3JldHVybiBsLmxlbmd0aD9gPGRpdiBjbGFzcz0idGdyaWQiPiR7bC5tYXAoY2FyZEh0bWwpLmpvaW4oJycpfTwvZGl2PmA6YDxwIGNsYXNzPSJtc2ciPiR7ZXNjKFQoJ3RwX25vbmUnKSl9PC9wPmB9CmZ1bmN0aW9uIHVwZEdyaWQoKXtjb25zdCBlPSQoJyNncmlkJyk7aWYoZSllLmlubmVySFRNTD1ncmlkSHRtbCgpfQpmdW5jdGlvbiBvcGVuVChpZCl7bG9jYXRpb24uaGFzaD0ndG9wcGVyLScraWR9CmZ1bmN0aW9uIGJhY2soKXtzZWw9bnVsbDtpZihsb2NhdGlvbi5oYXNoKWhpc3RvcnkucmVwbGFjZVN0YXRlKG51bGwsJycsbG9jYXRpb24ucGF0aG5hbWUrbG9jYXRpb24uc2VhcmNoKTtyZW5kZXIoKX0KZnVuY3Rpb24gcmVuZGVyKCl7CiAgZG9jdW1lbnQuZG9jdW1lbnRFbGVtZW50Lmxhbmc9bGFuZzskKCcjdHRsJykudGV4dENvbnRlbnQ9TChEQVRBLnRpdGxlKTskKCcjc3ViJykudGV4dENvbnRlbnQ9VCgndHBfaCcpKycgwrcgJytEQVRBLnZlbnVlOyQoJyNmb290JykudGV4dENvbnRlbnQ9TChEQVRBLnRpdGxlKSsnIMK3ICcrREFUQS52ZW51ZTsKICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCdbZGF0YS1sXScpLmZvckVhY2goYj0+Yi5jbGFzc0xpc3QudG9nZ2xlKCdvbicsYi5kYXRhc2V0Lmw9PT1sYW5nKSk7CiAgY29uc3QgdD1zZWwhPW51bGw/REFUQS50b3BwZXJzLmZpbmQoeD0+eC5pZD09PXNlbCk6bnVsbDsKICBpZih0KXtjb25zdCBsPWZpbHQoKTtjb25zdCBpPWwuZmluZEluZGV4KHg9PnguaWQ9PT10LmlkKTtjb25zdCBwdj1pPjA/bFtpLTFdLmlkOm51bGwsbng9aT49MCYmaTxsLmxlbmd0aC0xP2xbaSsxXS5pZDpudWxsOwogICAgJCgnI2FwcCcpLmlubmVySFRNTD1gPGRpdiBjbGFzcz0iY2FyZCI+PGRpdiBzdHlsZT0idGV4dC1hbGlnbjpsZWZ0Ij48YnV0dG9uIGNsYXNzPSJiIGciIG9uY2xpY2s9ImJhY2soKSI+4oaQICR7ZXNjKFQoJ3RwX2JhY2snKSl9PC9idXR0b24+PC9kaXY+CiAgICA8ZGl2IHN0eWxlPSJmb250LXNpemU6My4ycmVtO2xpbmUtaGVpZ2h0OjEiPvCfj4Y8L2Rpdj48c3BhbiBjbGFzcz0ibHZsIGx2LSR7dC5sZXZlbH0iIHN0eWxlPSJmb250LXNpemU6Ljk1cmVtO3BhZGRpbmc6LjJyZW0gMXJlbSI+JHtlc2MoVCgnbHZfJyt0LmxldmVsKSl9PC9zcGFuPgogICAgPGRpdiBjbGFzcz0idHBoIGJpZyI+JHthdih0KX08L2Rpdj4ke3QucmFuazw9Mz9gPGRpdiBzdHlsZT0ibWFyZ2luOi0xLjlyZW0gYXV0byAuMnJlbTt3aWR0aDoxMDBweCI+JHttZWRhbCh0LnJhbmssMTAwKX08L2Rpdj5gOmA8ZGl2IGNsYXNzPSJ0aWVyIj4jJHt0LnJhbmt9PC9kaXY+YH0KICAgIDxoMiBzdHlsZT0ibWFyZ2luOi40cmVtIDAgMDtmb250LXNpemU6MS43cmVtIj4ke2VzYyh0Lm5hbWUpfTwvaDI+PGRpdiBzdHlsZT0iY29sb3I6dmFyKC0tbXV0ZSkiPiR7ZXNjKHQudHJhZGUpfSDCtyAke2VzYyh0LnNjaGVtZSl9JHt0LnNjb3JlPycgwrcgJytlc2ModC5zY29yZSk6Jyd9PC9kaXY+CiAgICA8cCBzdHlsZT0iZm9udC1zaXplOjEuMTVyZW07bWF4LXdpZHRoOjY0MHB4O21hcmdpbjoxcmVtIGF1dG8iPvCfjokgJHtlc2MobXNnT2YodCkpfTwvcD4KICAgIDxkaXYgY2xhc3M9InJvdyIgc3R5bGU9Imp1c3RpZnktY29udGVudDpjZW50ZXIiPjxidXR0b24gY2xhc3M9ImIiIHN0eWxlPSJmbGV4OjAgMCBhdXRvIiBvbmNsaWNrPSJzaGFyZUNhcmQoJHt0LmlkfSkiPvCflrzvuI8gJHtlc2MoVCgnc2hfY2FyZCcpKX08L2J1dHRvbj48YnV0dG9uIGNsYXNzPSJiIGciIHN0eWxlPSJmbGV4OjAgMCBhdXRvIiBvbmNsaWNrPSJjb3B5TGluaygke3QuaWR9KSI+8J+UlyAke2VzYyhUKCdzaF9saW5rJykpfTwvYnV0dG9uPjwvZGl2PgogICAgPGRpdiBjbGFzcz0icm93IiBzdHlsZT0ianVzdGlmeS1jb250ZW50OmNlbnRlciI+JHtwdj9gPGJ1dHRvbiBjbGFzcz0iYiBnIiBzdHlsZT0iZmxleDowIDAgYXV0byIgb25jbGljaz0ib3BlblQoJHtwdn0pIj7il4A8L2J1dHRvbj5gOicnfSR7bng/YDxidXR0b24gY2xhc3M9ImIgZyIgc3R5bGU9ImZsZXg6MCAwIGF1dG8iIG9uY2xpY2s9Im9wZW5UKCR7bnh9KSI+4pa2PC9idXR0b24+YDonJ308L2Rpdj48L2Rpdj5gO3JldHVybn0KICBjb25zdCB0cmFkZXM9Wy4uLm5ldyBTZXQoREFUQS50b3BwZXJzLm1hcCh4PT54LnRyYWRlKSldLnNvcnQoKTsKICAkKCcjYXBwJykuaW5uZXJIVE1MPWA8ZGl2IGNsYXNzPSJjaGlwcyI+JHtbWycnLFQoJ2x2X2FsbCcpXSwuLi5MVi5tYXAobD0+W2wsVCgnbHZfJytsKV0pXS5tYXAoKFt2LGxdKT0+YDxidXR0b24gY2xhc3M9IiR7bGV2ZWw9PT12Pydvbic6J2cnfSIgb25jbGljaz0ibGV2ZWw9JyR7dn0nO3JlbmRlcigpIj4ke2VzYyhsKX08L2J1dHRvbj5gKS5qb2luKCcnKX08L2Rpdj4KICA8ZGl2IGNsYXNzPSJyb3ciPjxzZWxlY3Qgb25jaGFuZ2U9InRyYWRlPXRoaXMudmFsdWU7cmVuZGVyKCkiPjxvcHRpb24gdmFsdWU9IiI+JHtlc2MoVCgndHBfdHJhZGVfYWxsJykpfTwvb3B0aW9uPiR7dHJhZGVzLm1hcCh4PT5gPG9wdGlvbiAke3g9PT10cmFkZT8nc2VsZWN0ZWQnOicnfT4ke2VzYyh4KX08L29wdGlvbj5gKS5qb2luKCcnKX08L3NlbGVjdD48aW5wdXQgcGxhY2Vob2xkZXI9IiR7ZXNjKFQoJ3RwX3NlYXJjaCcpKX0iIHZhbHVlPSIke2VzYyhxKX0iIG9uaW5wdXQ9InE9dGhpcy52YWx1ZTt1cGRHcmlkKCkiPjwvZGl2PjxkaXYgaWQ9ImdyaWQiPiR7Z3JpZEh0bWwoKX08L2Rpdj5gfQpmdW5jdGlvbiByb3V0ZSgpe2NvbnN0IG09bG9jYXRpb24uaGFzaC5tYXRjaCgvXiN0b3BwZXItKFxkKykkLyk7c2VsPW0/K21bMV06bnVsbDtyZW5kZXIoKTt3aW5kb3cuc2Nyb2xsVG8oMCwwKX0Kd2luZG93LmFkZEV2ZW50TGlzdGVuZXIoJ2hhc2hjaGFuZ2UnLHJvdXRlKTsKZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbCgnW2RhdGEtbF0nKS5mb3JFYWNoKGI9PmIub25jbGljaz0oKT0+e2xhbmc9Yi5kYXRhc2V0Lmw7cmVuZGVyKCl9KTsKZnVuY3Rpb24gc2hvd01vZGFsKGgpeyQoJyNtb2RhbCcpLmlubmVySFRNTD0nPGRpdiBjbGFzcz0ibW9kYWwiIG9uY2xpY2s9ImlmKGV2ZW50LnRhcmdldD09PXRoaXMpY2xvc2VNb2RhbCgpIj48ZGl2PicraCsnPC9kaXY+PC9kaXY+J30KZnVuY3Rpb24gY2xvc2VNb2RhbCgpeyQoJyNtb2RhbCcpLmlubmVySFRNTD0nJ30KZnVuY3Rpb24gY29weUxpbmsoaWQpe2NvbnN0IHU9bG9jYXRpb24uaHJlZi5zcGxpdCgnIycpWzBdKycjdG9wcGVyLScraWQ7bGV0IG9rPWZhbHNlO3RyeXtuYXZpZ2F0b3IuY2xpcGJvYXJkLndyaXRlVGV4dCh1KTtvaz10cnVlfWNhdGNoKGUpe30KICBzaG93TW9kYWwoYDxwPjxiPiR7ZXNjKG9rP1QoJ3NoX2NvcGllZCcpOlQoJ3NoX2xpbmsnKSl9PC9iPjwvcD48aW5wdXQgcmVhZG9ubHkgdmFsdWU9IiR7ZXNjKHUpfSIgb25mb2N1cz0idGhpcy5zZWxlY3QoKSI+PHA+PGJ1dHRvbiBjbGFzcz0iYiIgb25jbGljaz0iY2xvc2VNb2RhbCgpIj4ke2VzYyhUKCdzaF9jbG9zZScpKX08L2J1dHRvbj48L3A+YCl9Ci8qIC0tLS0gc2hhcmUgY2FyZCAoMTA4MHgxMzUwIGltYWdlIGZvciBXaGF0c0FwcCAvIEluc3RhZ3JhbSAvIEZhY2Vib29rKSAtLS0tICovCmZ1bmN0aW9uIHdyYXAoeCx0ZXh0LG1heFcsbWF4TGluZXMpe2NvbnN0IHdvcmRzPVN0cmluZyh0ZXh0KS5zcGxpdCgvXHMrLyk7Y29uc3QgbGluZXM9W107bGV0IGN1cj0nJztmb3IoY29uc3QgdyBvZiB3b3Jkcyl7Y29uc3QgdD1jdXI/Y3VyKycgJyt3Onc7aWYoeC5tZWFzdXJlVGV4dCh0KS53aWR0aD5tYXhXJiZjdXIpe2xpbmVzLnB1c2goY3VyKTtjdXI9d31lbHNlIGN1cj10fWlmKGN1cilsaW5lcy5wdXNoKGN1cik7aWYobGluZXMubGVuZ3RoPm1heExpbmVzKXtsaW5lcy5sZW5ndGg9bWF4TGluZXM7bGluZXNbbWF4TGluZXMtMV09bGluZXNbbWF4TGluZXMtMV0ucmVwbGFjZSgvLnswLDJ9JC8sJ+KApicpfXJldHVybiBsaW5lc30KZnVuY3Rpb24gZHJhd0NhcmQodCl7cmV0dXJuIG5ldyBQcm9taXNlKHJlcz0+ewogIGNvbnN0IFc9MTA4MCxIPTEzNTAsYz1kb2N1bWVudC5jcmVhdGVFbGVtZW50KCdjYW52YXMnKTtjLndpZHRoPVc7Yy5oZWlnaHQ9SDtjb25zdCB4PWMuZ2V0Q29udGV4dCgnMmQnKTtjb25zdCBGPSInU2Vnb2UgVUknLCdOb3RvIFNhbnMnLCdOb3RvIFNhbnMgRGV2YW5hZ2FyaScsJ05vdG8gU2FucyBNYWxheWFsYW0nLHNhbnMtc2VyaWYiOwogIGNvbnN0IGRvbmU9aW1nPT57CiAgICBsZXQgZz14LmNyZWF0ZUxpbmVhckdyYWRpZW50KDAsMCxXLEgpO2cuYWRkQ29sb3JTdG9wKDAsJyMwYjFkNDYnKTtnLmFkZENvbG9yU3RvcCguNTUsJyMyYTFiNjYnKTtnLmFkZENvbG9yU3RvcCgxLCcjMGExNjM0Jyk7eC5maWxsU3R5bGU9Zzt4LmZpbGxSZWN0KDAsMCxXLEgpOwogICAgeC5zYXZlKCk7eC50cmFuc2xhdGUoVy8yLDU2MCk7Zm9yKGxldCBpPTA7aTwxODtpKyspe3gucm90YXRlKE1hdGguUEkqMi8xOCk7eC5maWxsU3R5bGU9J3JnYmEoMjU1LDI1NSwyNTUsLjA0NSknO3guYmVnaW5QYXRoKCk7eC5tb3ZlVG8oMCwwKTt4LmxpbmVUbygtOTAsLTE1MDApO3gubGluZVRvKDkwLC0xNTAwKTt4LmNsb3NlUGF0aCgpO3guZmlsbCgpfXgucmVzdG9yZSgpOwogICAgZm9yKGxldCBpPTA7aTw3MDtpKyspe3guZmlsbFN0eWxlPSdyZ2JhKDI1NSwyMjQsMTM4LCcrKC4yKyhpJTUpKi4xMikrJyknO3guYmVnaW5QYXRoKCk7eC5hcmMoKGkqMzg5KSVXLChpKjYxNyklSCwyKyhpJTQpLDAsNyk7eC5maWxsKCl9CiAgICB4LmZpbGxTdHlsZT0ncmdiYSgyMjksMTg1LDc0LC4yMiknO3guYmVnaW5QYXRoKCk7eC5tb3ZlVG8oMCxILTE3MCk7eC5iZXppZXJDdXJ2ZVRvKDI3MCxILTI3MCw1NDAsSC03MCxXLEgtMTkwKTt4LmxpbmVUbyhXLEgpO3gubGluZVRvKDAsSCk7eC5maWxsKCk7CiAgICB4LnRleHRBbGlnbj0nY2VudGVyJzt4LmZpbGxTdHlsZT0nI2ZmZTA4YSc7eC5mb250PSc2MDAgMzhweCAnK0Y7eC5maWxsVGV4dCh3cmFwKHgsTChEQVRBLnRpdGxlKSw5NjAsMSlbMF0sVy8yLDg0KTsKICAgIHguZm9udD0nMTQwcHggJytGO3guZmlsbFRleHQoJ/Cfj4YnLFcvMiwyNTApOwogICAgY29uc3QgbGM9e25hdGlvbmFsOlsnI2ZmOTkzMycsJyNkOTczMWEnXSxzdGF0ZTpbJyMzYjgyYzQnLCcjMWQ0ZjkxJ10saW5zdGl0dXRlOlsnIzFmYTM3YScsJyMwZjdhNWEnXX1bdC5sZXZlbF07Y29uc3QgbHQ9VCgnbHZfJyt0LmxldmVsKTt4LmZvbnQ9JzcwMCA0MHB4ICcrRjtjb25zdCBwdz14Lm1lYXN1cmVUZXh0KGx0KS53aWR0aCs5MDsKICAgIGxldCBwZz14LmNyZWF0ZUxpbmVhckdyYWRpZW50KFcvMi1wdy8yLDAsVy8yK3B3LzIsMCk7cGcuYWRkQ29sb3JTdG9wKDAsbGNbMF0pO3BnLmFkZENvbG9yU3RvcCgxLGxjWzFdKTt4LmZpbGxTdHlsZT1wZzt4LmJlZ2luUGF0aCgpO3gucm91bmRSZWN0P3gucm91bmRSZWN0KFcvMi1wdy8yLDI5MCxwdyw3MCwzNSk6eC5yZWN0KFcvMi1wdy8yLDI5MCxwdyw3MCk7eC5maWxsKCk7eC5maWxsU3R5bGU9JyNmZmYnO3guZmlsbFRleHQobHQsVy8yLDMzOSk7CiAgICBjb25zdCBjeD1XLzIsY3k9NTgwLHI9MTcwO3guc2F2ZSgpO3guYmVnaW5QYXRoKCk7eC5hcmMoY3gsY3ksciwwLDcpO3guY2xpcCgpOwogICAgaWYoaW1nKXtjb25zdCBzPU1hdGgubWluKGltZy53aWR0aCxpbWcuaGVpZ2h0KTt4LmRyYXdJbWFnZShpbWcsKGltZy53aWR0aC1zKS8yLChpbWcuaGVpZ2h0LXMpLzIscyxzLGN4LXIsY3ktciwyKnIsMipyKX1lbHNle2xldCBpZz14LmNyZWF0ZUxpbmVhckdyYWRpZW50KGN4LXIsY3ktcixjeCtyLGN5K3IpO2lnLmFkZENvbG9yU3RvcCgwLCcjM2I4MmM0Jyk7aWcuYWRkQ29sb3JTdG9wKDEsJyNlNWE5M2MnKTt4LmZpbGxTdHlsZT1pZzt4LmZpbGxSZWN0KGN4LXIsY3ktciwyKnIsMipyKTt4LmZpbGxTdHlsZT0nI2ZmZic7eC5mb250PSc3MDAgMTkwcHggJytGO3guZmlsbFRleHQoKHQubmFtZXx8Jz8nKS50cmltKCkuY2hhckF0KDApLnRvVXBwZXJDYXNlKCksY3gsY3krNjUpfQogICAgeC5yZXN0b3JlKCk7eC5saW5lV2lkdGg9MTI7eC5zdHJva2VTdHlsZT0nI2U1Yjk0YSc7eC5iZWdpblBhdGgoKTt4LmFyYyhjeCxjeSxyLDAsNyk7eC5zdHJva2UoKTsKICAgIGxldCB5PTgzMDsKICAgIGlmKHQucmFuazw9Myl7Y29uc3QgY29scz17MTpbJyNmZmYzYjAnLCcjYjQ3YTBhJ10sMjpbJyNmYmZiZmInLCcjODY4YjkyJ10sMzpbJyNmM2M3OWEnLCcjOGE0ZDE3J119W3QucmFua107Y29uc3QgbXg9Y3grMTQwLG15PWN5KzE0MCxSPTkwOwogICAgICB4LmZpbGxTdHlsZT0nI2MwMzkyYic7eC5iZWdpblBhdGgoKTt4Lm1vdmVUbyhteC00NCxteS0xNTApO3gubGluZVRvKG14LTYsbXktMTUwKTt4LmxpbmVUbyhteCsyMixteS01NSk7eC5saW5lVG8obXgtMTgsbXktNTUpO3guZmlsbCgpO3guZmlsbFN0eWxlPScjMmM1ZmIzJzt4LmJlZ2luUGF0aCgpO3gubW92ZVRvKG14KzQ0LG15LTE1MCk7eC5saW5lVG8obXgrNixteS0xNTApO3gubGluZVRvKG14LTIyLG15LTU1KTt4LmxpbmVUbyhteCsxOCxteS01NSk7eC5maWxsKCk7CiAgICAgIGxldCBtZz14LmNyZWF0ZUxpbmVhckdyYWRpZW50KG14LVIsbXktUixteCtSLG15K1IpO21nLmFkZENvbG9yU3RvcCgwLGNvbHNbMF0pO21nLmFkZENvbG9yU3RvcCgxLGNvbHNbMV0pO3guZmlsbFN0eWxlPW1nO3guYmVnaW5QYXRoKCk7eC5hcmMobXgsbXksUiwwLDcpO3guZmlsbCgpO3gubGluZVdpZHRoPTY7eC5zdHJva2VTdHlsZT0ncmdiYSgyNTUsMjU1LDI1NSwuNyknO3guc3Ryb2tlKCk7eC5saW5lV2lkdGg9Mzt4LnN0cm9rZVN0eWxlPSdyZ2JhKDAsMCwwLC4yNSknO3guYmVnaW5QYXRoKCk7eC5hcmMobXgsbXksUi0xNCwwLDcpO3guc3Ryb2tlKCk7CiAgICAgIHguZmlsbFN0eWxlPSdyZ2JhKDAsMCwwLC41NSknO3guZm9udD0nOTAwIDEwMHB4IEdlb3JnaWEsc2VyaWYnO3guZmlsbFRleHQoU3RyaW5nKHQucmFuayksbXgsbXkrMzQpfQogICAgeC5maWxsU3R5bGU9JyNmZmYnO3guZm9udD0nODAwIDc4cHggJytGO2NvbnN0IG5sPXdyYXAoeCx0Lm5hbWUsOTQwLDIpO25sLmZvckVhY2goKHMsaSk9PnguZmlsbFRleHQocyxXLzIseSs3MCtpKjkwKSk7eSs9NzArKG5sLmxlbmd0aC0xKSo5MCs2MDsKICAgIHguZmlsbFN0eWxlPSdyZ2JhKDI1NSwyNTUsMjU1LC44NSknO3guZm9udD0nNTAwIDQ0cHggJytGO3guZmlsbFRleHQod3JhcCh4LHQudHJhZGUrJyDCtyAnK3Quc2NoZW1lKyh0LnNjb3JlPycgwrcgJyt0LnNjb3JlOicnKSw5NjAsMSlbMF0sVy8yLHkpO3krPTcwOwogICAgeC5maWxsU3R5bGU9JyNmZmU5YTYnO3guZm9udD0nNTAwIDM4cHggJytGO3dyYXAoeCwn8J+OiSAnK21zZ09mKHQpLDkwMCwzKS5mb3JFYWNoKChzLGkpPT54LmZpbGxUZXh0KHMsVy8yLHkraSo1MikpOwogICAgeC5maWxsU3R5bGU9J3JnYmEoMjU1LDI1NSwyNTUsLjgpJzt4LmZvbnQ9JzUwMCAzMHB4ICcrRjt4LmZpbGxUZXh0KHdyYXAoeCxEQVRBLnZlbnVlLDk2MCwxKVswXSxXLzIsSC00OCk7CiAgICByZXMoYyl9OwogIGlmKHQucGhvdG8pe2NvbnN0IGltPW5ldyBJbWFnZSgpO2ltLm9ubG9hZD0oKT0+ZG9uZShpbSk7aW0ub25lcnJvcj0oKT0+ZG9uZShudWxsKTtpbS5zcmM9dC5waG90b31lbHNlIGRvbmUobnVsbCl9KX0KYXN5bmMgZnVuY3Rpb24gc2hhcmVDYXJkKGlkKXtjb25zdCB0PURBVEEudG9wcGVycy5maW5kKHg9PnguaWQ9PT1pZCk7aWYoIXQpcmV0dXJuO2NvbnN0IGM9YXdhaXQgZHJhd0NhcmQodCk7bGV0IHVybD0nJzt0cnl7dXJsPWMudG9EYXRhVVJMKCdpbWFnZS9wbmcnKX1jYXRjaChlKXt9CiAgc2hvd01vZGFsKGA8aW1nIHNyYz0iJHt1cmx9IiBhbHQ9IiIgc3R5bGU9IndpZHRoOjEwMCU7Ym9yZGVyLXJhZGl1czoxMnB4Ij48cCBzdHlsZT0iY29sb3I6dmFyKC0tbXV0ZSk7Zm9udC1zaXplOi44NXJlbSI+JHtlc2MoVCgnc2hfaGludCcpKX08L3A+PGRpdiBjbGFzcz0icm93Ij48YnV0dG9uIGNsYXNzPSJiIiBvbmNsaWNrPSJkbENhcmQoKSI+4qyHICR7ZXNjKFQoJ3NoX2RsJykpfTwvYnV0dG9uPjxidXR0b24gY2xhc3M9ImIgZyIgb25jbGljaz0ibmF0aXZlU2hhcmUoKSI+8J+TpCAke2VzYyhUKCdzaF9zaGFyZScpKX08L2J1dHRvbj48YnV0dG9uIGNsYXNzPSJiIGciIG9uY2xpY2s9ImNsb3NlTW9kYWwoKSI+JHtlc2MoVCgnc2hfY2xvc2UnKSl9PC9idXR0b24+PC9kaXY+YCk7CiAgYy50b0Jsb2IoYj0+e2xhc3RCbG9iPXtiLG5hbWU6KHQubmFtZXx8J3RvcHBlcicpLnJlcGxhY2UoL1xXKy9nLCdfJykrJy5wbmcnLHRleHQ6TChEQVRBLnRpdGxlKSsnIOKAlCAnK21zZ09mKHQpfX0sJ2ltYWdlL3BuZycpfQpmdW5jdGlvbiBkbENhcmQoKXtpZighbGFzdEJsb2IpcmV0dXJuO3RyeXtjb25zdCBhPWRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2EnKTthLmhyZWY9VVJMLmNyZWF0ZU9iamVjdFVSTChsYXN0QmxvYi5iKTthLmRvd25sb2FkPWxhc3RCbG9iLm5hbWU7ZG9jdW1lbnQuYm9keS5hcHBlbmRDaGlsZChhKTthLmNsaWNrKCk7YS5yZW1vdmUoKX1jYXRjaChlKXt9fQphc3luYyBmdW5jdGlvbiBuYXRpdmVTaGFyZSgpe2lmKCFsYXN0QmxvYilyZXR1cm47dHJ5e2NvbnN0IGY9bmV3IEZpbGUoW2xhc3RCbG9iLmJdLGxhc3RCbG9iLm5hbWUse3R5cGU6J2ltYWdlL3BuZyd9KTtpZihuYXZpZ2F0b3IuY2FuU2hhcmUmJm5hdmlnYXRvci5jYW5TaGFyZSh7ZmlsZXM6W2ZdfSkpYXdhaXQgbmF2aWdhdG9yLnNoYXJlKHtmaWxlczpbZl0sdGl0bGU6TChEQVRBLnRpdGxlKSx0ZXh0Omxhc3RCbG9iLnRleHR9KTtlbHNlIGF3YWl0IG5hdmlnYXRvci5zaGFyZSh7dGl0bGU6TChEQVRBLnRpdGxlKSx0ZXh0Omxhc3RCbG9iLnRleHQsdXJsOmxvY2F0aW9uLmhyZWZ9KX1jYXRjaChlKXt9fQpyb3V0ZSgpOwo8L3NjcmlwdD4KPC9ib2R5Pgo8L2h0bWw+Cg==';
+function buildTopperPage(){
+  const tpl=new TextDecoder().decode(Uint8Array.from(atob(TOP_TPL_B64),c=>c.charCodeAt(0)));
+  const keys=['tp_h','lv_all','lv_national','lv_state','lv_institute','tier_1','tier_2','tier_3','tp_trade_all','tp_search','tp_back','tp_default_msg','tp_none','sh_card','sh_link','sh_copied','sh_dl','sh_share','sh_hint','sh_close'];
+  const pick=o=>{const r={};keys.forEach(k=>{if(o[k]!=null)r[k]=o[k]});return r};
+  const data={title:S.settings.title,venue:S.settings.venue,code:S.settings.code,toppers:tpSorted().map(t=>({id:t.id,name:t.name,trade:t.trade,scheme:t.scheme,level:t.level,rank:t.rank,score:t.score||'',message:t.message||'',photo:t.photo||''})),i18n:{en:pick(I.en),hi:pick(I.hi),ml:pick(I.ml)}};
+  const json=JSON.stringify(data).replace(/</g,'\\u003c');
+  const ttl=esc(L(S.settings.title)+' — Toppers'),desc=esc('Meet the National, State and Institute toppers of '+L(S.settings.title)+' at '+S.settings.venue);
+  return tpl.split('__OGTITLE__').join(ttl).split('__OGDESC__').join(desc).split('__TITLE__').join(ttl).replace('/*__DATA__*/',()=>'const DATA='+json+';')}
+function exportTopperPage(){const html=buildTopperPage();window.__tpHtml=html;
+  modal(`<h3>🌐 ${T('tp_export')}</h3><p>${T('tp_exp_note')}</p><p><b>${S.toppers.length}</b> · ${(html.length/1024).toFixed(0)} KB</p><div class="row"><button onclick="dlTpPage()">${T('tp_exp_dl')}</button><button class="ghost" onclick="copyTpPage()">${T('tp_exp_copy')}</button><button class="ghost" onclick="closeModal()">${T('close')}</button></div><div id="tpxMsg"></div>`)}
+function dlTpPage(){try{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([window.__tpHtml],{type:'text/html'}));a.download=S.settings.code+'_toppers.html';document.body.appendChild(a);a.click();a.remove()}catch(e){}$('#tpxMsg').innerHTML='<div class="msg info">If nothing downloaded (e.g. in the preview), use Copy HTML and save it as a .html file.</div>'}
+function copyTpPage(){let ok=false;try{navigator.clipboard.writeText(window.__tpHtml);ok=true}catch(e){}$('#tpxMsg').innerHTML=`<div class="msg ${ok?'ok':'info'}">${ok?T('tp_exp_done'):'Clipboard blocked here — use Download in the hosted file.'}</div>`}
+
+/* ---- manage ---- */
+function tpManage(){return `<section class="card"><div><button class="ghost sm" onclick="tpMode='grid';render()">← ${T('tp_back')}</button></div><h2>⚙️ ${T('tp_manage')}</h2><p><button onclick="exportTopperPage()">🌐 ${T('tp_export')}</button></p><div id="tpMsg"></div>
+ <form onsubmit="saveTp(event)"><input type="hidden" id="m_id">
+ <div class="row"><div><label>${T('tp_level')}</label><select id="m_level">${LV.map(l=>`<option value="${l}">${T('lv_'+l)}</option>`).join('')}</select></div>
+ <div><label>${T('tp_rank')}</label><select id="m_rank"><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></div>
+ <div style="flex:2 1 300px"><label>${T('tp_trainee')}</label><input id="m_trainee" list="tpl" autocomplete="off"><datalist id="tpl">${trainees().map(u=>`<option value="${esc(u.name+' — '+u.reg)}">${esc(u.trade)}</option>`).join('')}</datalist></div></div>
+ <label style="font-weight:500"><input type="checkbox" id="m_manual" style="width:auto" onchange="$('#m_man').style.display=this.checked?'flex':'none'"> ${T('tp_manual')}</label>
+ <div class="row" id="m_man" style="display:none"><div><label>${T('name')}</label><input id="m_name"></div><div><label>${T('trade')}</label><input id="m_trade" list="tl3"><datalist id="tl3">${allTrades().map(t=>`<option value="${esc(t)}">`).join('')}</datalist></div><div><label>${T('scheme')}</label><select id="m_scheme"><option>CTS</option><option>CITS</option><option>Other</option></select></div></div>
+ <div class="row"><div><label>${T('tp_score')}</label><input id="m_score"></div><div style="flex:2 1 300px"><label>${T('tp_msg')}</label><input id="m_msg"></div></div>
+ <label>${T('tp_photo')}</label><div class="row" style="align-items:center"><input type="file" accept="image/*" onchange="readTpPhoto(this)" style="flex:2 1 260px"><div id="m_prev" style="flex:0 0 70px"></div><button type="button" class="ghost sm" style="flex:0 0 auto" onclick="tpPhoto='';updTpPrev()">${T('tp_rm_photo')}</button></div>
+ <p><button>${T('save')}</button></p></form>
+ <p style="color:var(--mute)">${T('tp_noshow_note')}</p>
+ <div class="scroll"><table><tr><th></th><th>${T('tp_level')}</th><th>${T('trade')}</th><th>${T('name')}</th><th>${T('tp_noshow')}</th><th></th></tr>
+ ${tpSorted().map(t=>`<tr><td>${medalSvg(t.rank,24)}</td><td>${T('lv_'+t.level)}</td><td>${esc(t.trade)} · ${esc(t.scheme)}</td><td>${esc(t.name)}</td><td><input type="checkbox" style="width:auto" ${tpNoShow(t)?'checked':''} onchange="toggleTpNoShow(${t.id})"></td><td style="white-space:nowrap"><button class="ghost sm" onclick="editTp(${t.id})">${T('edit')}</button> <button class="danger sm" onclick="delTp(${t.id})">${T('del')}</button></td></tr>`).join('')||`<tr><td colspan="6">${T('nodata')}</td></tr>`}</table></div></section>`}
+function updTpPrev(){const e=$('#m_prev');if(e)e.innerHTML=tpPhoto?`<img src="${tpPhoto}" style="width:60px;height:60px;border-radius:50%;object-fit:cover">`:''}
+function readTpPhoto(inp){const f=inp.files&&inp.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const img=new Image();img.onload=()=>{const s=Math.min(img.width,img.height),sz=420;const c=document.createElement('canvas');c.width=c.height=sz;c.getContext('2d').drawImage(img,(img.width-s)/2,(img.height-s)/2,s,s,0,0,sz,sz);tpPhoto=c.toDataURL('image/jpeg',.8);updTpPrev()};img.src=r.result};r.readAsDataURL(f)}
+function saveTp(e){e.preventDefault();if(!canTopper())return;const msg=m=>{$('#tpMsg').innerHTML=`<div class="msg err">${esc(m)}</div>`};
+  const rec={level:$('#m_level').value,rank:+$('#m_rank').value,score:$('#m_score').value.trim(),message:$('#m_msg').value.trim(),photo:tpPhoto};
+  if($('#m_manual').checked){rec.name=$('#m_name').value.trim();rec.trade=$('#m_trade').value.trim();rec.scheme=$('#m_scheme').value;rec.key='';if(!rec.name||!rec.trade){msg(T('need_all'));return}}
+  else{const reg=($('#m_trainee').value.split(' — ')[1]||$('#m_trainee').value).trim();const u=trainees().find(x=>String(x.reg).toLowerCase()===reg.toLowerCase());if(!u){msg(T('need_all'));return}rec.key=ukey(u);rec.name=u.name;rec.scheme=u.scheme;rec.trade=u.trade}
+  const id=+$('#m_id').value;if(id){const i=S.toppers.findIndex(x=>x.id===id);if(i>=0){rec.id=id;if(!rec.key&&S.toppers[i].noShow)rec.noShow=true;S.toppers[i]=rec}}else{rec.id=Date.now();S.toppers.push(rec)}
+  tpPhoto='';persist();render()}
+function editTp(id){const t=S.toppers.find(x=>x.id===id);if(!t)return;$('#m_id').value=t.id;$('#m_level').value=t.level;$('#m_rank').value=String(t.rank);$('#m_score').value=t.score||'';$('#m_msg').value=t.message||'';tpPhoto=t.photo||'';updTpPrev();
+  if(t.key){$('#m_manual').checked=false;$('#m_man').style.display='none';$('#m_trainee').value=t.name+' — '+(t.key.slice(2))}else{$('#m_manual').checked=true;$('#m_man').style.display='flex';$('#m_name').value=t.name;$('#m_trade').value=t.trade;$('#m_scheme').value=t.scheme}window.scrollTo(0,0)}
+function delTp(id){if(!canTopper())return;S.toppers=S.toppers.filter(x=>x.id!==id);persist();render()}
+function toggleTpNoShow(id){const t=S.toppers.find(x=>x.id===id);if(!t)return;const u=tpUser(t);if(u)u.noShow=!u.noShow;else t.noShow=!t.noShow;persist()}
+function toggleNoShow(k){const u=S.users.find(x=>ukey(x)===k);if(!u)return;u.noShow=!u.noShow;persist()}
+
+/* ---- projection mode (ceremony) ---- */
+let proj=null,soundOn=true,actx=null;
+function playSound(kind){if(!soundOn)return;try{const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;actx=actx||new AC();if(actx.state==='suspended')actx.resume();const t0=actx.currentTime;
+  const seqs={intro:[392,523.25],3:[523.25,659.25,783.99],2:[523.25,659.25,783.99,1046.5],1:[523.25,659.25,783.99,1046.5,1318.5,1568]};const seq=seqs[kind]||seqs[3];
+  seq.forEach((f,i)=>{const o=actx.createOscillator(),g=actx.createGain();o.type=kind==1?'triangle':'sine';o.frequency.value=f;const s=t0+i*.12;g.gain.setValueAtTime(0,s);g.gain.linearRampToValueAtTime(.16,s+.02);g.gain.exponentialRampToValueAtTime(.001,s+(kind==1?.9:.55));o.connect(g);g.connect(actx.destination);o.start(s);o.stop(s+1)})}catch(e){}}
+function projGroups(level,trade){const map=new Map();
+  S.toppers.filter(t=>(!level||t.level===level)&&(!trade||t.trade===trade)&&t.rank>=1&&t.rank<=3&&!tpNoShow(t)).forEach(t=>{const k=t.level+'|'+t.scheme+'|'+t.trade;if(!map.has(k))map.set(k,{level:t.level,scheme:t.scheme,trade:t.trade,items:[]});const g=map.get(k);if(!g.items.some(x=>x.rank===t.rank))g.items.push(t)});
+  return [...map.values()].sort((a,b)=>LV.indexOf(a.level)-LV.indexOf(b.level)||a.trade.localeCompare(b.trade)).map(g=>{g.items.sort((a,b)=>b.rank-a.rank);return g})}
+function projDialog(){modal(`<h3>📽️ ${T('tp_project')}</h3><label>${T('tp_level')}</label><select id="pj_level"><option value="">${T('lv_all')}</option>${LV.map(l=>`<option value="${l}" ${l===tpLevel?'selected':''}>${T('lv_'+l)}</option>`).join('')}</select>
+  <label>${T('trade')}</label><select id="pj_trade"><option value="">${T('tp_trade_all')}</option>${tpTradesList().map(t=>`<option ${t===tpTrade?'selected':''}>${esc(t)}</option>`).join('')}</select>
+  <label style="font-weight:500"><input type="checkbox" id="pj_snd" style="width:auto" checked> 🔊 ${T('tp_sound')}</label><p style="color:var(--mute)">${T('tp_noshow_note')}</p><div id="pj_err"></div>
+  <div class="row"><button onclick="startProj()">${T('tp_start')}</button><button class="ghost" onclick="closeModal()">${T('close')}</button></div>`)}
+function startProj(){const g=projGroups($('#pj_level').value,$('#pj_trade').value);soundOn=$('#pj_snd').checked;
+  if(!g.length){$('#pj_err').innerHTML=`<div class="msg err">${T('tp_none')}</div>`;return}
+  closeModal();proj={groups:g,gi:0,step:0,done:false};try{const e=document.documentElement;if(e.requestFullscreen)e.requestFullscreen().catch(()=>{})}catch(_){}
+  let ov=document.getElementById('proj');if(!ov){ov=document.createElement('div');ov.id='proj';document.body.appendChild(ov)}
+  document.addEventListener('keydown',projKey);playSound('intro');renderProj()}
+function projKey(e){if(!proj)return;if(['ArrowRight',' ','Enter','PageDown'].includes(e.key)){e.preventDefault();projNext()}else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();projPrev()}else if(e.key==='Escape')projExit()}
+function projNext(){if(!proj)return;if(proj.done){projExit();return}const g=proj.groups[proj.gi];
+  if(proj.step<g.items.length){proj.step++;playSound(g.items[proj.step-1].rank)}else if(proj.gi<proj.groups.length-1){proj.gi++;proj.step=0;playSound('intro')}else{proj.done=true;playSound(1)}renderProj()}
+function projPrev(){if(!proj)return;if(proj.done){proj.done=false;renderProj();return}if(proj.step>0)proj.step--;else if(proj.gi>0){proj.gi--;proj.step=proj.groups[proj.gi].items.length}renderProj()}
+function projExit(){proj=null;document.removeEventListener('keydown',projKey);const ov=document.getElementById('proj');if(ov)ov.remove();try{if(document.fullscreenElement)document.exitFullscreen()}catch(_){}}
+function projSound(){soundOn=!soundOn;renderProj()}
+function renderProj(){const ov=document.getElementById('proj');if(!ov||!proj)return;
+  const sparks=Array.from({length:36},(_,i)=>`<i class="spark" style="left:${(i*97)%100}%;top:${(i*53)%100}%;animation-delay:${(i%9)*.45}s;width:${4+i%5}px;height:${4+i%5}px"></i>`).join('');
+  let main='',foot='',title='';
+  if(proj.done){main=`<div class="pfinal pop">🏆<br>${T('tp_final')}</div>`}
+  else{const g=proj.groups[proj.gi];const rev=g.items.slice(0,proj.step);const last=rev[rev.length-1];title=`🏆 ${T('lv_'+g.level)} — ${esc(g.trade)} <small>(${esc(g.scheme)})</small>`;
+    const col=r=>{if(!g.items.some(x=>x.rank===r))return '';const t=rev.find(x=>x.rank===r);
+      return `<div class="pcol">${t?`<div class="pcard ${t===last?'pop':''}"><div class="tph huge">${tpAvatar(t)}</div><div class="pname">${esc(t.name)}</div><div class="psub">${medalSvg(r,92)}</div>${t.score?`<div class="psub2">${esc(t.score)}</div>`:''}</div>`:`<div class="pcard ghostc">?</div>`}<div class="pbase pb${r}">${r}</div></div>`};
+    main=`<div class="podium">${col(2)}${col(1)}${col(3)}</div>`;foot=last?`<div class="pmsg pop" key="${last.id}">🎉 ${esc(tpMsg(last))}</div>`:''}
+  ov.innerHTML=`<div class="rays"></div>${sparks}<div class="ptop"><div class="ptitle">${title}</div><div class="pctl"><button class="ghost" onclick="projSound()">${soundOn?'🔊':'🔈'}</button><button class="ghost" onclick="projExit()">✕ ${T('tp_exit')}</button></div></div>
+  <div class="pmain" onclick="projNext()">${main}</div><div class="pfoot">${foot}<div class="phint"><button class="ghost" onclick="projPrev()">◀</button> ${T('tp_hint')} · ${proj.gi+1}/${proj.groups.length} <button class="ghost" onclick="projNext()">▶</button></div></div>`}
+
+
+/* ============ CHROME CONTROLS ============ */
+document.querySelectorAll('[data-lang]').forEach(b=>b.onclick=()=>{lang=b.dataset.lang;document.querySelectorAll('[data-lang]').forEach(x=>x.classList.toggle('on',x===b));render()});
+let fsStep=0;document.querySelectorAll('[data-fs]').forEach(b=>b.onclick=()=>{const d=+b.dataset.fs;fsStep=d===0?0:Math.max(-2,Math.min(4,fsStep+d));document.documentElement.style.setProperty('--fs',(16+fsStep*2)+'px');document.querySelectorAll('[data-fs]').forEach(x=>x.classList.toggle('on',+x.dataset.fs===0&&fsStep===0))});
+$('#themeSel').onchange=e=>{document.body.dataset.theme=e.target.value;try{localStorage.setItem('kds_theme',e.target.value)}catch(_){}};
+try{const t=localStorage.getItem('kds_theme');if(t)document.body.dataset.theme=t}catch(e){}
+setInterval(()=>{if(view==='pass')drawQR()},1000);
+initFirebase();render();
+</script>
+</body>
+</html>
