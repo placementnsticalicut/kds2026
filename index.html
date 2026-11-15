@@ -122,7 +122,6 @@ footer{position:relative;z-index:1;text-align:center;color:var(--mute);font-size
 <header>
   <h1><span id="hTitle"></span><small id="hSub"></small></h1>
   <div class="tools">
-    <select id="themeSel" aria-label="Theme"></select>
     <div class="seg" role="group" aria-label="Font size"><button data-fs="-1">A-</button><button data-fs="0" class="on">A</button><button data-fs="1">A+</button></div>
     <div class="seg" role="group" aria-label="Language"><button data-lang="en" class="on">EN</button><button data-lang="hi">हिन्दी</button><button data-lang="ml">മലയാളം</button></div>
     <span id="userBox"></span>
@@ -141,7 +140,14 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
 /* ============ CONFIG ============ */
 // Optional live multi-user sync. Fill with your Firebase web config to enable Firestore (doc: portal/kds2026).
 // Leave null to run fully offline with browser localStorage.
-const FIREBASE_CONFIG = null;
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyALXt1Q_Fw3QoGrGOqvCVNATj1eAiaHtEo",
+  authDomain: "kaushal-deekshant-samaro-1e5a3.firebaseapp.com",
+  projectId: "kaushal-deekshant-samaro-1e5a3",
+  storageBucket: "kaushal-deekshant-samaro-1e5a3.firebasestorage.app",
+  messagingSenderId: "278250416089",
+  appId: "1:278250416089:web:18119269a821b559d4dbc8"
+};
 /* e.g. {apiKey:"...",authDomain:"...",projectId:"...",appId:"..."} */
 const STORE_KEY = 'kds2026_nsti_calicut_v3';
 
@@ -230,7 +236,7 @@ const L=o=>typeof o==='string'?o:(o[lang]||o.en||'');
 /* ===== v2: event settings, extra i18n, helpers ===== */
 const EVENT_DEFAULTS={
  title:{en:'Kaushal Deekshant Samaroh 2026',hi:'कौशल दीक्षांत समारोह 2026',ml:'കൗശൽ ദീക്ഷാന്ത് സമാരോഹ് 2026'},
- code:'KDS26',schedImg:'',convDate:'21 November 2026',dryDate:'20 November 2026',venue:'NSTI Calicut, Govindapuram, Kozhikode',inviteParents:true,
+ code:'KDS26',schedImg:'',themeMode:'fixed',theme:'light',themeList:['light','dark','royal','mint'],convDate:'21 November 2026',dryDate:'20 November 2026',venue:'NSTI Calicut, Govindapuram, Kozhikode',inviteParents:true,
  liveNote:{en:"Live-linked with the national ceremony at IGP Lucknow, attended by the Hon'ble Prime Minister, 5:30 PM – 7:00 PM.",hi:'आईजीपी लखनऊ में माननीय प्रधानमंत्री की उपस्थिति में आयोजित राष्ट्रीय समारोह से सीधा जुड़ाव, सायं 5:30 से 7:00 बजे।',ml:'ബഹുമാനപ്പെട്ട പ്രധാനമന്ത്രി പങ്കെടുക്കുന്ന ഐജിപി ലഖ്നൗവിലെ ദേശീയ ചടങ്ങുമായി തത്സമയം ബന്ധിപ്പിക്കുന്നു, വൈകിട്ട് 5:30 മുതൽ 7:00 വരെ.'},
  certNotice:{en:'Certificates will not be handed over at the convocation. They will be distributed separately at the institute level; the date, time and counter will be intimated by NSTI Calicut.',hi:'प्रमाणपत्र दीक्षांत समारोह में नहीं दिए जाएँगे। इनका वितरण संस्थान स्तर पर अलग से होगा; तिथि, समय व काउंटर की सूचना एनएसटीआई कालीकट द्वारा दी जाएगी।',ml:'സർട്ടിഫിക്കറ്റുകൾ ദീക്ഷാന്ത് സമാരോഹിൽ നൽകുന്നതല്ല. അവ സ്ഥാപന തലത്തിൽ പ്രത്യേകമായി വിതരണം ചെയ്യും; തീയതി, സമയം, കൗണ്ടർ എന്നിവ എൻഎസ്ടിഐ കോഴിക്കോട് അറിയിക്കും.'},
  extraNote:{en:'',hi:'',ml:''}};
@@ -243,7 +249,7 @@ Object.assign(I.en,{
  a_event:'Event & Invitation',a_trainees:'Trainee Roster',a_staff:'Staff Logins',a_reports:'Reports',
  ev_title:'Event title',ev_code:'Short code (used in pass ID)',ev_conv:'Convocation date',ev_dry:'Dry run date',ev_venue:'Venue',ev_live:'Live-link note (leave blank to hide)',ev_cert:'Certificate distribution notice (shown in invitation)',ev_extra:'Extra invitation note (optional)',
  ev_parents:'Invite parents/guardians (controls invitation text, guidelines, form field and counter)',ev_newyear:'Start new year',ev_newyear_note:'Clears the trainee roster, confirmations and certificate records. Staff logins, committee, agenda and settings are kept. Export reports first.',ev_newyear_btn:'Clear roster & confirmations',ev_sure:'⚠ Click again to confirm',
- pick_name:'Select your name',not_listed:'My name is not in the list (enter manually)',dob_verify:'Date of Birth (to verify it is you)',dob_mismatch:'Date of birth does not match the records for the selected trainee.',manual_note:'Manual entry — the office will verify this record.',no_roster:'No trainee list uploaded for this trade yet — choose "not in the list" to enter manually.',pick_first:'Select scheme and trade first.',
+ pick_name:'Select your name',not_listed:'My name is not in the list (enter manually)',dob_verify:'Date of Birth (DD-MM-YYYY)',dob_mismatch:'Date of birth does not match the records for the selected trainee.',manual_note:'Manual entry — the office will verify this record.',no_roster:'No trainee list uploaded for this trade yet — choose "not in the list" to enter manually.',pick_first:'Select scheme and trade first.',
  tr_h:'Trainee Roster (master list)',tr_fmt:'Standard upload format (CSV, one trainee per row)',tr_cols:'Reg No, Name, Scheme (CTS/CITS/Other), Trade, Mobile (10 digits), DOB (DD-MM-YYYY), Batch (optional)',tr_tpl:'Get template',tr_file:'Upload CSV file',tr_paste:'…or paste rows copied from Excel/CSV',tr_merge:'Import (merges by Reg No.)',tr_count:'{n} trainees in roster',tr_search:'Search name / reg no.',tr_add:'Add / update one trainee',tr_export:'Export roster',
  cd_h:'Certificate Distribution Desk (institute level)',cd_pending:'Pending',cd_ready:'Ready',cd_self:'Collected – Trainee',cd_parent:'Collected – Parent/Guardian',cd_auth:'Collected – Authorised person',cd_sum:'Collected {c} · Ready {r} · Pending {p}',cd_on:'on',
  manual:'Manual',staff_h:'Add / update staff login',a_cert:'Certificates',all_status:'All statuses',participated:'Confirmed?',ev_saved:'Event details saved.'});
@@ -256,7 +262,7 @@ Object.assign(I.hi,{
  a_event:'कार्यक्रम व निमंत्रण',a_trainees:'प्रशिक्षु सूची',a_staff:'स्टाफ लॉगिन',a_reports:'रिपोर्ट',
  ev_title:'कार्यक्रम का शीर्षक',ev_code:'संक्षिप्त कोड (पास आईडी हेतु)',ev_conv:'दीक्षांत तिथि',ev_dry:'ड्राई रन तिथि',ev_venue:'स्थान',ev_live:'लाइव-लिंक सूचना (छिपाने हेतु खाली छोड़ें)',ev_cert:'प्रमाणपत्र वितरण सूचना (निमंत्रण में दिखेगी)',ev_extra:'अतिरिक्त निमंत्रण सूचना (वैकल्पिक)',
  ev_parents:'माता-पिता/अभिभावकों को आमंत्रित करें (निमंत्रण, दिशानिर्देश, फॉर्म व काउंटर)',ev_newyear:'नया वर्ष शुरू करें',ev_newyear_note:'प्रशिक्षु सूची, पुष्टियाँ व प्रमाणपत्र रिकॉर्ड हटेंगे। स्टाफ लॉगिन, समिति, कार्यक्रम व सेटिंग्स सुरक्षित रहेंगे। पहले रिपोर्ट निर्यात करें।',ev_newyear_btn:'सूची व पुष्टियाँ हटाएँ',ev_sure:'⚠ पुष्टि हेतु पुनः क्लिक करें',
- pick_name:'अपना नाम चुनें',not_listed:'मेरा नाम सूची में नहीं है (हाथ से भरें)',dob_verify:'जन्म तिथि (आपकी पहचान हेतु)',dob_mismatch:'चयनित प्रशिक्षु के रिकॉर्ड से जन्म तिथि मेल नहीं खाती।',manual_note:'हाथ से प्रविष्टि — कार्यालय इसका सत्यापन करेगा।',no_roster:'इस ट्रेड की प्रशिक्षु सूची अभी अपलोड नहीं है — "सूची में नहीं" चुनकर हाथ से भरें।',pick_first:'पहले योजना व ट्रेड चुनें।',
+ pick_name:'अपना नाम चुनें',not_listed:'मेरा नाम सूची में नहीं है (हाथ से भरें)',dob_verify:'जन्म तिथि (DD-MM-YYYY)',dob_mismatch:'चयनित प्रशिक्षु के रिकॉर्ड से जन्म तिथि मेल नहीं खाती।',manual_note:'हाथ से प्रविष्टि — कार्यालय इसका सत्यापन करेगा।',no_roster:'इस ट्रेड की प्रशिक्षु सूची अभी अपलोड नहीं है — "सूची में नहीं" चुनकर हाथ से भरें।',pick_first:'पहले योजना व ट्रेड चुनें।',
  tr_h:'प्रशिक्षु सूची (मास्टर लिस्ट)',tr_fmt:'मानक अपलोड प्रारूप (CSV, प्रति पंक्ति एक प्रशिक्षु)',tr_cols:'Reg No, Name, Scheme (CTS/CITS/Other), Trade, Mobile (10 अंक), DOB (DD-MM-YYYY), Batch (वैकल्पिक)',tr_tpl:'टेम्पलेट लें',tr_file:'CSV फ़ाइल अपलोड करें',tr_paste:'…या Excel/CSV से कॉपी की पंक्तियाँ यहाँ चिपकाएँ',tr_merge:'आयात करें (Reg No. से मर्ज)',tr_count:'सूची में {n} प्रशिक्षु',tr_search:'नाम / रजि. नं. खोजें',tr_add:'एक प्रशिक्षु जोड़ें / अद्यतन करें',tr_export:'सूची निर्यात करें',
  cd_h:'प्रमाणपत्र वितरण डेस्क (संस्थान स्तर)',cd_pending:'लंबित',cd_ready:'तैयार',cd_self:'प्राप्त – प्रशिक्षु',cd_parent:'प्राप्त – माता-पिता/अभिभावक',cd_auth:'प्राप्त – अधिकृत व्यक्ति',cd_sum:'प्राप्त {c} · तैयार {r} · लंबित {p}',cd_on:'को',
  manual:'हस्त-प्रविष्टि',staff_h:'स्टाफ लॉगिन जोड़ें / अद्यतन करें',a_cert:'प्रमाणपत्र',all_status:'सभी स्थितियाँ',participated:'पुष्टि?',ev_saved:'कार्यक्रम विवरण सहेजे गए।'});
@@ -269,7 +275,7 @@ Object.assign(I.ml,{
  a_event:'പരിപാടി & ക്ഷണം',a_trainees:'ട്രെയിനി പട്ടിക',a_staff:'സ്റ്റാഫ് ലോഗിൻ',a_reports:'റിപ്പോർട്ടുകൾ',
  ev_title:'പരിപാടിയുടെ തലക്കെട്ട്',ev_code:'ചുരുക്ക കോഡ് (പാസ് ഐഡിക്ക്)',ev_conv:'ദീക്ഷാന്ത് തീയതി',ev_dry:'ഡ്രൈ റൺ തീയതി',ev_venue:'വേദി',ev_live:'ലൈവ്-ലിങ്ക് കുറിപ്പ് (മറയ്ക്കാൻ ഒഴിച്ചിടുക)',ev_cert:'സർട്ടിഫിക്കറ്റ് വിതരണ അറിയിപ്പ് (ക്ഷണത്തിൽ കാണിക്കും)',ev_extra:'അധിക ക്ഷണക്കുറിപ്പ് (ഐച്ഛികം)',
  ev_parents:'രക്ഷിതാക്കളെ ക്ഷണിക്കുക (ക്ഷണം, നിർദ്ദേശങ്ങൾ, ഫോം, കൗണ്ടർ)',ev_newyear:'പുതിയ വർഷം ആരംഭിക്കുക',ev_newyear_note:'ട്രെയിനി പട്ടിക, സ്ഥിരീകരണങ്ങൾ, സർട്ടിഫിക്കറ്റ് രേഖകൾ എന്നിവ നീക്കും. സ്റ്റാഫ് ലോഗിൻ, കമ്മിറ്റി, അജണ്ട, സെറ്റിംഗ്സ് നിലനിൽക്കും. ആദ്യം റിപ്പോർട്ട് എക്സ്പോർട്ട് ചെയ്യുക.',ev_newyear_btn:'പട്ടികയും സ്ഥിരീകരണങ്ങളും നീക്കുക',ev_sure:'⚠ സ്ഥിരീകരിക്കാൻ വീണ്ടും ക്ലിക്ക് ചെയ്യുക',
- pick_name:'നിങ്ങളുടെ പേര് തിരഞ്ഞെടുക്കുക',not_listed:'എന്റെ പേര് പട്ടികയിലില്ല (കൈകൊണ്ട് നൽകുക)',dob_verify:'ജനന തീയതി (നിങ്ങളാണെന്ന് ഉറപ്പാക്കാൻ)',dob_mismatch:'തിരഞ്ഞെടുത്ത ട്രെയിനിയുടെ രേഖയുമായി ജനന തീയതി യോജിക്കുന്നില്ല.',manual_note:'കൈകൊണ്ടുള്ള എൻട്രി — ഓഫീസ് പരിശോധിക്കും.',no_roster:'ഈ ട്രേഡിന്റെ ട്രെയിനി പട്ടിക ഇതുവരെ അപ്‌ലോഡ് ചെയ്തിട്ടില്ല — "പട്ടികയിലില്ല" തിരഞ്ഞെടുത്ത് നൽകുക.',pick_first:'ആദ്യം സ്കീമും ട്രേഡും തിരഞ്ഞെടുക്കുക.',
+ pick_name:'നിങ്ങളുടെ പേര് തിരഞ്ഞെടുക്കുക',not_listed:'എന്റെ പേര് പട്ടികയിലില്ല (കൈകൊണ്ട് നൽകുക)',dob_verify:'ജനന തീയതി (DD-MM-YYYY)',dob_mismatch:'തിരഞ്ഞെടുത്ത ട്രെയിനിയുടെ രേഖയുമായി ജനന തീയതി യോജിക്കുന്നില്ല.',manual_note:'കൈകൊണ്ടുള്ള എൻട്രി — ഓഫീസ് പരിശോധിക്കും.',no_roster:'ഈ ട്രേഡിന്റെ ട്രെയിനി പട്ടിക ഇതുവരെ അപ്‌ലോഡ് ചെയ്തിട്ടില്ല — "പട്ടികയിലില്ല" തിരഞ്ഞെടുത്ത് നൽകുക.',pick_first:'ആദ്യം സ്കീമും ട്രേഡും തിരഞ്ഞെടുക്കുക.',
  tr_h:'ട്രെയിനി പട്ടിക (മാസ്റ്റർ ലിസ്റ്റ്)',tr_fmt:'സ്റ്റാൻഡേർഡ് അപ്‌ലോഡ് ഫോർമാറ്റ് (CSV, ഒരു വരിയിൽ ഒരു ട്രെയിനി)',tr_cols:'Reg No, Name, Scheme (CTS/CITS/Other), Trade, Mobile (10 അക്കം), DOB (DD-MM-YYYY), Batch (ഐച്ഛികം)',tr_tpl:'ടെംപ്ലേറ്റ് എടുക്കുക',tr_file:'CSV ഫയൽ അപ്‌ലോഡ് ചെയ്യുക',tr_paste:'…അല്ലെങ്കിൽ Excel/CSV-യിൽ നിന്ന് പകർത്തിയ വരികൾ ഇവിടെ ഒട്ടിക്കുക',tr_merge:'ഇമ്പോർട്ട് (Reg No. പ്രകാരം ലയിപ്പിക്കും)',tr_count:'പട്ടികയിൽ {n} ട്രെയിനികൾ',tr_search:'പേര് / റെജി. നം. തിരയുക',tr_add:'ഒരു ട്രെയിനിയെ ചേർക്കുക / പുതുക്കുക',tr_export:'പട്ടിക എക്സ്പോർട്ട്',
  cd_h:'സർട്ടിഫിക്കറ്റ് വിതരണ ഡെസ്ക് (സ്ഥാപന തലം)',cd_pending:'ബാക്കി',cd_ready:'തയ്യാർ',cd_self:'കൈപ്പറ്റി – ട്രെയിനി',cd_parent:'കൈപ്പറ്റി – രക്ഷിതാവ്',cd_auth:'കൈപ്പറ്റി – അധികൃത വ്യക്തി',cd_sum:'കൈപ്പറ്റി {c} · തയ്യാർ {r} · ബാക്കി {p}',cd_on:'തീയതി',
  manual:'കൈകൊണ്ട്',staff_h:'സ്റ്റാഫ് ലോഗിൻ ചേർക്കുക / പുതുക്കുക',a_cert:'സർട്ടിഫിക്കറ്റ്',all_status:'എല്ലാ നിലകളും',participated:'സ്ഥിരീകരിച്ചോ?',ev_saved:'പരിപാടി വിവരങ്ങൾ സേവ് ചെയ്തു.'});
@@ -330,6 +336,13 @@ Object.assign(I.ml,{tp_tab:'ടോപ്പർമാർ',tp_h:'നമ്മു�
  tp_trade_all:'എല്ലാ ട്രേഡുകളും',tp_search:'പേര് തിരയുക',tp_back:'തിരികെ',tp_manage:'ടോപ്പർമാരെ നിയന്ത്രിക്കുക',tp_project:'പ്രൊജക്ഷൻ മോഡ്',tp_none:'ടോപ്പർമാരെ ഇതുവരെ പ്രഖ്യാപിച്ചിട്ടില്ല.',tp_default_msg:'അഭിനന്ദനങ്ങൾ, {name}! {level} — {trade}. ഞങ്ങൾക്ക് അഭിമാനം!',
  tp_level:'വിഭാഗം',tp_rank:'സ്ഥാനം',tp_trainee:'ട്രെയിനി (പേര് അല്ലെങ്കിൽ റെജി. നം. ടൈപ്പ് ചെയ്യുക)',tp_manual:'പട്ടികയിലില്ല — കൈകൊണ്ട് നൽകുക',tp_score:'മാർക്ക് / സ്കോർ (ഐച്ഛികം)',tp_msg:'അഭിനന്ദന സന്ദേശം (ഐച്ഛികം)',tp_photo:'ഫോട്ടോ (ഐച്ഛികം)',tp_rm_photo:'ഫോട്ടോ നീക്കുക',
  tp_noshow:'ഹാജരാകാത്തവർ',tp_noshow_note:'ഹാജരാകാത്ത ട്രെയിനികളെ പ്രൊജക്ഷനിൽ ഒഴിവാക്കും.',tp_start:'ആരംഭിക്കുക',tp_sound:'ശബ്ദം',tp_exit:'പുറത്ത്',tp_hint:'→ / സ്പേസ്: അടുത്തത് · ← പിന്നോട്ട് · Esc: പുറത്ത്',tp_final:'എല്ലാ ടോപ്പർമാർക്കും അഭിനന്ദനങ്ങൾ!'});
+
+Object.assign(I.en,{th_h:'Theme (applies to everyone)',th_fixed:'Fixed theme',th_auto:'Auto-change every hour',th_mode:'Mode',th_list:'Themes to rotate through'});
+Object.assign(I.hi,{th_h:'थीम (सभी पर लागू)',th_fixed:'स्थिर थीम',th_auto:'हर घंटे स्वतः बदलें',th_mode:'मोड',th_list:'बदलने वाली थीम'});
+Object.assign(I.ml,{th_h:'തീം (എല്ലാവർക്കും ബാധകം)',th_fixed:'സ്ഥിര തീം',th_auto:'ഓരോ മണിക്കൂറിലും സ്വയം മാറ്റുക',th_mode:'മോഡ്',th_list:'മാറിമാറി ഉപയോഗിക്കേണ്ട തീമുകൾ'});
+const THEMES=['light','dark','royal','mint'];
+function currentTheme(){const s=S.settings;if(s.themeMode==='auto'){const l=(s.themeList||[]).filter(x=>THEMES.includes(x));const L2=l.length?l:THEMES;return L2[new Date().getHours()%L2.length]}return THEMES.includes(s.theme)?s.theme:'light'}
+function applyTheme(){const t=currentTheme();if(document.body.dataset.theme!==t)document.body.dataset.theme=t}
 const pad2=n=>String(n).padStart(2,'0');
 function fmtT(t){if(!t)return'';const [h,m]=t.split(':').map(Number);return ((h%12)||12)+':'+pad2(m)+' '+(h<12?'AM':'PM')}
 function fmtD(d){if(!d)return'';const x=new Date(d+'T00:00:00');return isNaN(x)?d:x.toLocaleDateString({en:'en-IN',hi:'hi-IN',ml:'ml-IN'}[lang]||'en-IN',{day:'numeric',month:'short',year:'numeric'})}
@@ -387,17 +400,75 @@ function seed(){return{
   spoc:[{name:'DGT SPOC (to be updated by Admin)',role:'DGT Nodal Officer',phone:'— add number —'},{name:'NSTI Calicut Coordinator',role:'Event Coordinator',phone:'— add number —'}],
   sop:['Camera feed live from 5:00 PM; confirm audio/video with DGT SPOC at 4:30 PM.','Primary link on the main projector; backup on a laptop with mobile hotspot.','Stage lights dimmed and sound level checked during the Prime Minister\'s address (5:30–7:00 PM).','Camera operator records the local convocation separately for archive.','Do not leave the stream unattended until DGT SPOC confirms close.'],
   trades:DEFAULT_TRADES}};}
-
 /* ============ STATE / PERSISTENCE ============ */
 let S, fbDoc=null, memOnly=false;
 function load(){try{const r=localStorage.getItem(STORE_KEY);if(r)return JSON.parse(r)}catch(e){memOnly=true}return seed()}
-function persist(){try{localStorage.setItem(STORE_KEY,JSON.stringify(S))}catch(e){memOnly=true}if(fbDoc){try{fbDoc.set(JSON.parse(JSON.stringify(S)))}catch(e){console.warn(e)}}}
+
+/* ---- SHA-256 (sync) — used so plain dates of birth are never stored in the shared database ---- */
+const SHA_K=[0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2];
+function sha256(str){const m=new TextEncoder().encode(str),l=m.length,n=((l+9+63)>>6)<<6,b=new Uint8Array(n);b.set(m);b[l]=0x80;const dv=new DataView(b.buffer);dv.setUint32(n-4,l*8>>>0);dv.setUint32(n-8,Math.floor(l*8/4294967296));
+  let H=[0x6a09e667,0xbb67ae85,0x3c6ef372,0xa54ff53a,0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19];const w=new Array(64);const R=(x,k)=>(x>>>k)|(x<<(32-k));
+  for(let o=0;o<n;o+=64){for(let i=0;i<16;i++)w[i]=dv.getUint32(o+i*4);for(let i=16;i<64;i++){const s0=R(w[i-15],7)^R(w[i-15],18)^(w[i-15]>>>3),s1=R(w[i-2],17)^R(w[i-2],19)^(w[i-2]>>>10);w[i]=(w[i-16]+s0+w[i-7]+s1)|0}
+    let [a,bb,c,d,e,f,g,h]=H;for(let i=0;i<64;i++){const S1=R(e,6)^R(e,11)^R(e,25),ch=(e&f)^(~e&g),t1=(h+S1+ch+SHA_K[i]+w[i])|0,S0=R(a,2)^R(a,13)^R(a,22),mj=(a&bb)^(a&c)^(bb&c),t2=(S0+mj)|0;h=g;g=f;f=e;e=(d+t1)|0;d=c;c=bb;bb=a;a=(t1+t2)|0}
+    H=[(H[0]+a)|0,(H[1]+bb)|0,(H[2]+c)|0,(H[3]+d)|0,(H[4]+e)|0,(H[5]+f)|0,(H[6]+g)|0,(H[7]+h)|0]}
+  return H.map(x=>(x>>>0).toString(16).padStart(8,'0')).join('')}
+const dobHash=(key,dob)=>sha256('KDS|'+key+'|'+dob);
+/* true if the typed DOB matches the user's stored DOB (plain, local) or stored hash (from shared database) */
+const dobOk=(u,d)=>!!d&&(u.dob?normDob(u.dob)===d:!!u.dobh&&u.dobh===dobHash(ukey(u),d));
+
+/* ---- local save + per-record Firebase sync ---- */
+const canon=o=>Array.isArray(o)?'['+o.map(canon).join(',')+']':(o&&typeof o==='object')?'{'+Object.keys(o).sort().filter(k=>o[k]!==undefined).map(k=>JSON.stringify(k)+':'+canon(o[k])).join(',')+'}':JSON.stringify(o===undefined?null:o);
+const encId=s=>encodeURIComponent(String(s)).replace(/\./g,'%2E');
+function serUser(u){const o=Object.assign({},u);if(o.dob){o.dobh=dobHash(ukey(u),normDob(o.dob)||o.dob);delete o.dob}return o}
+function serConf(c){const o=Object.assign({},c);if(!o.manual)delete o.dob;return o}
+const FS_COLS=[
+ {n:'users',get:()=>S.users,set:a=>{S.users=a},id:u=>ukey(u),ser:serUser},
+ {n:'confirmations',get:()=>S.confirmations,set:a=>{S.confirmations=a},id:c=>c.key,ser:serConf},
+ {n:'attendance',get:()=>Object.entries(S.attendance).map(([k,v])=>Object.assign({_k:k},v)),set:a=>{S.attendance={};a.forEach(r=>{const v=Object.assign({},r);delete v._k;S.attendance[r._k]=v})},id:r=>r._k},
+ {n:'cultural',ordered:1,get:()=>S.cultural,set:a=>{S.cultural=a},id:x=>x.id},
+ {n:'toppers',get:()=>S.toppers,set:a=>{S.toppers=a},id:x=>x.id},
+ {n:'agenda',ordered:1,get:()=>S.agenda,set:a=>{S.agenda=a},id:x=>x.id},
+ {n:'committee',ordered:1,get:()=>S.committee,set:a=>{S.committee=a},id:x=>x.no},
+ {n:'checklist',ordered:1,get:()=>S.checklist,set:a=>{S.checklist=a},id:x=>x.id},
+ {n:'notes',ordered:1,get:()=>S.notes,set:a=>{S.notes=a},id:x=>x.id}];
+const FSR={db:null,ready:false,last:{},loaded:new Set(),timer:null};
+function persist(){try{localStorage.setItem(STORE_KEY,JSON.stringify(S))}catch(e){memOnly=true}fsPush()}
+function fsPush(){
+  if(!FSR.ready||!FSR.db)return;const ops=[];
+  for(const c of FS_COLS){const cur=new Map();c.get().forEach((x,i)=>{let o=c.ser?c.ser(x):x;if(c.ordered)o=Object.assign({},o,{_o:i});cur.set(encId(c.id(x)),{json:canon(o),data:o})});
+    const last=FSR.last[c.n]||new Map();
+    cur.forEach((v,id)=>{if(last.get(id)!==v.json)ops.push(['set',c.n,id,JSON.parse(JSON.stringify(v.data))])});
+    last.forEach((_,id)=>{if(!cur.has(id))ops.push(['del',c.n,id])});
+    FSR.last[c.n]=new Map([...cur].map(([id,v])=>[id,v.json]))}
+  const st=Object.assign({},S.settings);const img=st.schedImg||'';delete st.schedImg;const sj=canon(st);
+  if(FSR.last.settings!==sj){ops.push(['set','meta','settings',JSON.parse(JSON.stringify(st))]);FSR.last.settings=sj}
+  if(FSR.last.sched!==img){ops.push(['set','meta','sched',{img}]);FSR.last.sched=img}
+  for(let i=0;i<ops.length;i+=400){const b=FSR.db.batch();ops.slice(i,i+400).forEach(([t,c,id,d])=>{const r=FSR.db.collection(c).doc(id);t==='set'?b.set(r,d):b.delete(r)});b.commit().catch(e=>console.warn('sync write failed',e))}
+}
+let rTimer=null;
+function softRender(){clearTimeout(rTimer);rTimer=setTimeout(()=>{const a=document.activeElement,app=document.getElementById('app');if(a&&app&&app.contains(a)&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)&&a.type!=='checkbox'&&a.type!=='file'){softRender();return}render()},400)}
+function fsMark(name){FSR.loaded.add(name);if(!FSR.ready&&FSR.loaded.size>=FS_COLS.length+2){FSR.ready=true;fbDoc=FSR.db;try{localStorage.setItem(STORE_KEY,JSON.stringify(S))}catch(e){}softRender()}}
+function fsListen(){
+  const db=FSR.db;
+  FS_COLS.forEach(c=>db.collection(c.n).onSnapshot(snap=>{
+    if(snap.metadata.hasPendingWrites)return;
+    const arr=[],last=new Map();snap.forEach(d=>{const data=d.data();arr.push(data);last.set(d.id,canon(data))});
+    if(c.ordered)arr.sort((a,b)=>(a._o||0)-(b._o||0));
+    const clean=c.ordered?arr.map(x=>{const y=Object.assign({},x);delete y._o;return y}):arr;
+    c.set(clean);FSR.last[c.n]=last;
+    if(c.n==='users'&&me&&!curUser()&&FSR.ready){/* session user removed remotely */}
+    if(!FSR.ready)fsMark(c.n);else{try{localStorage.setItem(STORE_KEY,JSON.stringify(S))}catch(e){}softRender()}},e=>console.warn('listen failed',c.n,e)));
+  db.doc('meta/settings').onSnapshot(snap=>{if(snap.metadata.hasPendingWrites||!snap.exists)return;const keep=S.settings.schedImg;const d=snap.data();FSR.last.settings=canon(d);S.settings=Object.assign({},d,{schedImg:keep||''});ensureDefaults();if(!FSR.ready)fsMark('settings');else softRender()});
+  db.doc('meta/sched').onSnapshot(snap=>{if(snap.metadata.hasPendingWrites)return;const img=snap.exists?(snap.data().img||''):'';FSR.last.sched=img;S.settings.schedImg=img;if(!FSR.ready)fsMark('sched');else softRender()});
+}
 function initFirebase(){
   if(!FIREBASE_CONFIG)return;
   const add=src=>new Promise((res,rej)=>{const s=document.createElement('script');s.src=src;s.onload=res;s.onerror=rej;document.head.appendChild(s)});
-  add('https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js').then(()=>add('https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js')).then(()=>{
-    firebase.initializeApp(FIREBASE_CONFIG);fbDoc=firebase.firestore().doc('portal/kds2026');
-    fbDoc.onSnapshot(snap=>{if(snap.exists){S=snap.data();ensureDefaults();try{localStorage.setItem(STORE_KEY,JSON.stringify(S))}catch(e){}render()}else{fbDoc.set(JSON.parse(JSON.stringify(S)))}});
+  add('https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js').then(()=>add('https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js')).then(async()=>{
+    firebase.initializeApp(FIREBASE_CONFIG);FSR.db=firebase.firestore();
+    const first=await FSR.db.doc('meta/settings').get();
+    if(!first.exists){FSR.ready=true;fbDoc=FSR.db;persist();render()}   /* empty database: seed it from this browser (use the Admin's laptop) */
+    fsListen();
   }).catch(e=>console.warn('Firebase load failed',e));
 }
 S=load();ensureDefaults();
@@ -431,8 +502,7 @@ const WAVE=(flip)=>`<svg class="wave" viewBox="0 0 1200 60" preserveAspectRatio=
 function render(){
   document.documentElement.lang=lang;
   $('#hTitle').textContent=ST();$('#hSub').textContent=T('portal')+' · '+S.settings.convDate;$('#foot').textContent=ST()+' · '+S.settings.venue+' · Skill India';document.title=ST()+' — NSTI Calicut Coordination Portal';
-  const ts=$('#themeSel');const cur=document.body.dataset.theme;
-  ts.innerHTML=['light','dark','royal','mint'].map(k=>`<option value="${k}" ${k===cur?'selected':''}>${T('th_'+k)}</option>`).join('');
+  applyTheme();
   const u=curUser();
   $('#userBox').innerHTML=u?`<span class="pill">${esc(T('r_'+u.role))}</span> <b>${esc(u.name.split(' ')[0])}</b> <button class="ghost sm" onclick="logout()">${T('logout')}</button>`:`<button class="sm" onclick="go('login')">${T('login')}</button>`;
   const tabs=[['home',T('home')]];
@@ -504,7 +574,7 @@ function bindForm(){
     if(nm.value==='__new'){const n=$('#f_name').value.trim();if(!n){msg('err',T('need_all'));return}
       rec={key:'M:'+mob,name:n,reg:$('#f_reg').value.trim(),manual:true}}
     else{const u=trainees().find(x=>x.reg===nm.value&&x.scheme===sc&&x.trade===t);if(!u){msg('err',T('need_all'));return}
-      if(normDob(u.dob)!==dob){msg('err',T('dob_mismatch'));return}
+      if(!dobOk(u,dob)){msg('err',T('dob_mismatch'));return}
       rec={key:'T:'+u.reg,name:u.name,reg:u.reg}}
     Object.assign(rec,{mobile:mob,dob,scheme:sc,trade:t,uniform:true,parent,at:Date.now()});
     const i=S.confirmations.findIndex(c=>c.key===rec.key);
@@ -518,7 +588,7 @@ ${flash?`<div class="msg ${flash.t}">${esc(flash.m)}</div>`:''}
 <form onsubmit="doLogin(event)"><label>${T('mobile')}</label><input id="l_mob" inputmode="numeric" maxlength="10" autocomplete="username"><label>${T('dob')}</label><input id="l_dob" placeholder="DD-MM-YYYY" autocomplete="off"><p><button type="submit">${T('login_btn')}</button></p></form>
 <div class="msg info"><b>${T('demo_h')}</b><br>Admin: 9000000001 · 01-01-1980<br>Official: 9000000002 · 15-05-1985<br>Trainee: 9000000003 · 10-10-2005</div></section>`}
 function doLogin(e){e.preventDefault();const m=normMob($('#l_mob').value),d=normDob($('#l_dob').value);
-  const u=m&&d&&S.users.find(x=>x.mobile===m&&normDob(x.dob)===d);
+  const u=m&&d&&S.users.find(x=>x.mobile===m&&dobOk(x,d));
   if(!u){flash={t:'err',m:T('invalid')};render();return}
   me={key:ukey(u)};try{sessionStorage.setItem('kds_me',JSON.stringify(me))}catch(e){}
   flash=null;view=u.role==='trainee'?'pass':'committee';render()}
@@ -640,6 +710,10 @@ ${tri('e_title',T('ev_title'),s.title)}
 <label>${T('ev_venue')}</label><input id="e_venue" value="${esc(s.venue)}">
 <label style="font-weight:500"><input type="checkbox" id="e_par" style="width:auto" ${s.inviteParents?'checked':''}> ${T('ev_parents')}</label>
 ${tri('e_cert',T('ev_cert'),s.certNotice)}${tri('e_live',T('ev_live'),s.liveNote)}${tri('e_extra',T('ev_extra'),s.extraNote)}
+<h3>🎨 ${T('th_h')}</h3>
+<div class="row"><div><label>${T('th_mode')}</label><select id="e_tmode"><option value="fixed" ${s.themeMode!=='auto'?'selected':''}>${T('th_fixed')}</option><option value="auto" ${s.themeMode==='auto'?'selected':''}>${T('th_auto')}</option></select></div>
+<div><label>${T('th_fixed')}</label><select id="e_theme">${THEMES.map(k=>`<option value="${k}" ${s.theme===k?'selected':''}>${T('th_'+k)}</option>`).join('')}</select></div></div>
+<label>${T('th_list')}</label><div class="row">${THEMES.map(k=>`<label style="font-weight:500;flex:1 1 150px"><input type="checkbox" class="e_tl" value="${k}" style="width:auto" ${(s.themeList||THEMES).includes(k)?'checked':''}> ${T('th_'+k)}</label>`).join('')}</div>
 <p><button onclick="saveEvent()">${T('save')}</button></p>
 <h3>🖼️ ${T('ev_sched')}</h3>${s.schedImg?`<img src="${s.schedImg}" alt="" style="width:100%;max-width:420px;border-radius:14px;border:1px solid var(--line)"><p><button class="danger sm" onclick="S.settings.schedImg='';persist();render()">${T('ev_sched_rm')}</button></p>`:''}
 <input type="file" accept="image/*" onchange="readSched(this)">
@@ -649,7 +723,7 @@ function readSched(inp){const f=inp.files&&inp.files[0];if(!f)return;const r=new
   let max=1400,q=.72,out='';for(let i=0;i<4;i++){const k=Math.min(1,max/Math.max(img.width,img.height));const c=document.createElement('canvas');c.width=Math.round(img.width*k);c.height=Math.round(img.height*k);c.getContext('2d').drawImage(img,0,0,c.width,c.height);out=c.toDataURL('image/jpeg',q);if(out.length<650000)break;max*=.75;q-=.08}
   S.settings.schedImg=out;persist();flash={t:'ok',m:T('saved')};render()};img.src=r.result};r.readAsDataURL(f)}
 function saveEvent(){const s=S.settings;s.title=rd('e_title');s.certNotice=rd('e_cert');s.liveNote=rd('e_live');s.extraNote=rd('e_extra');
-  s.code=$('#e_code').value.trim()||'KDS';s.convDate=$('#e_conv').value.trim();s.venue=$('#e_venue').value.trim();s.inviteParents=$('#e_par').checked;
+  s.code=$('#e_code').value.trim()||'KDS';s.convDate=$('#e_conv').value.trim();s.venue=$('#e_venue').value.trim();s.inviteParents=$('#e_par').checked;s.themeMode=$('#e_tmode').value;s.theme=$('#e_theme').value;s.themeList=[...document.querySelectorAll('.e_tl')].filter(x=>x.checked).map(x=>x.value);applyTheme();
   persist();flash={t:'ok',m:T('ev_saved')};render()}
 let nyArmed=false;
 function newYear(btn){if(!nyArmed){nyArmed=true;btn.textContent=T('ev_sure');return}
@@ -672,10 +746,10 @@ function importRoster(text){
 function runImport(text){const r=importRoster(text);persist();flash={t:(r.bad.length&&!r.add&&!r.upd)?'err':'ok',m:`Added ${r.add}, updated ${r.upd}, rejected ${r.bad.length}`+(r.bad.length?' — '+r.bad.slice(0,8).join('; '):'')};render()}
 function readRosterFile(inp){const f=inp.files&&inp.files[0];if(!f)return;const r=new FileReader();r.onload=()=>runImport(String(r.result));r.readAsText(f)}
 function rosterTemplate(){exportCSV('trainee_roster_template',[['Reg No','Name','Scheme','Trade','Mobile','DOB','Batch'],['CTS26-EL-001','Sample Trainee','CTS','Electrician','9876543210','25-12-2005','2025-26']])}
-function exportRoster(){exportCSV(S.settings.code+'_trainee_roster',[['Reg No','Name','Scheme','Trade','Mobile','DOB','Batch'],...trainees().map(u=>[u.reg,u.name,u.scheme,u.trade,u.mobile,u.dob,u.batch||''])])}
+function exportRoster(){exportCSV(S.settings.code+'_trainee_roster',[['Reg No','Name','Scheme','Trade','Mobile','DOB','Batch'],...trainees().map(u=>[u.reg,u.name,u.scheme,u.trade,u.mobile,u.dob||'(hidden)',u.batch||''])])}
 function trTable(){const q=trQ.toLowerCase();const rows=trainees().filter(u=>!q||(u.name+' '+u.reg).toLowerCase().includes(q)).slice(0,200);
   return `<div class="scroll"><table><tr><th>${T('reg')}</th><th>${T('name')}</th><th>${T('scheme')}/${T('trade')}</th><th>${T('cols')}</th><th>DOB</th><th></th></tr>
-  ${rows.map(u=>`<tr><td>${esc(u.reg)}</td><td>${esc(u.name)}</td><td>${esc(u.scheme)} · ${esc(u.trade)}</td><td>${esc(u.mobile)}</td><td>${esc(u.dob)}</td><td><button class="ghost sm" data-k="${esc(ukey(u))}" onclick="editTr(this.dataset.k)">${T('edit')}</button> <button class="danger sm" data-k="${esc(ukey(u))}" onclick="delTr(this.dataset.k)">${T('del')}</button></td></tr>`).join('')||`<tr><td colspan="6">${T('nodata')}</td></tr>`}</table></div>`}
+  ${rows.map(u=>`<tr><td>${esc(u.reg)}</td><td>${esc(u.name)}</td><td>${esc(u.scheme)} · ${esc(u.trade)}</td><td>${esc(u.mobile)}</td><td>${esc(u.dob||'••••')}</td><td><button class="ghost sm" data-k="${esc(ukey(u))}" onclick="editTr(this.dataset.k)">${T('edit')}</button> <button class="danger sm" data-k="${esc(ukey(u))}" onclick="delTr(this.dataset.k)">${T('del')}</button></td></tr>`).join('')||`<tr><td colspan="6">${T('nodata')}</td></tr>`}</table></div>`}
 function updTr(){const e=$('#trTbl');if(e)e.innerHTML=trTable()}
 function adminTrainees(){return `<h2>🧑‍🎓 ${T('tr_h')}</h2><p><b>${T('tr_count',{n:trainees().length})}</b></p>
 <div class="msg info"><b>${T('tr_fmt')}</b><br><code>${T('tr_cols')}</code></div>
@@ -687,10 +761,11 @@ function adminTrainees(){return `<h2>🧑‍🎓 ${T('tr_h')}</h2><p><b>${T('tr_
 <div><label>${T('mobile')}</label><input id="t_mob" maxlength="10"></div><div><label>DOB (DD-MM-YYYY)</label><input id="t_dob"></div></div><p><button>${T('save')}</button></p></form>
 <input placeholder="${T('tr_search')}" oninput="trQ=this.value;updTr()" value="${esc(trQ)}"><div id="trTbl">${trTable()}</div>`}
 function saveTr(e){e.preventDefault();const reg=$('#t_reg').value.trim(),name=$('#t_name').value.trim(),trade=$('#t_trade').value.trim(),m=normMob($('#t_mob').value),d=normDob($('#t_dob').value);
-  if(!reg||!name||!trade||!m||!d){flash={t:'err',m:T('need_all')};render();return}
-  const u={reg,name,trade,scheme:$('#t_scheme').value,mobile:m,dob:d,role:'trainee',cert:'Pending'};
+  const _ex=S.users.find(x=>x.role==='trainee'&&String(x.reg).toLowerCase()===reg.toLowerCase());
+  if(!reg||!name||!trade||!m||(!d&&!(_ex&&(_ex.dob||_ex.dobh)))){flash={t:'err',m:T('need_all')};render();return}
+  const u={reg,name,trade,scheme:$('#t_scheme').value,mobile:m,role:'trainee',cert:'Pending'};if(d)u.dob=d;else if(_ex){if(_ex.dob)u.dob=_ex.dob;if(_ex.dobh)u.dobh=_ex.dobh}
   const k=S.users.findIndex(x=>x.role==='trainee'&&String(x.reg).toLowerCase()===reg.toLowerCase());if(k>=0){u.cert=S.users[k].cert||'Pending';S.users[k]=u}else S.users.push(u);persist();flash={t:'ok',m:T('saved')};render()}
-function editTr(k){const u=S.users.find(x=>ukey(x)===k);if(!u)return;$('#t_reg').value=u.reg;$('#t_name').value=u.name;$('#t_scheme').value=u.scheme;$('#t_trade').value=u.trade;$('#t_mob').value=u.mobile;$('#t_dob').value=u.dob;window.scrollTo(0,0)}
+function editTr(k){const u=S.users.find(x=>ukey(x)===k);if(!u)return;$('#t_reg').value=u.reg;$('#t_name').value=u.name;$('#t_scheme').value=u.scheme;$('#t_trade').value=u.trade;$('#t_mob').value=u.mobile;$('#t_dob').value=u.dob||'';window.scrollTo(0,0)}
 function delTr(k){S.users=S.users.filter(u=>ukey(u)!==k);persist();updTr()}
 
 /* -- Staff logins -- */
@@ -699,12 +774,13 @@ function adminStaff(){return `<h2>👤 ${T('staff_h')}</h2>
 <div><label>${T('role_l')}</label><select id="u_role"><option value="official">${T('r_official')}</option><option value="admin">${T('r_admin')}</option></select></div></div>
 <label>${T('sf_teams')}</label><div class="row">${S.committee.map(r=>`<label style="font-weight:500;flex:1 1 230px"><input type="checkbox" class="u_team" value="${r.no}" style="width:auto"> ${r.no}. ${esc(r.duty)}</label>`).join('')}</div><p><button>${T('save')}</button></p></form>
 <div class="scroll"><table><tr><th>${T('name')}</th><th>${T('mobile')}</th><th>DOB</th><th>${T('role_l')}</th><th>${T('sf_teams')}</th><th></th></tr>
-${S.users.filter(u=>u.role!=='trainee').map(u=>`<tr><td>${esc(u.name)}</td><td>${esc(u.mobile)}</td><td>${esc(u.dob)}</td><td>${esc(T('r_'+u.role))}</td><td>${esc((u.teams||[]).join(', '))}</td><td><button class="ghost sm" data-k="${esc(ukey(u))}" onclick="editStaff(this.dataset.k)">${T('edit')}</button> <button class="danger sm" data-k="${esc(ukey(u))}" onclick="delStaff(this.dataset.k)">${T('del')}</button></td></tr>`).join('')}</table></div>`}
+${S.users.filter(u=>u.role!=='trainee').map(u=>`<tr><td>${esc(u.name)}</td><td>${esc(u.mobile)}</td><td>${esc(u.dob||'••••')}</td><td>${esc(T('r_'+u.role))}</td><td>${esc((u.teams||[]).join(', '))}</td><td><button class="ghost sm" data-k="${esc(ukey(u))}" onclick="editStaff(this.dataset.k)">${T('edit')}</button> <button class="danger sm" data-k="${esc(ukey(u))}" onclick="delStaff(this.dataset.k)">${T('del')}</button></td></tr>`).join('')}</table></div>`}
 function saveStaff(e){e.preventDefault();const m=normMob($('#u_mob').value),d=normDob($('#u_dob').value),n=$('#u_name').value.trim();
-  if(!m||!d||!n){flash={t:'err',m:T('need_all')};render();return}
+  const _es=S.users.find(x=>x.role!=='trainee'&&x.mobile===m);
+  if(!m||(!d&&!(_es&&(_es.dob||_es.dobh)))||!n){flash={t:'err',m:T('need_all')};render();return}
   const teams=[...document.querySelectorAll('.u_team')].filter(x=>x.checked).map(x=>+x.value);
-  const u={mobile:m,dob:d,name:n,role:$('#u_role').value,teams};const i=S.users.findIndex(x=>x.role!=='trainee'&&x.mobile===m);if(i>=0)S.users[i]=u;else S.users.push(u);persist();flash={t:'ok',m:T('saved')};render()}
-function editStaff(k){const u=S.users.find(x=>ukey(x)===k);if(!u)return;$('#u_name').value=u.name;$('#u_mob').value=u.mobile;$('#u_dob').value=u.dob;$('#u_role').value=u.role;document.querySelectorAll('.u_team').forEach(x=>x.checked=(u.teams||[]).includes(+x.value));window.scrollTo(0,0)}
+  const u={mobile:m,name:n,role:$('#u_role').value,teams};if(d)u.dob=d;else if(_es){if(_es.dob)u.dob=_es.dob;if(_es.dobh)u.dobh=_es.dobh}const i=S.users.findIndex(x=>x.role!=='trainee'&&x.mobile===m);if(i>=0)S.users[i]=u;else S.users.push(u);persist();flash={t:'ok',m:T('saved')};render()}
+function editStaff(k){const u=S.users.find(x=>ukey(x)===k);if(!u)return;$('#u_name').value=u.name;$('#u_mob').value=u.mobile;$('#u_dob').value=u.dob||'';$('#u_role').value=u.role;document.querySelectorAll('.u_team').forEach(x=>x.checked=(u.teams||[]).includes(+x.value));window.scrollTo(0,0)}
 function delStaff(k){if(me&&me.key===k)return;S.users=S.users.filter(u=>ukey(u)!==k);persist();render()}
 
 /* -- Agenda -- */
@@ -740,7 +816,7 @@ function adminReports(){const c=counts();return `<h2>📤 ${T('a_reports')}</h2>
 <div class="grid g3"><button onclick="exportAtt()">${T('rep_conf')}</button><button onclick="exportPres()">${T('pres_export')}</button><button onclick="exportCert()">${T('cd_h').split(' (')[0]}</button><button onclick="exportRoster2()">${T('rep_roster')}</button><button onclick="exportRoster()">${T('tr_export')}</button><button onclick="exportUsers()">${T('rep_users')}</button></div>
 <h3>${T('counter_h')}</h3><div class="scroll"><table><tr><th>${T('trade')}</th><th>#</th></tr>${Object.entries(c.by).map(([k,v])=>`<tr><td>${esc(k)}</td><td>${v}</td></tr>`).join('')}<tr><th>${T('total')}</th><th>${c.total}</th></tr></table></div>`}
 function exportRoster2(){exportCSV(S.settings.code+'_committee_duty_roster',[['No','Responsibility','Members'],...S.committee.map(r=>[r.no,r.duty,r.members])])}
-function exportUsers(){exportCSV(S.settings.code+'_all_users',[['Name','Mobile','DOB','Role','Scheme','Trade','Reg No','Certificate'],...S.users.map(u=>[u.name,u.mobile,u.dob,u.role,u.scheme||'',u.trade||'',u.reg||'',u.cert||''])])}
+function exportUsers(){exportCSV(S.settings.code+'_all_users',[['Name','Mobile','DOB','Role','Scheme','Trade','Reg No','Certificate'],...S.users.map(u=>[u.name,u.mobile,u.dob||'(hidden)',u.role,u.scheme||'',u.trade||'',u.reg||'',u.cert||''])])}
 
 /* ---------- Toppers ---------- */
 const LV=['national','state','institute'];
@@ -872,8 +948,7 @@ function renderProj(){const ov=document.getElementById('proj');if(!ov||!proj)ret
 /* ============ CHROME CONTROLS ============ */
 document.querySelectorAll('[data-lang]').forEach(b=>b.onclick=()=>{lang=b.dataset.lang;document.querySelectorAll('[data-lang]').forEach(x=>x.classList.toggle('on',x===b));render()});
 let fsStep=0;document.querySelectorAll('[data-fs]').forEach(b=>b.onclick=()=>{const d=+b.dataset.fs;fsStep=d===0?0:Math.max(-2,Math.min(4,fsStep+d));document.documentElement.style.setProperty('--fs',(16+fsStep*2)+'px');document.querySelectorAll('[data-fs]').forEach(x=>x.classList.toggle('on',+x.dataset.fs===0&&fsStep===0))});
-$('#themeSel').onchange=e=>{document.body.dataset.theme=e.target.value;try{localStorage.setItem('kds_theme',e.target.value)}catch(_){}};
-try{const t=localStorage.getItem('kds_theme');if(t)document.body.dataset.theme=t}catch(e){}
+setInterval(applyTheme,30000);
 setInterval(()=>{if(view==='pass')drawQR()},1000);
 initFirebase();render();
 </script>
