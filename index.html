@@ -767,7 +767,7 @@ function applyTrFix(i){const x=(window.__tfx||[])[i];if(!x)return;const v=$('#tf
   persist();flash={t:'ok',m:T('saved')};render()}
 function adminTrainees(){return `<h2>🧑‍🎓 ${T('tr_h')}</h2><p><b>${T('tr_count',{n:trainees().length})}</b></p>${tradeFixPanel()}
 <div class="msg info"><b>${T('tr_fmt')}</b><br><code>${T('tr_cols')}</code></div>
-<div class="row"><button onclick="rosterTemplate()">${T('tr_tpl')}</button><button class="ghost" onclick="exportRoster()">${T('tr_export')}</button></div>
+<div class="row"><button onclick="rosterTemplate()">${T('tr_tpl')}</button><button class="ghost" onclick="exportRoster()">${T('tr_export')}</button><button class="ghost" style="color:#b3261e" onclick="delAllTr()">🗑️ Delete all trainees</button></div>
 <label>${T('tr_file')}</label><input type="file" accept=".csv,.tsv,.txt" onchange="readRosterFile(this)">
 <label>${T('tr_paste')}</label><textarea id="r_paste" rows="4" placeholder="CTS26-EL-001,Sample Trainee,CTS,Electrician,9876543210,25-12-2005,2025-26"></textarea><p><button onclick="runImport($('#r_paste').value)">${T('tr_merge')}</button></p>
 <h3>${T('tr_add')}</h3><form onsubmit="saveTr(event)"><div class="row"><div><label>${T('reg')}</label><input id="t_reg"></div><div><label>${T('name')}</label><input id="t_name"></div>
@@ -782,6 +782,9 @@ function saveTr(e){e.preventDefault();const reg=$('#t_reg').value.trim(),name=$(
   const u={reg,name,trade:_tm,scheme:$('#t_scheme').value,mobile:m,role:'trainee',cert:'Pending'};if(d)u.dob=d;else if(_ex){if(_ex.dob)u.dob=_ex.dob;if(_ex.dobh)u.dobh=_ex.dobh}
   const k=S.users.findIndex(x=>x.role==='trainee'&&String(x.reg).toLowerCase()===reg.toLowerCase());if(k>=0){u.cert=S.users[k].cert||'Pending';S.users[k]=u}else S.users.push(u);persist();flash={t:'ok',m:T('saved')};render()}
 function editTr(k){const u=S.users.find(x=>ukey(x)===k);if(!u)return;$('#t_reg').value=u.reg;$('#t_name').value=u.name;$('#t_scheme').value=u.scheme;$('#t_trade').value=u.trade;$('#t_mob').value=u.mobile;$('#t_dob').value=dmy2iso(u.dob);window.scrollTo(0,0)}
+function delAllTr(){modal(`<h3>🗑️ Delete all trainees</h3><p>This removes <b>${trainees().length}</b> trainees, all participation confirmations and all attendance marks. Staff, toppers, agenda and settings are kept. It cannot be undone.</p><label>Type DELETE to confirm</label><input id="da_c" autocomplete="off"><div id="da_m"></div><div class="row"><button style="background:#b3261e" onclick="doDelAllTr()">Delete all</button><button class="ghost" onclick="closeModal()">Cancel</button></div>`)}
+function doDelAllTr(){if(($('#da_c').value||'').trim()!=='DELETE'){$('#da_m').innerHTML='<div class="msg err">Type DELETE (capital letters) to confirm.</div>';return}
+  S.users=S.users.filter(u=>u.role!=='trainee');S.confirmations=[];Object.keys(S.attendance).forEach(k=>{if(k.startsWith('T:')||k.startsWith('M:'))delete S.attendance[k]});persist();closeModal();flash={t:'ok',m:'All trainees deleted. You can upload the roster now.'};render()}
 function delTr(k){S.users=S.users.filter(u=>ukey(u)!==k);persist();updTr()}
 
 /* -- Staff logins -- */
