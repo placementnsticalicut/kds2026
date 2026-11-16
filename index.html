@@ -236,7 +236,7 @@ const L=o=>typeof o==='string'?o:(o[lang]||o.en||'');
 /* ===== v2: event settings, extra i18n, helpers ===== */
 const EVENT_DEFAULTS={
  title:{en:'Kaushal Deekshant Samaroh 2026',hi:'कौशल दीक्षांत समारोह 2026',ml:'കൗശൽ ദീക്ഷാന്ത് സമാരോഹ് 2026'},
- code:'KDS26',schedImg:'',themeMode:'fixed',theme:'light',themeList:['light','dark','royal','mint'],batch:'2025-26',guidelines:{en:'',hi:'',ml:''},convDate:'21 November 2026',dryDate:'20 November 2026',venue:'NSTI Calicut, Govindapuram, Kozhikode',inviteParents:true,
+ code:'KDS26',schedImg:'',themeMode:'fixed',theme:'light',themeList:['light','dark','royal','mint'],batch:'2025-26',greet:{h:{en:'',hi:'',ml:''},p:{en:'',hi:'',ml:''},par:{en:'',hi:'',ml:''},c:{en:'',hi:'',ml:''}},guidelines:{en:'',hi:'',ml:''},convDate:'21 November 2026',dryDate:'20 November 2026',venue:'NSTI Calicut, Govindapuram, Kozhikode',inviteParents:true,
  liveNote:{en:"Live-linked with the national ceremony at IGP Lucknow, attended by the Hon'ble Prime Minister, 5:30 PM – 7:00 PM.",hi:'आईजीपी लखनऊ में माननीय प्रधानमंत्री की उपस्थिति में आयोजित राष्ट्रीय समारोह से सीधा जुड़ाव, सायं 5:30 से 7:00 बजे।',ml:'ബഹുമാനപ്പെട്ട പ്രധാനമന്ത്രി പങ്കെടുക്കുന്ന ഐജിപി ലഖ്നൗവിലെ ദേശീയ ചടങ്ങുമായി തത്സമയം ബന്ധിപ്പിക്കുന്നു, വൈകിട്ട് 5:30 മുതൽ 7:00 വരെ.'},
  certNotice:{en:'Certificates will not be handed over at the convocation. They will be distributed separately at the institute level; the date, time and counter will be intimated by NSTI Calicut.',hi:'प्रमाणपत्र दीक्षांत समारोह में नहीं दिए जाएँगे। इनका वितरण संस्थान स्तर पर अलग से होगा; तिथि, समय व काउंटर की सूचना एनएसटीआई कालीकट द्वारा दी जाएगी।',ml:'സർട്ടിഫിക്കറ്റുകൾ ദീക്ഷാന്ത് സമാരോഹിൽ നൽകുന്നതല്ല. അവ സ്ഥാപന തലത്തിൽ പ്രത്യേകമായി വിതരണം ചെയ്യും; തീയതി, സമയം, കൗണ്ടർ എന്നിവ എൻഎസ്ടിഐ കോഴിക്കോട് അറിയിക്കും.'},
  extraNote:{en:'',hi:'',ml:''}};
@@ -529,7 +529,7 @@ function vHome(){
   const live=ES('liveNote'),extra=ES('extraNote');
   const loc=agSorted().find(a=>a.kind==='local'&&!a.internal);
   return `
-<section class="card hero"><h2>${T((st.batch||'').trim()?'inv_h':'inv_h0',{batch:esc((st.batch||'').trim())})}</h2><p>${esc(T('inv_p',{title:ST(),venue:st.venue}))}</p>${sp?`<p>${esc(T('inv_par'))}</p>`:''}<p><b>${esc(T('inv_cta'))}</b></p>${live?`<p>${esc(live)}</p>`:''}${extra?`<p>${esc(extra)}</p>`:''}
+<section class="card hero"><h2>${esc(greetTxt('h'))}</h2><p>${esc(greetTxt('p'))}</p>${sp?`<p>${esc(greetTxt('par'))}</p>`:''}<p><b>${esc(greetTxt('c'))}</b></p>${live?`<p>${esc(live)}</p>`:''}${extra?`<p>${esc(extra)}</p>`:''}
 <p style="background:#ffffff2e;border-radius:14px;padding:.6rem .85rem"><b>🎓 ${T('cert_notice_h')}:</b> ${esc(ES('certNotice'))}</p>
 <span class="chip">🎓 ${esc(T('date_conv',GV()))}</span><span class="chip">📍 ${esc(st.venue)}</span>
 ${WAVE().replace('class="wave"','').replace('<svg','<svg style="color:var(--card)"')}</section>
@@ -721,6 +721,15 @@ Object.assign(I.hi,{login:'अधिकारी लॉगिन',login_h:'अ�
 Object.assign(I.ml,{login:'ഉദ്യോഗസ്ഥ ലോഗിൻ',login_h:'ഉദ്യോഗസ്ഥ ലോഗിൻ (മൊബൈൽ നമ്പർ + ജനന തീയതി)',login_note:'ഈ ലോഗിൻ കമ്മിറ്റി അംഗങ്ങൾക്കും ഉദ്യോഗസ്ഥർക്കും മാത്രമുള്ളതാണ്. ട്രെയിനികൾ ലോഗിൻ ചെയ്യേണ്ടതില്ല: ഹോം പേജിൽ പങ്കാളിത്തം സ്ഥിരീകരിച്ചാൽ മതി.',back_home:'← ഹോമിലേക്ക്',
  inv_h:'{batch} ബാച്ചിലെ പ്രിയ ട്രെയിനികളേ,',inv_h0:'പ്രിയ ട്രെയിനികളേ,',inv_p:'{venue}-ൽ നടക്കുന്ന {title}-ലേക്ക് നിങ്ങളെ സ്നേഹപൂർവ്വം ക്ഷണിക്കുന്നു.',inv_par:'രക്ഷിതാക്കളെയും സ്നേഹപൂർവ്വം ക്ഷണിക്കുന്നു.',inv_cta:'ദയവായി താഴെ പങ്കാളിത്തം സ്ഥിരീകരിക്കുക ⬇',ev_batch:'ബാച്ച് (ആശംസയിൽ കാണിക്കും, ഉദാ. 2025-26)',
  tp_msg_ph:'ശൂന്യമാക്കിയാൽ സ്വയം സന്ദേശം; അല്ലെങ്കിൽ തിരഞ്ഞെടുക്കുക / സ്വന്തമായി എഴുതുക',tp_s1:'നിങ്ങളിൽ അഭിമാനിക്കുന്നു!!',tp_s2:'മികച്ച പ്രകടനം!!',tp_s3:'ശോഭനമായ ഭാവി നേരുന്നു!!',tp_s4:'നിങ്ങൾ എൻഎസ്ടിഐ കോഴിക്കോടിന് അഭിമാനം!!'});
+Object.assign(I.en,{ev_greet:'Greeting on the home page (edit any line; clear a box to restore the default). You can use {batch}, {title}, {venue}.',ev_g_h:'Heading',ev_g_p:'Invitation line',ev_g_par:'Parent / guardian line (shown only if parents are invited)',ev_g_c:'Confirm line'});
+Object.assign(I.hi,{ev_greet:'होम पेज का अभिवादन (कोई भी पंक्ति बदलें; डिफ़ॉल्ट के लिए खाली करें)। {batch}, {title}, {venue} प्रयोग कर सकते हैं।',ev_g_h:'शीर्षक',ev_g_p:'आमंत्रण पंक्ति',ev_g_par:'माता-पिता / अभिभावक पंक्ति (केवल आमंत्रित होने पर दिखेगी)',ev_g_c:'पुष्टि पंक्ति'});
+Object.assign(I.ml,{ev_greet:'ഹോം പേജിലെ ആശംസ (ഏത് വരിയും മാറ്റാം; ഡിഫോൾട്ടിന് ബോക്സ് ശൂന്യമാക്കുക). {batch}, {title}, {venue} ഉപയോഗിക്കാം.',ev_g_h:'തലക്കെട്ട്',ev_g_p:'ക്ഷണ വരി',ev_g_par:'രക്ഷിതാക്കൾക്കുള്ള വരി (ക്ഷണിക്കുന്നുണ്ടെങ്കിൽ മാത്രം)',ev_g_c:'സ്ഥിരീകരണ വരി'});
+const greetKey=k=>({h:(S.settings.batch||'').trim()?'inv_h':'inv_h0',p:'inv_p',par:'inv_par',c:'inv_cta'}[k]);
+const greetRaw=(k,l)=>I[l][greetKey(k)]||I.en[greetKey(k)];
+function greetTxt(k){const g=(S.settings.greet||{})[k],c=g?L(g):'',st=S.settings,v={batch:(st.batch||'').trim(),title:ST(),venue:st.venue};
+  if(c&&c.trim())return c.replace(/\{(batch|title|venue)\}/g,(_,x)=>v[x]);return T(greetKey(k),v)}
+const greetIn=(id,label,k)=>['en','hi','ml'].map(l=>`<label>${label} (${l.toUpperCase()})</label><input id="${id}_${l}" value="${esc(((S.settings.greet||{})[k]||{})[l]||greetRaw(k,l))}">`).join('');
+const rdG=(id,k)=>{const o={};['en','hi','ml'].forEach(l=>{const v=$('#'+id+'_'+l).value.trim();o[l]=v===greetRaw(k,l)?'':v});return o};
 const fillG=s=>{const v=GV();return String(s).replace(/\{(t|d|dd)\}/g,(_,k)=>v[k]||'')};
 const guideRaw=l=>[1,2,3,4].filter(i=>i!==4||S.settings.inviteParents).map(i=>(I[l]['g'+i]||I.en['g'+i]));
 function guideLines(){const c=L(S.settings.guidelines||{});if(c&&c.trim())return c.split(/\r?\n/).map(x=>x.trim()).filter(Boolean).map(fillG);return [1,2,3,4].filter(i=>i!==4||S.settings.inviteParents).map(i=>T('g'+i,GV()))}
@@ -729,6 +738,7 @@ function adminEvent(){const s=S.settings;return `<h2>🎛️ ${T('a_event')}</h2
 ${tri('e_title',T('ev_title'),s.title)}
 <div class="row"><div><label>${T('ev_code')}</label><input id="e_code" value="${esc(s.code)}"></div><div><label>${T('ev_conv')}</label><input id="e_conv" value="${esc(s.convDate)}"></div><div><label>${T('ev_batch')}</label><input id="e_batch" value="${esc(s.batch||'')}"></div></div>
 <label>${T('ev_venue')}</label><input id="e_venue" value="${esc(s.venue)}">
+<h3>${T('ev_greet').split('(')[0].trim()}</h3><p style="color:var(--mute);margin:.2rem 0">${T('ev_greet')}</p>${greetIn('e_gh',T('ev_g_h'),'h')}${greetIn('e_gp',T('ev_g_p'),'p')}${greetIn('e_gpar',T('ev_g_par'),'par')}${greetIn('e_gc',T('ev_g_c'),'c')}
 <label style="font-weight:500"><input type="checkbox" id="e_par" style="width:auto" ${s.inviteParents?'checked':''}> ${T('ev_parents')}</label>
 ${tri('e_cert',T('ev_cert'),s.certNotice)}${tri('e_live',T('ev_live'),s.liveNote)}${tri('e_extra',T('ev_extra'),s.extraNote)}${guidArea(s)}
 <h3>🎨 ${T('th_h')}</h3>
@@ -744,7 +754,7 @@ function readSched(inp){const f=inp.files&&inp.files[0];if(!f)return;const r=new
   let max=1400,q=.72,out='';for(let i=0;i<4;i++){const k=Math.min(1,max/Math.max(img.width,img.height));const c=document.createElement('canvas');c.width=Math.round(img.width*k);c.height=Math.round(img.height*k);c.getContext('2d').drawImage(img,0,0,c.width,c.height);out=c.toDataURL('image/jpeg',q);if(out.length<650000)break;max*=.75;q-=.08}
   S.settings.schedImg=out;persist();flash={t:'ok',m:T('saved')};render()};img.src=r.result};r.readAsDataURL(f)}
 function saveEvent(){const s=S.settings;s.title=rd('e_title');s.certNotice=rd('e_cert');s.liveNote=rd('e_live');s.extraNote=rd('e_extra');s.guidelines=rd('e_guid');
-  s.code=$('#e_code').value.trim()||'KDS';s.convDate=$('#e_conv').value.trim();s.batch=$('#e_batch').value.trim();s.venue=$('#e_venue').value.trim();s.inviteParents=$('#e_par').checked;s.themeMode=$('#e_tmode').value;s.theme=$('#e_theme').value;s.themeList=[...document.querySelectorAll('.e_tl')].filter(x=>x.checked).map(x=>x.value);applyTheme();
+  s.code=$('#e_code').value.trim()||'KDS';s.convDate=$('#e_conv').value.trim();s.batch=$('#e_batch').value.trim();s.greet={h:rdG('e_gh','h'),p:rdG('e_gp','p'),par:rdG('e_gpar','par'),c:rdG('e_gc','c')};s.venue=$('#e_venue').value.trim();s.inviteParents=$('#e_par').checked;s.themeMode=$('#e_tmode').value;s.theme=$('#e_theme').value;s.themeList=[...document.querySelectorAll('.e_tl')].filter(x=>x.checked).map(x=>x.value);applyTheme();
   persist();flash={t:'ok',m:T('ev_saved')};render()}
 let nyArmed=false;
 function newYear(btn){if(!nyArmed){nyArmed=true;btn.textContent=T('ev_sure');return}
