@@ -236,7 +236,7 @@ const L=o=>typeof o==='string'?o:(o[lang]||o.en||'');
 /* ===== v2: event settings, extra i18n, helpers ===== */
 const EVENT_DEFAULTS={
  title:{en:'Kaushal Deekshant Samaroh 2026',hi:'कौशल दीक्षांत समारोह 2026',ml:'കൗശൽ ദീക്ഷാന്ത് സമാരോഹ് 2026'},
- code:'KDS26',schedImg:'',themeMode:'fixed',theme:'light',themeList:['light','dark','royal','mint'],convDate:'21 November 2026',dryDate:'20 November 2026',venue:'NSTI Calicut, Govindapuram, Kozhikode',inviteParents:true,
+ code:'KDS26',schedImg:'',themeMode:'fixed',theme:'light',themeList:['light','dark','royal','mint'],guidelines:{en:'',hi:'',ml:''},convDate:'21 November 2026',dryDate:'20 November 2026',venue:'NSTI Calicut, Govindapuram, Kozhikode',inviteParents:true,
  liveNote:{en:"Live-linked with the national ceremony at IGP Lucknow, attended by the Hon'ble Prime Minister, 5:30 PM – 7:00 PM.",hi:'आईजीपी लखनऊ में माननीय प्रधानमंत्री की उपस्थिति में आयोजित राष्ट्रीय समारोह से सीधा जुड़ाव, सायं 5:30 से 7:00 बजे।',ml:'ബഹുമാനപ്പെട്ട പ്രധാനമന്ത്രി പങ്കെടുക്കുന്ന ഐജിപി ലഖ്നൗവിലെ ദേശീയ ചടങ്ങുമായി തത്സമയം ബന്ധിപ്പിക്കുന്നു, വൈകിട്ട് 5:30 മുതൽ 7:00 വരെ.'},
  certNotice:{en:'Certificates will not be handed over at the convocation. They will be distributed separately at the institute level; the date, time and counter will be intimated by NSTI Calicut.',hi:'प्रमाणपत्र दीक्षांत समारोह में नहीं दिए जाएँगे। इनका वितरण संस्थान स्तर पर अलग से होगा; तिथि, समय व काउंटर की सूचना एनएसटीआई कालीकट द्वारा दी जाएगी।',ml:'സർട്ടിഫിക്കറ്റുകൾ ദീക്ഷാന്ത് സമാരോഹിൽ നൽകുന്നതല്ല. അവ സ്ഥാപന തലത്തിൽ പ്രത്യേകമായി വിതരണം ചെയ്യും; തീയതി, സമയം, കൗണ്ടർ എന്നിവ എൻഎസ്ടിഐ കോഴിക്കോട് അറിയിക്കും.'},
  extraNote:{en:'',hi:'',ml:''}};
@@ -536,11 +536,11 @@ ${WAVE().replace('class="wave"','').replace('<svg','<svg style="color:var(--card
 ${(loc||st.schedImg)?`<section class="card"><h2>🎓 ${esc(loc?L(loc.title):T('conv_h'))}</h2>${loc?`<p style="font-size:1.1rem"><b class="tt">${esc(fmtWhen(loc))}</b></p><p style="color:var(--mute)">${esc(L(loc.desc))}</p>`:''}
 ${st.schedImg?`<h3>${T('sched_photo')}</h3><img src="${st.schedImg}" alt="${esc(T('sched_photo'))}" style="width:100%;max-width:640px;border-radius:16px;cursor:zoom-in;border:1px solid var(--line)" onclick="showSched()"><div style="color:var(--mute);font-size:.8rem">${T('sched_tap')}</div>`:''}</section>`:''}
 <div class="grid g2">
-<section class="card"><h2>📋 ${T('guide_h')}</h2><ol style="padding-left:1.2rem;margin:0">${[1,2,3,4].filter(i=>i!==4||sp).map(i=>`<li style="margin:.4rem 0">${esc(T('g'+i,GV()))}</li>`).join('')}</ol></section>
-<section class="card"><h2>📊 ${T('counter_h')}</h2>
+<section class="card"><h2>📋 ${T('guide_h')}</h2><ol style="padding-left:1.2rem;margin:0">${guideLines().map(x=>`<li style="margin:.4rem 0">${esc(x)}</li>`).join('')}</ol></section>
+${isStaff()?`<section class="card"><h2>📊 ${T('counter_h')}</h2>
 <p><b style="font-size:1.6rem;color:var(--pri)">${c.total}</b> ${T('total')}${sp?` · <b>${c.parents}</b> ${T('parents')}`:''}</p>
 ${Object.keys(c.by).length?Object.entries(c.by).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<div style="margin:.5rem 0"><div style="display:flex;justify-content:space-between"><span>${esc(k)}</span><b>${v}</b></div><div class="bar"><i style="width:${v/max*100}%"></i></div></div>`).join(''):`<p class="msg info">${T('nodata')}</p>`}
-</section></div>
+</section>`:''}</div>
 ${WAVE()}
 <section class="card"><h2>🗓️ ${T('agenda_h')}</h2><p style="color:var(--mute);margin-top:0">${T('agenda_note')}</p>
 <ul class="tl">${publicAgenda().map(a=>`<li><b class="t">${esc(fmtWhen(a))}</b><br><b>${KIND_ICON[a.kind]||''} ${esc(L(a.title))}</b><br><span style="color:var(--mute)">${esc(L(a.desc))}</span></li>`).join('')}</ul></section>
@@ -608,7 +608,7 @@ function vPass(){const u=curUser();if(!u)return `<div class="msg err">${T('notlo
 <p class="hide-print"><button onclick="doPrint()">${T('print')}</button></p></section>
 <section class="card hide-print"><h2>📲 ${T('qr_h')}</h2>${at?`<div class="msg ok">${T('qr_marked')} · ${new Date(at.at).toLocaleTimeString()}</div>`:''}
 <div style="text-align:center"><div id="qrBox" style="width:240px;max-width:100%;margin:auto;background:#fff;padding:10px;border-radius:16px;min-height:120px"></div><div class="bar" style="max-width:240px;margin:.6rem auto"><i id="qrBar" style="width:100%"></i></div><p style="color:var(--mute)">${T('qr_note')}</p></div></section>
-<section class="card"><h2>📍 ${T('instr_h')}</h2><ul>${[1,2,3,4].filter(i=>i!==4||S.settings.inviteParents).map(i=>`<li>${esc(T('g'+i,GV()))}</li>`).join('')}</ul>
+<section class="card"><h2>📍 ${T('instr_h')}</h2><ul>${guideLines().map(x=>`<li>${esc(x)}</li>`).join('')}</ul>
 <p class="msg info"><b>🎓 ${T('cert_notice_h')}:</b> ${esc(ES('certNotice'))}</p></section>`}
 let qrLast=-1;
 function drawQR(force){const el=$('#qrBox');if(!el)return;const u=curUser();if(!u)return;const bar=$('#qrBar');if(bar)bar.style.width=(100-((Date.now()%30000)/300))+'%';
@@ -708,12 +708,19 @@ function vAdmin(){if(!isAdmin())return `<div class="msg err">${T('noaccess')}</d
 /* -- Event & invitation (yearly customisation) -- */
 const tri=(id,label,o)=>['en','hi','ml'].map(l=>`<label>${label} (${l.toUpperCase()})</label><input id="${id}_${l}" value="${esc((o&&o[l])||'')}">`).join('');
 const rd=id=>({en:$('#'+id+'_en').value.trim(),hi:$('#'+id+'_hi').value.trim(),ml:$('#'+id+'_ml').value.trim()});
+Object.assign(I.en,{ev_guid:'Trainee guidelines — one point per line. Placeholders: {t} reporting time, {d} convocation date, {dd} dry-run date. Clear the box to restore the default.'});
+Object.assign(I.hi,{ev_guid:'प्रशिक्षु दिशानिर्देश — प्रति पंक्ति एक बिंदु। प्लेसहोल्डर: {t} रिपोर्टिंग समय, {d} समारोह तिथि, {dd} ड्राई रन तिथि। डिफ़ॉल्ट के लिए बॉक्स खाली करें।'});
+Object.assign(I.ml,{ev_guid:'ട്രെയിനി മാർഗ്ഗനിർദ്ദേശങ്ങൾ — ഒരു വരിയിൽ ഒന്ന്. {t} റിപ്പോർട്ടിംഗ് സമയം, {d} ചടങ്ങ് തീയതി, {dd} ഡ്രൈ റൺ തീയതി. ഡിഫോൾട്ട് ലഭിക്കാൻ ബോക്സ് ശൂന്യമാക്കുക.'});
+const fillG=s=>{const v=GV();return String(s).replace(/\{(t|d|dd)\}/g,(_,k)=>v[k]||'')};
+const guideRaw=l=>[1,2,3,4].filter(i=>i!==4||S.settings.inviteParents).map(i=>(I[l]['g'+i]||I.en['g'+i]));
+function guideLines(){const c=L(S.settings.guidelines||{});if(c&&c.trim())return c.split(/\r?\n/).map(x=>x.trim()).filter(Boolean).map(fillG);return [1,2,3,4].filter(i=>i!==4||S.settings.inviteParents).map(i=>T('g'+i,GV()))}
+const guidArea=s=>`<p style="margin:.8rem 0 0;color:var(--mute)">${T('ev_guid')}</p>`+['en','hi','ml'].map(l=>`<label>${T('guide_h')} (${l.toUpperCase()})</label><textarea id="e_guid_${l}" rows="5">${esc(((s.guidelines||{})[l])||guideRaw(l).join('\n'))}</textarea>`).join('');
 function adminEvent(){const s=S.settings;return `<h2>🎛️ ${T('a_event')}</h2>
 ${tri('e_title',T('ev_title'),s.title)}
 <div class="row"><div><label>${T('ev_code')}</label><input id="e_code" value="${esc(s.code)}"></div><div><label>${T('ev_conv')}</label><input id="e_conv" value="${esc(s.convDate)}"></div></div>
 <label>${T('ev_venue')}</label><input id="e_venue" value="${esc(s.venue)}">
 <label style="font-weight:500"><input type="checkbox" id="e_par" style="width:auto" ${s.inviteParents?'checked':''}> ${T('ev_parents')}</label>
-${tri('e_cert',T('ev_cert'),s.certNotice)}${tri('e_live',T('ev_live'),s.liveNote)}${tri('e_extra',T('ev_extra'),s.extraNote)}
+${tri('e_cert',T('ev_cert'),s.certNotice)}${tri('e_live',T('ev_live'),s.liveNote)}${tri('e_extra',T('ev_extra'),s.extraNote)}${guidArea(s)}
 <h3>🎨 ${T('th_h')}</h3>
 <div class="row"><div><label>${T('th_mode')}</label><select id="e_tmode"><option value="fixed" ${s.themeMode!=='auto'?'selected':''}>${T('th_fixed')}</option><option value="auto" ${s.themeMode==='auto'?'selected':''}>${T('th_auto')}</option></select></div>
 <div><label>${T('th_fixed')}</label><select id="e_theme">${THEMES.map(k=>`<option value="${k}" ${s.theme===k?'selected':''}>${T('th_'+k)}</option>`).join('')}</select></div></div>
@@ -726,7 +733,7 @@ ${tri('e_cert',T('ev_cert'),s.certNotice)}${tri('e_live',T('ev_live'),s.liveNote
 function readSched(inp){const f=inp.files&&inp.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const img=new Image();img.onload=()=>{
   let max=1400,q=.72,out='';for(let i=0;i<4;i++){const k=Math.min(1,max/Math.max(img.width,img.height));const c=document.createElement('canvas');c.width=Math.round(img.width*k);c.height=Math.round(img.height*k);c.getContext('2d').drawImage(img,0,0,c.width,c.height);out=c.toDataURL('image/jpeg',q);if(out.length<650000)break;max*=.75;q-=.08}
   S.settings.schedImg=out;persist();flash={t:'ok',m:T('saved')};render()};img.src=r.result};r.readAsDataURL(f)}
-function saveEvent(){const s=S.settings;s.title=rd('e_title');s.certNotice=rd('e_cert');s.liveNote=rd('e_live');s.extraNote=rd('e_extra');
+function saveEvent(){const s=S.settings;s.title=rd('e_title');s.certNotice=rd('e_cert');s.liveNote=rd('e_live');s.extraNote=rd('e_extra');s.guidelines=rd('e_guid');
   s.code=$('#e_code').value.trim()||'KDS';s.convDate=$('#e_conv').value.trim();s.venue=$('#e_venue').value.trim();s.inviteParents=$('#e_par').checked;s.themeMode=$('#e_tmode').value;s.theme=$('#e_theme').value;s.themeList=[...document.querySelectorAll('.e_tl')].filter(x=>x.checked).map(x=>x.value);applyTheme();
   persist();flash={t:'ok',m:T('ev_saved')};render()}
 let nyArmed=false;
