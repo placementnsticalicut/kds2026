@@ -736,7 +736,7 @@ function newYear(btn){if(!nyArmed){nyArmed=true;btn.textContent=T('ev_sure');ret
 /* -- Trainee roster -- */
 function importRoster(text){
   text=text.replace(/^﻿/,'');const first=text.split(/\r?\n/)[0]||'';
-  const delim=first.includes('\t')&&!first.includes(',')?'\t':',';
+  const cnt=ch=>first.split(ch).length-1;const delim=cnt(',')>=cnt(';')&&cnt(',')>=cnt('\t')?',':(cnt(';')>=cnt('\t')?';':'\t');
   let rows=parseCSV(text,delim);if(rows.length&&/reg/i.test(rows[0][0]||''))rows.shift();
   let add=0,upd=0;const bad=[],unl=new Set();
   rows.forEach((p,i)=>{p=p.map(x=>x.trim());const [reg,name,scheme,trade,mob,dob,batch]=p;const m=normMob(mob)||'',d=normDob(dob);
@@ -748,7 +748,8 @@ function importRoster(text){
     const k=S.users.findIndex(x=>x.role==='trainee'&&String(x.reg).toLowerCase()===reg.toLowerCase());
     if(k>=0){const o=S.users[k];u.cert=o.cert||'Pending';if(o.certAt)u.certAt=o.certAt;if(o.certBy)u.certBy=o.certBy;S.users[k]=u;upd++}else{S.users.push(u);add++}});
   return{add,upd,bad,unl:[...unl]}}
-function runImport(text){const r=importRoster(text);persist();flash={t:(r.bad.length&&!r.add&&!r.upd)?'err':'ok',m:`Added ${r.add}, updated ${r.upd}, rejected ${r.bad.length}`+(r.bad.length?' — '+r.bad.filter(x=>!/not in admin list/.test(x)).slice(0,6).join('; '):'')+(r.unl.length?' — Trade not in admin list: '+r.unl.slice(0,8).join('; ')+'. Add it under Admin → Settings → Trades, or map it below, then upload again.':'')};render()}
+function runImport(text){if(!String(text||'').trim()){flash={t:'err',m:'Nothing to import: the file or paste box is empty. No changes were made.'};render();return}
+  const r=importRoster(text);persist();if(!r.add&&!r.upd&&!r.bad.length){flash={t:'err',m:'No trainee rows were found in the data (only a header or blank lines). No changes were made.'};render();return}flash={t:(r.bad.length&&!r.add&&!r.upd)?'err':'ok',m:`Added ${r.add}, updated ${r.upd}, rejected ${r.bad.length}`+(r.bad.length?' — '+r.bad.filter(x=>!/not in admin list/.test(x)).slice(0,6).join('; '):'')+(r.unl.length?' — Trade not in admin list: '+r.unl.slice(0,8).join('; ')+'. Add it under Admin → Settings → Trades, or map it below, then upload again.':'')};render()}
 function readRosterFile(inp){const f=inp.files&&inp.files[0];if(!f)return;const r=new FileReader();r.onload=()=>runImport(String(r.result));r.readAsText(f)}
 function rosterTemplate(){exportCSV('trainee_roster_template',[['Reg No','Name','Scheme','Trade','Mobile','DOB','Batch'],['CTS26-EL-001','Sample Trainee','CTS','Electrician','9876543210','25-12-2005','2025-26']])}
 function exportRoster(){exportCSV(S.settings.code+'_trainee_roster',[['Reg No','Name','Scheme','Trade','Mobile','DOB','Batch'],...trainees().map(u=>[u.reg,u.name,u.scheme,u.trade,u.mobile,u.dob||'(hidden)',u.batch||''])])}
