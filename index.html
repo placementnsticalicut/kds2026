@@ -65,7 +65,7 @@ select,input,textarea,button{font:inherit;color:var(--ink)}
 select,input,textarea{background:var(--inp);border:1px solid var(--line);border-radius:12px;padding:.45rem .7rem;width:100%}
 .tools select,.tools input{width:auto}
 button{cursor:pointer;border:0;border-radius:999px;padding:.45rem 1rem;background:linear-gradient(135deg,var(--pri),var(--pri2));color:#fff;font-weight:600}
-.attrow{display:flex;gap:.8rem;margin:.3rem 0 .8rem}.attbtn{flex:1;font-size:1.15rem;font-weight:800;padding:1rem .6rem;border-radius:16px;background:#fff!important;border:3px solid;cursor:pointer}.attbtn.yes{border-color:#1f9d55;color:#1f9d55!important}.attbtn.no{border-color:#d64545;color:#d64545!important}.attbtn.yes.on{background:#1f9d55!important;color:#fff!important}.attbtn.no.on{background:#d64545!important;color:#fff!important}@media(max-width:520px){.attrow{flex-direction:column}}
+.attrow{display:flex;gap:.8rem;margin:.3rem 0 .8rem}.attbtn{flex:1;font-size:1.15rem;font-weight:800;padding:1rem .6rem;border-radius:16px;background:#fff!important;border:3px solid;cursor:pointer}.attbtn.yes{border-color:#1f9d55;color:#1f9d55!important}.attbtn.no{border-color:#d64545;color:#d64545!important}.attbtn.yes.on{background:#1f9d55!important;color:#fff!important}.attbtn.no.on{background:#d64545!important;color:#fff!important}@media(max-width:520px){.attrow{flex-direction:column}}.attrow.sel .attbtn:not(.on){border-color:#c4c7cf!important;color:#9a9fab!important;background:#eceef2!important;font-weight:600}
 [data-theme=royal] button{color:#0b1d46}
 button.ghost{background:transparent;border:1px solid var(--line);color:var(--ink)}
 button.sm{padding:.2rem .6rem;font-size:.8rem}
@@ -571,7 +571,7 @@ function bindForm(){
     nm.innerHTML=`<option value="">${T('select')}</option>`+list.map((u,i)=>{const n=list.slice(0,i).filter(x=>x.name.trim().toLowerCase()===u.name.trim().toLowerCase()).length;return `<option value="${esc(u.reg)}">${esc(u.name)}${n?' ('+(n+1)+')':''}</option>`}).join('')+`<option value="__new">${T('not_listed')}</option>`;
     hint.textContent=list.length?'':T('no_roster');$('#f_manual').style.display='none'};
   nm.onchange=()=>{$('#f_manual').style.display=nm.value==='__new'?'block':'none'};
-  document.querySelectorAll('#pf .attbtn').forEach(b=>b.onclick=()=>{const a=b.dataset.a;$('#f_att').value=a;document.querySelectorAll('#pf .attbtn').forEach(x=>x.classList.toggle('on',x===b));$('#att_y').style.display=a==='yes'?'block':'none';const sb=$('#pf button[type=submit]');sb.className=a==='no'?'danger':'';sb.textContent=a==='no'?T('att_submit_no'):T('submit')});
+  document.querySelectorAll('#pf .attbtn').forEach(b=>b.onclick=()=>{const a=b.dataset.a;$('#f_att').value=a;document.querySelectorAll('#pf .attbtn').forEach(x=>x.classList.toggle('on',x===b));$('#pf .attrow').classList.add('sel');$('#att_y').style.display=a==='yes'?'block':'none';const sb=$('#pf button[type=submit]');sb.className=a==='no'?'danger':'';sb.textContent=a==='no'?T('att_submit_no'):T('submit')});
   $('#pf').onsubmit=e=>{e.preventDefault();
     const {sc,tr:t}=sel();const mobRaw=$('#f_mob').value.replace(/\D/g,''),mob=normMob($('#f_mob').value),dob=normDob($('#f_dob').value);
     const att=$('#f_att').value;if(!att){msg('err',T('att_pick'));return}
